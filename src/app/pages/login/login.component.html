@@ -1,6 +1,6 @@
 <main class="main">
   <section class="login">
-    <form class="frm-sing-in" [formGroup]="loginForm" (ngSubmit)="submit()">
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="submit()">
       <label for="">Correo Electrónico:</label>
       <mat-form-field appearance="outline">
         <input matInput  formControlName="email" />
@@ -19,7 +19,6 @@
           Contraseña es requerida
         </mat-error>
       </mat-form-field>
-      <span><a href="http://">Olvidaste tu contraseña?</a></span>
       <div class="btn">
           <button type="submit" mat-raised-button color="primary" class="btn" >Iniciar Sesión</button>
       </div>
