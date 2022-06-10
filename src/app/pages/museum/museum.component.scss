@@ -1,3 +1,16 @@
+.museos{
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+}
+.der{
+}
+.main{
+  width: 80%;
+  height: 100vh;
+  overflow-y: scroll;
+  padding-right: 2em;
+}
 .chars {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
