@@ -1,2 +1,36 @@
-<p>sidebar works!</p>
-<p>asdkasldkmatDialogActions</p>
+<section class="sideBar">
+    <section class="userStyle">
+        <div class="infoUser">
+            <span>Rol del Usuario</span>
+            <span>Nombre Usuario</span>
+        </div>
+        <div class="avatarUser">
+            <img src="../../../assets/usuario.png" alt="">
+        </div>
+    </section>
+    <section class="buttonStyles">
+        <div>
+            <button mat-button class="btnStyle" routerLink="museos" routerLinkActive="routerLinkActive">Museos</button>
+        </div>
+    </section>
+    <section class="buttonStyles">
+        <div>
+            <button mat-button class="btnStyle" routerLink="personal" routerLinkActive #rla="routerLinkActive">Personal {{ rla.isActive ? '(already open)' : ''}}</button>
+        </div>
+    </section>
+    <section class="buttonStyles">
+        <div>
+            <button mat-button class="btnStyle" routerLink="puntos-de-informacion" routerLinkActive #rla="routerLinkActive" >Puntos de Información {{ rla.isActive ? '(already open)' : ''}}</button>
+        </div>
+    </section>
+    <section class="buttonStyles">
+        <div>
+            <button mat-button class="btnStyle" routerLink="configuracion" routerLinkActive #rla="routerLinkActive" >Confirguración {{ rla.isActive ? '(already open)' : ''}}</button>
+        </div>
+    </section>
+    <section class="buttonStyles">
+        <div>
+            <button mat-button class="btnStyleC">Cerrar Sesión</button>
+        </div>
+    </section>
+</section>
