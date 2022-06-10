@@ -1,0 +1,13 @@
+.main{
+  height: 100vh;
+  width: 100vw;
+  background-image: url('../../../assets/asset1.png');
+  background-repeat: no-repeat;
+  background-size: 101vh;
+  background-position: right;
+}
+.login{
+  display: flex;
+  flex-direction: column;
+  background-color: #FFFFFF;
+}
