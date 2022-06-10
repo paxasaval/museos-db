@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "museos-db": {
+      "hosting": {
+        "GestorMuseos": [
+          "museos-db"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "museos-db"
+  }
+}
