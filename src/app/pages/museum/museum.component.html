@@ -27,10 +27,10 @@
       <ng-template #elseBlock>
         <div class="title2">
           <h2 class="title">Museos disponibles</h2>
-        <button class="addMuseum" mat-raised-button color="primary">
-          Agregar Museos
+          <button class="addMuseum" mat-raised-button color="primary" (click)="openDialogNewMuseum()">
+            Agregar Museo
             <mat-icon>add_circle</mat-icon>
-        </button>
+          </button>
         </div>
 
       </ng-template>
