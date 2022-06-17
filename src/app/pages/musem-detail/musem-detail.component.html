@@ -1,1 +1,61 @@
-<p>musem-detail works!</p>
+<section class="museumDetail">
+    <div class="der">
+        <app-sidebar></app-sidebar>
+    </div>
+    <main class="main">
+        <div class="imgStyle">
+            <img src="../../../assets/museo3.jpg" alt="">
+        </div>
+        <section class="headerMain"> 
+            <section class="header1">
+                <div class="btnback">
+                    <button mat-icon-button>
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+                </div>
+                <div class="infoStyle">
+                    <h2 class="title">Museo de la ciudad de Loja</h2>
+                    <span class="direccion">direccion</span>
+                    <span class="descripcion">descripcion</span> 
+                </div>   
+            </section> 
+            <section class="headerBtn">
+                <div>
+                    <button class="btnEdit" mat-raised-button>
+                        Editar Información
+                        <mat-icon class="matIcon">edit</mat-icon>
+                    </button>
+                </div>
+                <div>
+                    <button class="btnRegister" mat-raised-button>
+                        Registrar visita
+                        <mat-icon class="matIcon">add_circle</mat-icon>
+                    </button>
+                </div>
+            </section>
+        </section>
+        <section >
+            <section class="Container">
+                <div class="date">
+                    <span>Filtrar fechas</span>
+                    <div class="formInput">
+                        <p class="labelStyle">Fecha de Inicio:</p>
+                        <input matInput formControlName="name" class="inputStyle" type="text">
+                    </div>
+                    <div class="formInput">
+                        <p class="labelStyle">Fecha de Fin:</p>
+                        <input matInput formControlName="name" class="inputStyle" type="text">
+                    </div>
+                </div>
+                <div class="btnReport">
+                    <div>
+
+                    </div>
+                </div>
+            </section>
+            <section>
+
+            </section>
+        </section>
+    </main>
+</section>
