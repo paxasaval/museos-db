@@ -3,6 +3,7 @@
         <h2 class="h2">Agregar Museo</h2>
     </section>
     <section class="form">
+        
         <div class="formInput">
             <p class="labelStyle">Nombre del Museo:</p>
             <input matInput class="inputStyle" type="text">
@@ -25,7 +26,28 @@
         </div>
         <div class="formInput">
             <p class="labelStyle">Imagen de museo:</p>
-            <input matInput class="inputStyle" type="file">
+            <input  class="inputStyle" type="file" name="archivo" id="file">
+            <img class="imageLoad" src="" />
+            <button mat-raised-button value="Subir Archivo" class="btnArchivo" onclick="document.getElementById('file').click()">
+                Subir Imagen
+                <mat-icon>
+                    cloud_upload
+                </mat-icon>
+            </button>
+        </div>
+        <div class="sectionButton">
+            <button mat-raised-button class="btnSave">
+                Guardar
+                <mat-icon>
+                    save
+                </mat-icon>
+            </button>
+            <button mat-raised-button class="btnCancel">
+                Cancelar
+                <mat-icon>
+                    cancel
+                </mat-icon>
+            </button>
         </div>
     </section>
 </section>

@@ -28,7 +28,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     HttpClientModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
 
   ]
 })

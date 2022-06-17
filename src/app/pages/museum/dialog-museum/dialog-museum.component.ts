@@ -9,13 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 export class DialogMuseumComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
-  openDialogNewMuseum(): void {
-    const dialogRef = this.dialog.open(DialogMuseumComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+  
 
   ngOnInit(): void {
   }
