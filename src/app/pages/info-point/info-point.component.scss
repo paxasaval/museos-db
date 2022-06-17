@@ -1,0 +1,60 @@
+.museos{
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+}
+
+.main{
+  width: 80%;
+  height: 100vh;
+  overflow-y: scroll;
+  padding-right: 2em;
+}
+.chars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(300px, auto);
+}
+.chars article{
+  background-color: #f1f1f1;
+  border-radius: 12px;
+}
+.one {
+  grid-column: 1;
+  grid-row: 1;
+}
+.two {
+  grid-column: 2;
+  grid-row: 1;
+}
+.three {
+  grid-column: 1;
+  grid-row: 2;
+}
+.four {
+  grid-column: 2;
+  grid-row: 2;
+}
+.search{
+  text-align: left;
+  width: 100%;
+}
+.search-bar{
+  text-align: center;
+  width: 100%;
+}
+.search-input{
+  width: 60%;
+}
+.title2{
+  display: flex;
+  justify-content: space-between;
+}
+.addMuseum{
+  width: 12vw;
+}
+.plus-icon{
+  height: 15px;
+  width: 15px;
+}

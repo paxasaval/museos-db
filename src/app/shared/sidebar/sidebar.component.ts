@@ -8,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+
+
   constructor(private authservice: AuthService) { }
   logOut(){
-    this.authservice.logout
+    this.authservice.logout().subscribe(()=>{
+      window.location.reload();
+    })
   }
   ngOnInit(): void {
   }
