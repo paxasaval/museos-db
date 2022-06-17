@@ -21,6 +21,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { LayerComponent } from './pages/layer/layer.component';
+import { DialogMuseumComponent } from './pages/museum/dialog-museum/dialog-museum.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { LayerComponent } from './pages/layer/layer.component';
     SidebarComponent,
     LoginComponent,
     MuseumComponent,
+    DialogMuseumComponent,
     PersonalComponent,
     InfoPointComponent,
     ConfigComponent,
