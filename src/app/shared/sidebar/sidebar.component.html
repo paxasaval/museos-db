@@ -9,22 +9,22 @@
             <img src="../../../assets/Usuario-Icono.jpg" alt="">
         </div>
     </section>
-    <section class="buttonStyles">
+    <section *ngIf="seeMuseos" class="buttonStyles">
         <div>
             <a mat-button class="btnStyle" routerLink="/museos" routerLinkActive="routerLinkActive">Museos</a>
         </div>
     </section>
-    <section class="buttonStyles">
+    <section *ngIf="seePersonal" class="buttonStyles">
         <div>
             <a mat-button class="btnStyle" routerLink="/personal" routerLinkActive="routerLinkActive">Personal</a>
         </div>
     </section>
-    <section class="buttonStyles">
+    <section *ngIf="seePoint" class="buttonStyles">
         <div>
             <a mat-button class="btnStyle" routerLink="/puntos-de-informacion" routerLinkActive="routerLinkActive" >Puntos de Información</a>
         </div>
     </section>
-    <section class="buttonStyles">
+    <section *ngIf="seeConfig" class="buttonStyles">
         <div>
             <a mat-button class="btnStyle" routerLink="/configuracion" routerLinkActive="routerLinkActive" >Confirguración</a>
         </div>

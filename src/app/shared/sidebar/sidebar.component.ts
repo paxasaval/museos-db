@@ -13,12 +13,15 @@ export class SidebarComponent implements OnInit {
   user_id!:string
   name:string = 't'
   rol!:string
-
+  seePersonal=false
+  seePoint=false
+  seeMuseos=false
+  seeConfig=false
 
   constructor(
     private authservice: AuthService,
     private userService: UserService,
-    private rolService: RolService
+    private rolService: RolService,
     ) { }
   logOut(){
     this.authservice.logout().subscribe(()=>{
@@ -32,12 +35,20 @@ export class SidebarComponent implements OnInit {
         this.name=result.name!
         if(result.rol==='KcyTEOBshsvabhvqmcpz'){
           this.rol='Administrador'
+          this.seePersonal=true
+          this.seeMuseos=true
+          this.seeConfig=true
+          this.seePoint=true
         }
         if(result.rol==='ZFwDIYvZia8PKqIRS9Ng'){
           this.rol='Gestor'
+          this.seeMuseos=true
+          this.seePoint=true
         }
         if(result.rol==='kKjkKRN2Kzz01dDxLevq'){
           this.rol='Visualizador'
+          this.seeMuseos=true
+          this.seePoint=true
         }
       }
     )
