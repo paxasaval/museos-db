@@ -8,24 +8,36 @@
     height: 100vh;
     overflow-y: scroll;
     padding-right: 2em;
+    margin-top: 2em;
+    padding-top: 1em;
     h2{
         color: var(--primary);
         font-size: 2em;
         font-weight: 900;
+        margin-bottom: 2em;
     }
+}
+h3{
+  color: var(--primary);
+  font-size: 1.25em;
+  letter-spacing: 0.75px;
+  font-weight: 600;
+}
+.addStaff{
+  margin-bottom: 1em;
 }
 .table{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2em;
+  padding: 1em;
   width: 100%;
 
 }
 .table-review{
   width: 90%;
-  border-bottom: 2px solid #000;
 }
+
 .mat-header-cell{
   text-align: center;
   border: none;
@@ -33,12 +45,28 @@
   color: #000;
   font-size: 1rem;
 }
+.mat-row{
+  height: 1em;
+}
 .mat-cell{
   text-align: center;
   border: none;
-  text-transform: uppercase;
-  background-color: #f4f4f4;
+  font-size: 1em;
+  padding: 4px;
+  height: auto;
+  text-transform: capitalize;
+  background-color: #fff;
+  border-bottom: 2px solid #000;
+
 
 }
-.mat-column-cedula.mat-cell{
+.mat-column-Nombres-y-Apellidos{
+
+}
+
+.long-2{
+  max-width: 22ch;
+}
+.no-bg{
+  background-color: #fff;
 }
