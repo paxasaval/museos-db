@@ -22,6 +22,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { LayerComponent } from './pages/layer/layer.component';
 import { DialogMuseumComponent } from './pages/museum/dialog-museum/dialog-museum.component';
+import { DialogStaffComponent } from './pages/personal/dialog-staff/dialog-staff.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DialogMuseumComponent } from './pages/museum/dialog-museum/dialog-museu
     ConfigComponent,
     MusemDetailComponent,
     InfoPointDetailComponent,
-    LayerComponent
+    LayerComponent,
+    DialogStaffComponent
   ],
   imports: [
     BrowserModule,
