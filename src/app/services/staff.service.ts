@@ -69,6 +69,15 @@ export class StaffService {
     )
   }
 
+  updateStaff(staff: StaffId){
+    const staffReference = this.afs.doc<Staff>(`staff/${staff.id}`)
+    staffReference.set(staff)
+  }
+
+  deleteStaff(staff: StaffId) {
+    this.afs.doc<Staff>('staff/' + staff.id).delete();
+   }
+
   postStaff(staff: Staff) {
     return this.afs.collection<Staff>('staff').add(staff)
   }
