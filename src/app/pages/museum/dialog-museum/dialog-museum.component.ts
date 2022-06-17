@@ -1,9 +1,10 @@
 import { HotToastService } from '@ngneat/hot-toast';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Museo } from 'src/app/models/museo';
 import { MuseosService } from 'src/app/services/museos.service';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-museum',
@@ -13,7 +14,7 @@ import { MuseosService } from 'src/app/services/museos.service';
 export class DialogMuseumComponent implements OnInit {
 
   img?: File
-
+  title = 'Agregar Museo'
   museumForm = new FormGroup(({
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
@@ -31,11 +32,27 @@ export class DialogMuseumComponent implements OnInit {
     private toast: HotToastService,
     private museosService: MuseosService,
     private dialogRef: MatDialogRef<DialogMuseumComponent>,
-
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
 
   ngOnInit(): void {
+    if(this.data['edit']){
+      this.title='Editar Museo'
+      this.museosService.getMuseoById(this.data['museo_id']).subscribe(
+        result=>{
+          this.museumForm.setValue({
+            name:result.name,
+            address:result.address,
+            description:result.description,
+            schedule:result.schedule,
+            supervisor:result.supervisor,
+            image:null
+          })
+
+        }
+      )
+    }
   }
 
   get name() {
