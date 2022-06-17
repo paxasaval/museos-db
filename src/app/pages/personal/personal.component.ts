@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Staff } from 'src/app/models/staff';
 import { StaffService } from 'src/app/services/staff.service';
 import { DialogStaffComponent } from './dialog-staff/dialog-staff.component';
@@ -22,7 +22,7 @@ export class PersonalComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private staffService: StaffService
+    private staffService: StaffService,
     ) { }
 
   openDialogNewStaff(): void{
@@ -54,4 +54,25 @@ export class PersonalComponent implements OnInit {
     this.fetchPersonal()
   }
 
+  seePersonal(id:string){
+    const dialogRef=this.dialog.open(DialogStaffComponent, {
+      panelClass: 'app-full-bleed-dialog',
+      data: {
+        'edit': false,
+        'personal_id': id
+      }
+    })
+  }
+  editPersonal(id: string){
+    const dialogRef=this.dialog.open(DialogStaffComponent, {
+      panelClass: 'app-full-bleed-dialog',
+      data: {
+        'edit': true,
+        'personal_id': id
+      }
+    })
+  }
+  deletePersonal(id: string){
+
+  }
 }

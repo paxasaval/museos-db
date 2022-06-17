@@ -1,6 +1,6 @@
 import { HotToastService } from '@ngneat/hot-toast';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { StaffService } from 'src/app/services/staff.service';
 import { Staff } from 'src/app/models/staff';
@@ -12,6 +12,10 @@ import { Staff } from 'src/app/models/staff';
 })
 export class DialogStaffComponent implements OnInit {
 
+  title='Agregar Personal'
+  cancel='Cancelar'
+  saveChanges=true
+
   personalForm = new FormGroup(({
     ci: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
@@ -22,14 +26,62 @@ export class DialogStaffComponent implements OnInit {
     schedule: new FormControl('', [Validators.required]),
   }))
 
+  myControl = new FormControl();
+
   constructor(
     public dialog: MatDialog,
     private toast: HotToastService,
     private staffService: StaffService,
     private dialogRef: MatDialogRef<DialogStaffComponent>,
-
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+
+  ngOnInit(): void {
+    if(this.data['edit']==true){
+      this.title='Editar Personal'
+      this.staffService.getStaffByCedula(this.data['personal_id']).subscribe(
+        result=>{
+          this.personalForm.setValue({
+            ci:result[0].cedula,
+            name:result[0].name,
+            rol:result[0].rol,
+            museo:result[0].museo,
+            phone:result[0].phone,
+            mail:result[0].mail,
+            schedule:result[0].workingHours
+          })
+        }
+      )
+    }
+    if(this.data['edit']==false){
+      this.title='Ver Personal'
+      this.staffService.getStaffByCedula(this.data['personal_id']).subscribe(
+        result=>{
+          this.personalForm.setValue({
+            ci:result[0].cedula,
+            name:result[0].name,
+            rol:result[0].rol,
+            museo:result[0].museo,
+            phone:result[0].phone,
+            mail:result[0].mail,
+            schedule:result[0].workingHours
+          })
+          this.personalForm.controls['ci'].disable()
+          this.personalForm.controls['name'].disable()
+          this.personalForm.controls['rol'].disable()
+          this.personalForm.controls['museo'].disable()
+          this.personalForm.controls['phone'].disable()
+          this.personalForm.controls['mail'].disable()
+          this.personalForm.controls['schedule'].disable()
+          this.cancel='Salir'
+          this.saveChanges=false
+        }
+      )
+
+    }
+
+  }
   get ci() {
     return this.personalForm.get('ci')
   }
@@ -50,8 +102,6 @@ export class DialogStaffComponent implements OnInit {
   }
   get schedule() {
     return this.personalForm.get('schedule')
-  }
-  ngOnInit(): void {
   }
 
   submit() {
