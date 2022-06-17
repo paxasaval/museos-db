@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./info-point.component.scss']
 })
 export class InfoPointComponent implements OnInit {
+  rol = ''
 
   constructor() { }
 
   ngOnInit(): void {
+    this.rol = localStorage.getItem('rol')!
   }
 
 }

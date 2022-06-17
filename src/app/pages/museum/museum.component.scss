@@ -58,3 +58,8 @@
   height: 15px;
   width: 15px;
 }
+.grid-museos{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

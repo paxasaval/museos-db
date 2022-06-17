@@ -21,7 +21,10 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { LayerComponent } from './pages/layer/layer.component';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 import { DialogMuseumComponent } from './pages/museum/dialog-museum/dialog-museum.component';
+import { DialogStaffComponent } from './pages/personal/dialog-staff/dialog-staff.component';
+import { MuseumCardComponent } from './pages/museum/museum-card/museum-card.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import { DialogMuseumComponent } from './pages/museum/dialog-museum/dialog-museu
     ConfigComponent,
     MusemDetailComponent,
     InfoPointDetailComponent,
-    LayerComponent
+    LayerComponent,
+    DialogStaffComponent,
+    MuseumCardComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +51,7 @@ import { DialogMuseumComponent } from './pages/museum/dialog-museum/dialog-museu
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
     HotToastModule.forRoot(),
     HttpClientModule
 

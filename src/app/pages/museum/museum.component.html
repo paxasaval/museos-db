@@ -38,5 +38,8 @@
     </section>
     <p *ngIf="rol==='kKjkKRN2Kzz01dDxLevq'">Visualizador</p>
     <p *ngIf="rol==='KcyTEOBshsvabhvqmcpz'">Administrador</p>
+    <div class="grid-museos">
+      <app-museum-card *ngFor="let museo of museos" [card]="museo"></app-museum-card>
+    </div>
   </main>
 </section>

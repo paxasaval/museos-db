@@ -1,0 +1,44 @@
+.staff{
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+}
+.main{
+    width: 80%;
+    height: 100vh;
+    overflow-y: scroll;
+    padding-right: 2em;
+    h2{
+        color: var(--primary);
+        font-size: 2em;
+        font-weight: 900;
+    }
+}
+.table{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  width: 100%;
+
+}
+.table-review{
+  width: 90%;
+  border-bottom: 2px solid #000;
+}
+.mat-header-cell{
+  text-align: center;
+  border: none;
+  background-color: #e8e8e8;
+  color: #000;
+  font-size: 1rem;
+}
+.mat-cell{
+  text-align: center;
+  border: none;
+  text-transform: uppercase;
+  background-color: #f4f4f4;
+
+}
+.mat-column-cedula.mat-cell{
+}

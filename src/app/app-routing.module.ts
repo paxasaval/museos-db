@@ -45,7 +45,11 @@ const routes: Routes = [
     component: ConfigComponent,
     canActivate: [AuthGuard]
   },
-
+  {
+    path:'',
+    pathMatch:'full',
+    redirectTo: 'login'
+  }
 
 ];
 

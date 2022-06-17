@@ -52,6 +52,7 @@ export class AuthService {
   }
 
   logout(){
+    localStorage.clear()
     return from(this.auth.signOut())
   }
 

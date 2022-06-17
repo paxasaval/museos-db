@@ -1,2 +1,38 @@
-<app-sidebar></app-sidebar>
+<section class="museos">
+  <div class="der">
+    <app-sidebar></app-sidebar>
+  </div>
+  <main class="main">
+    <h2 class="title">Puntos de Informacion</h2>
+    <h3 class="subtitle">Datos Generales</h3>
+    <section class="chars">
+      <article class="one">Procedencia de turistas</article>
+      <article class="two">Fecha de visitas</article>
+      <article class="three">Razon de visitas</article>
+      <article class="four">Medios de trasnporte</article>
+    </section>
+    <section class="search">
+      <div *ngIf="rol==='kKjkKRN2Kzz01dDxLevq'; else elseBlock" class="search-title">
+        <h2 class="title">Puntos de informacion</h2>
+        <div class="search-bar">
+          <form class="search-form">
+            <mat-form-field class="search-input" appearance="outline">
+              <mat-label>Buscar</mat-label>
+              <input matInput type="text" placeholder="Museo puerta de la ciudad" #input>
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </form>
+        </div>
+      </div>
+      <ng-template #elseBlock>
+        <div class="title2">
+          <h2 class="title">Museos disponibles</h2>
+        </div>
 
+      </ng-template>
+
+    </section>
+    <p *ngIf="rol==='kKjkKRN2Kzz01dDxLevq'">Visualizador</p>
+    <p *ngIf="rol==='KcyTEOBshsvabhvqmcpz'">Administrador</p>
+  </main>
+</section>

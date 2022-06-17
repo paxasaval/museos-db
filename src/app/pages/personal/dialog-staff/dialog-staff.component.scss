@@ -3,9 +3,9 @@
     padding: 0px !important;
 }
 
-.dialogMuseum{
+.dialogStaff{
     width: 30vw;
-    height: 65vh;
+    height: 55vh;
 }
 
 // estilo del encabezado
@@ -17,7 +17,7 @@
     background-color: var(--primary);
     width: 100%;
     height: 7vh;
-    text-align: start;
+    text-align: start;  
     color: #f1f1f1;
 }
 //estilo del formulario
@@ -31,7 +31,7 @@
 
 .formInput{
     display: flex;
-    margin-bottom: 1em;
+    margin-bottom: 1em;  
 }
 
 .labelStyle{
@@ -48,27 +48,10 @@
     border: 2px solid #cacaca;
     border-radius: 5px;
     padding-left: 0.5em;
-
+    
 }
 
-#file{
-    display: none;
-}
-
-.imageLoad{
-    width:150px;
-    height:150px;
-}
-
-//estilos del los botones
-.btnArchivo{
-    width: 8.5vw;
-    height: 4vh;
-    background-color: var(--primary);
-    color: #f1f1f1;
-    margin-left: 0.5em;
-}
-
+//estilos del los botones 
 .sectionButton{
     display: flex;
     align-items: flex-end;

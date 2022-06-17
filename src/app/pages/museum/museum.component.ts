@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Museo } from 'src/app/models/museo';
+import { MuseosService } from 'src/app/services/museos.service';
 import { DialogMuseumComponent } from './dialog-museum/dialog-museum.component';
 
 @Component({
@@ -9,7 +11,11 @@ import { DialogMuseumComponent } from './dialog-museum/dialog-museum.component';
 })
 export class MuseumComponent implements OnInit {
   rol = ''
-  constructor(public dialog: MatDialog) { }
+  museos: Museo[] = []
+  constructor(
+     private dialog: MatDialog,
+     private museosService: MuseosService
+    ) { }
 
   openDialogNewMuseum(): void {
     const dialogRef = this.dialog.open(DialogMuseumComponent, {
@@ -20,9 +26,16 @@ export class MuseumComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-
+  fetchMuseos(){
+    this.museosService.getAllMuseos().subscribe(
+      result=>{
+        this.museos=result
+      }
+    )
+  }
   ngOnInit(): void {
     this.rol = localStorage.getItem('rol')!
+    this.fetchMuseos()
   }
 
 }
