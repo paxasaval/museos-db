@@ -15,6 +15,8 @@ export class AppComponent {
   ){
     iconRegistry.addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('../assets/icon-edit.svg'))
     iconRegistry.addSvgIcon('delete', sanitizer.bypassSecurityTrustResourceUrl('../assets/icon-delete.svg'))
+    iconRegistry.addSvgIcon('see', sanitizer.bypassSecurityTrustResourceUrl('../assets/icon-see.svg'))
+
 
 
   }

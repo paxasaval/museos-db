@@ -1,14 +1,58 @@
 <section class="staff">
-    <div class="der">
-        <app-sidebar></app-sidebar>
+  <div class="der">
+    <app-sidebar></app-sidebar>
+  </div>
+  <main class="main">
+    <h2 class="title">Personal</h2>
+    <div>
+      <button class="addStaff" mat-raised-button color="primary" (click)="openDialogNewStaff()">
+        Agregar Personal
+        <mat-icon>add_circle</mat-icon>
+      </button>
     </div>
-    <main class="main">
-        <h2 class="title">Personal</h2>
-        <div>
-            <button class="addStaff" mat-raised-button color="primary" (click)="openDialogNewStaff()">
-                Agregar Personal
-                <mat-icon>add_circle</mat-icon>
-              </button>
-        </div>
-    </main>
+    <section class="table-container">
+      <h3>Lista de Personal</h3>
+      <table mat-table [dataSource]="dataSource" class="table-review">
+        <ng-container class="celda" matColumnDef="cedula">
+          <th mat-header-cell *matHeaderCellDef>Cedula</th>
+          <td class="long-text" mat-cell *matCellDef="let data">{{data.ci}}</td>
+        </ng-container>
+        <ng-container class="celda" matColumnDef="Nombres y Apellidos">
+          <th mat-header-cell *matHeaderCellDef>Nombres y Apellidos</th>
+          <td mat-cell *matCellDef="let data">{{data.name}}</td>
+        </ng-container>
+        <ng-container class="celda" matColumnDef="Rol">
+          <th mat-header-cell *matHeaderCellDef>Rol</th>
+          <td class="long-text" mat-cell *matCellDef="let data">{{data.rol}}</td>
+        </ng-container>
+        <ng-container class="celda" matColumnDef="Museo">
+          <th mat-header-cell *matHeaderCellDef>Museo</th>
+          <td class="status" mat-cell *matCellDef="let data">{{data.museo}}
+          </td>
+        </ng-container>
+        <ng-container class="celda" matColumnDef="Telefono">
+          <th mat-header-cell *matHeaderCellDef>Telefono</th>
+          <td class="status" mat-cell *matCellDef="let data">{{data.phone}}
+          </td>
+        </ng-container>
+        <ng-container class="celda" matColumnDef=" ">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td class="status" mat-cell *matCellDef="let data">
+            <button mat-icon-button>
+              <mat-icon class="mat-18" svgIcon="see"></mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon class="mat-18" svgIcon="edit"></mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon class="mat-18" svgIcon="delete"></mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </section>
+  </main>
 </section>

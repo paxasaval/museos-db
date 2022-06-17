@@ -3,10 +3,10 @@ export interface Staff {
     cedula?: string,
     rol?: string,
     mail?: string,
-    uid: string,
+    uid?: string,
     phone?: string,
     workingHours?: string,
-    museo?: string,
+    museo?: string
 
 }
 export interface StaffId extends Staff { id: string }
