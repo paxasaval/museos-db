@@ -15,6 +15,7 @@ export class DialogMuseumComponent implements OnInit {
 
   img?: File
   title = 'Agregar Museo'
+  id?:string
   museumForm = new FormGroup(({
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
@@ -38,18 +39,19 @@ export class DialogMuseumComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.data['edit']){
+      this.museumForm.get('image')?.setValidators(null)
       this.title='Editar Museo'
       this.museosService.getMuseoById(this.data['museo_id']).subscribe(
         result=>{
+          this.id=result.id
           this.museumForm.setValue({
             name:result.name,
             address:result.address,
             description:result.description,
             schedule:result.schedule,
             supervisor:result.supervisor,
-            image:null
+            image: null
           })
-
         }
       )
     }
@@ -91,13 +93,24 @@ export class DialogMuseumComponent implements OnInit {
           img.ref.getDownloadURL().then(
             path => {
               newMuseum.image = path
-              this.museosService.postMuseo(newMuseum).then(
-                result=>{
-                  load.close()
-                  this.toast.success('Museo creado con exito')
-                  this.close()
-                }
-              )
+              if(this.id){
+                this.museosService.updateMuseo(this.id,newMuseum).then(
+                  result=>{
+                    load.close()
+                    this.toast.success('Museo actualizado con exito')
+                    this.close()
+                  }
+                )
+              }else{
+                this.museosService.postMuseo(newMuseum).then(
+                  result=>{
+                    load.close()
+                    this.toast.success('Museo creado con exito')
+                    this.close()
+                  }
+                )
+              }
+
             }
           )
         }

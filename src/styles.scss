@@ -101,5 +101,34 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .app-full-bleed-dialog .mat-dialog-container {
   padding: 0 !important;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.main{
+  width: 80%;
+  max-height: 94vh;
+  overflow-y: scroll;
+  padding-right: 2em;
+  margin-top: 2em;
+  padding-top: 1em;
+  h2{
+      color: var(--primary);
+      font-size: 2em;
+      font-weight: 900;
+      margin-bottom: 2em;
+  }
+  h3{
+    color: var(--primary);
+    font-size: 1.25em;
+    letter-spacing: 0.75px;
+    font-weight: 600;
+
+    }
+}
+.long-text{
+  max-width: 15ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  padding: 0.5rem;
+}
+

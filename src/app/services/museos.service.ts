@@ -49,8 +49,18 @@ export class MuseosService {
     )
    }
 
+   updateMuseo(id:string, museo: any){
+    const museoReference = this.afs.doc<Museo>(`museos/${id}`)
+    return museoReference.set(museo)
+  }
+
    postMuseo(museo: Museo){
     return this.afs.collection<Museo>('museos').add(museo)
+   }
+
+   deleteMuseo(museo: MuseoId) {
+    console.log(museo)
+    this.afs.doc<Museo>('museos/' + museo.id).delete();
    }
 
    onUploadImage(file: File) {

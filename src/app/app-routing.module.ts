@@ -8,37 +8,48 @@ import { MuseumComponent } from './pages/museum/museum.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { canActivate, redirectLoggedInTo, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = ()=> redirectUnauthorizedTo(['login']);
+const redirectLoggedInToAdmin = () => redirectLoggedInTo(['museos']);
+
 
 const routes: Routes = [
   {
     path:'login',
     component: LoginComponent,
+    ...canActivate(redirectLoggedInToAdmin)
   },
   {
     path:'museos',
     component: MuseumComponent,
-    canActivate: [AuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
+
   },
   {
     path:'museos/:id',
     component: MusemDetailComponent,
-    canActivate: [AuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
+
   },
   {
     path:'personal',
     component: PersonalComponent,
+    ...canActivate(redirectUnauthorizedToLogin),
     canActivate: [AuthGuard]
   },
   {
     path:'puntos-de-informacion',
     component: InfoPointComponent,
-    canActivate: [AuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
+
 
   },
   {
     path:'puntos-de-informacion/:id',
     component:InfoPointDetailComponent,
-    canActivate: [AuthGuard]
+    ...canActivate(redirectUnauthorizedToLogin)
+
   },
   {
     path:'configuracion',

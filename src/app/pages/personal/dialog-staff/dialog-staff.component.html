@@ -1,8 +1,8 @@
 <section class="dialogStaff">
     <section class="header">
-        <h2 class="h2">Agregar Personal</h2>
+        <h2 class="h2">{{title}}</h2>
     </section>
-    <form  [formGroup]="personalForm" (ngSubmit)="submit()"class="form">
+    <form [formGroup]="personalForm" (ngSubmit)="submit()" class="form">
 
         <div class="formInput">
             <p class="labelStyle">Cédula:</p>
@@ -32,19 +32,20 @@
             <p class="labelStyle">Horaio Laboral:</p>
             <input matInput formControlName="schedule" class="inputStyle" type="text">
         </div>
+        <div class="sectionButton">
+          <button type="submit" *ngIf="saveChanges" mat-raised-button class="btnSave" [disabled]="!personalForm.valid">
+              Guardar
+              <mat-icon>
+                  save
+              </mat-icon>
+          </button>
+          <button type="button" mat-raised-button class="btnCancel" (click)="close()">
+              {{cancel}}
+              <mat-icon>
+                  cancel
+              </mat-icon>
+          </button>
+      </div>
     </form>
-    <div class="sectionButton">
-      <button mat-raised-button class="btnSave" (click)="submit()">
-          Guardar
-          <mat-icon>
-              save
-          </mat-icon>
-      </button>
-      <button mat-raised-button class="btnCancel" (click)="close()">
-          Cancelar
-          <mat-icon>
-              cancel
-          </mat-icon>
-      </button>
-  </div>
+
 </section>

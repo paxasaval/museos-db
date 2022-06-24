@@ -1,3 +1,4 @@
+import { RolesService } from './../../services/roles.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Museo } from 'src/app/models/museo';
@@ -14,7 +15,8 @@ export class MuseumComponent implements OnInit {
   museos: Museo[] = []
   constructor(
      private dialog: MatDialog,
-     private museosService: MuseosService
+     private museosService: MuseosService,
+     private rolesService: RolesService
     ) { }
 
   openDialogNewMuseum(): void {
@@ -35,6 +37,7 @@ export class MuseumComponent implements OnInit {
   }
   ngOnInit(): void {
     this.rol = localStorage.getItem('rol')!
+
     this.fetchMuseos()
   }
 

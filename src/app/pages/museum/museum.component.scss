@@ -5,16 +5,17 @@
 }
 
 .main{
-  width: 80%;
-  height: 100vh;
-  overflow-y: scroll;
-  padding-right: 2em;
+  h2{
+    margin-bottom: 1em;
+  }
 }
 .chars {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 10px;
   grid-auto-rows: minmax(300px, auto);
+  margin-bottom: 1em;
+  padding-bottom: 1em;
 }
 .chars article{
   background-color: #f1f1f1;
@@ -50,6 +51,8 @@
 .title2{
   display: flex;
   justify-content: space-between;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
 }
 .addMuseum{
   width: 12vw;
