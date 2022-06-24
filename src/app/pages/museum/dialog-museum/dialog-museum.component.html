@@ -27,26 +27,24 @@
             <p class="labelStyle">Imagen de museo:</p>
             <input  class="inputStyle" formControlName="image" type="file" name="archivo" id="file" accept=".jpeg,.jpg,.png" hidden (change)="onFileSelected($event)" #fileInput>
             <img class="imageLoad" src="" />
-            <button mat-raised-button value="Subir Archivo" class="btnArchivo" onclick="document.getElementById('file').click()">
+            <button type="button" mat-raised-button class="btnArchivo" (click)="fileInput.click()">
                 Subir Imagen
-                <mat-icon>
-                    cloud_upload
-                </mat-icon>
             </button>
         </div>
+        <div class="sectionButton">
+          <button type="submit" mat-raised-button class="btnSave" [disabled]="!museumForm.valid">
+              Guardar
+              <mat-icon>
+                  save
+              </mat-icon>
+          </button>
+          <button mat-raised-button class="btnCancel"(click)="close()">
+              Cancelar
+              <mat-icon>
+                  cancel
+              </mat-icon>
+          </button>
+      </div>
     </form>
-    <div class="sectionButton">
-      <button mat-raised-button class="btnSave" (click)="submit()">
-          Guardar
-          <mat-icon>
-              save
-          </mat-icon>
-      </button>
-      <button mat-raised-button class="btnCancel"(click)="close()">
-          Cancelar
-          <mat-icon>
-              cancel
-          </mat-icon>
-      </button>
-  </div>
+
 </section>

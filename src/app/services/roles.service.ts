@@ -38,6 +38,14 @@ export class RolesService {
       }))
     )
   }
+  getRolById(id: string) {
+    return this.afs.doc<Rol>('roles/'+id).snapshotChanges().pipe(
+      map(a => {
+        const data = a.payload.data() as RolId
+        data.id = a.payload.id
+        return data
+      }))
+  }
 
   updateRol(rol: RolId) {
     const rolReference = this.afs.doc<Rol>(`roles/${rol.id}`)

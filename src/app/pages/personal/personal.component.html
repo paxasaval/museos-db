@@ -15,19 +15,19 @@
       <table mat-table [dataSource]="dataSource" class="table-review">
         <ng-container class="celda" matColumnDef="cedula">
           <th mat-header-cell *matHeaderCellDef>Cedula</th>
-          <td class="long-text" mat-cell *matCellDef="let data">{{data.ci}}</td>
+          <td mat-cell *matCellDef="let data">{{data.ci}}</td>
         </ng-container>
         <ng-container class="celda" matColumnDef="Nombres y Apellidos">
           <th mat-header-cell *matHeaderCellDef>Nombres y Apellidos</th>
-          <td mat-cell *matCellDef="let data">{{data.name}}</td>
+          <td class="long-text" mat-cell *matCellDef="let data">{{data.name}}</td>
         </ng-container>
         <ng-container class="celda" matColumnDef="Rol">
           <th mat-header-cell *matHeaderCellDef>Rol</th>
-          <td class="long-text" mat-cell *matCellDef="let data">{{data.rol}}</td>
+          <td mat-cell *matCellDef="let data">{{data.rol}}</td>
         </ng-container>
         <ng-container class="celda" matColumnDef="Museo">
           <th mat-header-cell *matHeaderCellDef>Museo</th>
-          <td class="status" mat-cell *matCellDef="let data">{{data.museo}}
+          <td class="long-text long-2" mat-cell *matCellDef="let data">{{data.museo}}
           </td>
         </ng-container>
         <ng-container class="celda" matColumnDef="Telefono">
@@ -36,15 +36,15 @@
           </td>
         </ng-container>
         <ng-container class="celda" matColumnDef=" ">
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td class="status" mat-cell *matCellDef="let data">
-            <button mat-icon-button>
+          <th class="no-bg" mat-header-cell *matHeaderCellDef></th>
+          <td class="" mat-cell *matCellDef="let data">
+            <button mat-icon-button (click)="seePersonal(data.ci)">
               <mat-icon class="mat-18" svgIcon="see"></mat-icon>
             </button>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="editPersonal(data.ci)">
               <mat-icon class="mat-18" svgIcon="edit"></mat-icon>
             </button>
-            <button mat-icon-button>
+            <button mat-icon-button (click)="deletePersonal(data.ci)">
               <mat-icon class="mat-18" svgIcon="delete"></mat-icon>
             </button>
           </td>

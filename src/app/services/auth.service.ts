@@ -1,3 +1,5 @@
+import { RolesService } from './roles.service';
+import { RolService } from './rol.service';
 
 import { Router } from '@angular/router';
 import { UserService } from './user.service';
@@ -15,6 +17,7 @@ export class AuthService {
   constructor(private auth: Auth,
     private userService: UserService,
     private authorize: AngularFireAuth,
+    private rolService: RolesService,
     private router: Router
     ) {}
 
@@ -36,16 +39,20 @@ export class AuthService {
       user=>{
         localStorage.setItem('user',user.id)
         localStorage.setItem('rol',user.rol!)
-        if (user.rol==='KcyTEOBshsvabhvqmcpz') {
-          console.log('Administrador')
-          this.router.navigate(['museos'])
-        } else if (user.rol==='ZFwDIYvZia8PKqIRS9Ng') {
-          console.log('Gestor porque el yisus quiere Gestor XD')
-          this.router.navigate([`museos/${user.museo!}`])
-        }else if (user.rol==='kKjkKRN2Kzz01dDxLevq') {
-          console.log('Visualizador')
-          this.router.navigate(['museos'])
-        }
+        this.rolService.getRolById(user.rol!).subscribe(
+          result=>{
+            if (result.name==='admin') {
+              this.router.navigate(['museos'])
+            } else if (result.name==='gestor') {
+              //console.log('Gestor porque el yisus quiere Gestor XD')
+              console.log(user.museo)
+              this.router.navigate([`museos/${user.museo!}`])
+            }else if (result.name==='visualizador') {
+              this.router.navigate(['museos'])
+            }
+          }
+        )
+
       }
     )
     return from(signInWithEmailAndPassword(this.auth, email, password));

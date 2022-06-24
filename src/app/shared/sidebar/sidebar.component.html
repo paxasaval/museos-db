@@ -14,24 +14,25 @@
             <a mat-button class="btnStyle" routerLink="/museos" routerLinkActive="routerLinkActive">Museos</a>
         </div>
     </section>
+    <section *ngIf="seePoint" class="buttonStyles">
+      <div>
+          <a mat-button class="btnStyle btnStyle-long" routerLink="/puntos-de-informacion" routerLinkActive="routerLinkActive" >Puntos de Información</a>
+      </div>
+  </section>
     <section *ngIf="seePersonal" class="buttonStyles">
         <div>
             <a mat-button class="btnStyle" routerLink="/personal" routerLinkActive="routerLinkActive">Personal</a>
         </div>
     </section>
-    <section *ngIf="seePoint" class="buttonStyles">
-        <div>
-            <a mat-button class="btnStyle" routerLink="/puntos-de-informacion" routerLinkActive="routerLinkActive" >Puntos de Información</a>
-        </div>
-    </section>
+
     <section *ngIf="seeConfig" class="buttonStyles">
         <div>
             <a mat-button class="btnStyle" routerLink="/configuracion" routerLinkActive="routerLinkActive" >Confirguración</a>
         </div>
     </section>
-    <section class="buttonStyles">
+    <section class="buttonStyles buttonStyles-2">
         <div>
-            <a mat-button class="btnStyleC" (click)="logOut()">Cerrar Sesión</a>
+            <a mat-button class="btnStyle" (click)="logOut()">Cerrar Sesión</a>
         </div>
     </section>
 </section>
