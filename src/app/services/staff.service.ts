@@ -14,7 +14,7 @@ export class StaffService {
   constructor(
     private afs: AngularFirestore,
     private storage: AngularFirestore
-  ) { 
+  ) {
     this.staffCollection = afs.collection<Staff>('staff');
     this.staffs = this.staffCollection.valueChanges();
   }
@@ -69,9 +69,9 @@ export class StaffService {
     )
   }
 
-  updateStaff(staff: StaffId){
-    const staffReference = this.afs.doc<Staff>(`staff/${staff.id}`)
-    staffReference.set(staff)
+  updateStaff(id: string, staff: any){
+    const staffReference = this.afs.doc<Staff>(`staff/${id}`)
+    return staffReference.set(staff)
   }
 
   deleteStaff(staff: StaffId) {

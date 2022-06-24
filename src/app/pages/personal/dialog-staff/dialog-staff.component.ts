@@ -15,7 +15,7 @@ export class DialogStaffComponent implements OnInit {
   title='Agregar Personal'
   cancel='Cancelar'
   saveChanges=true
-
+  id?:string
   personalForm = new FormGroup(({
     ci: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
@@ -42,6 +42,7 @@ export class DialogStaffComponent implements OnInit {
       this.title='Editar Personal'
       this.staffService.getStaffByCedula(this.data['personal_id']).subscribe(
         result=>{
+          this.id=result[0].id
           this.personalForm.setValue({
             ci:result[0].cedula,
             name:result[0].name,
@@ -118,13 +119,24 @@ export class DialogStaffComponent implements OnInit {
       newStaff.phone = phone
       newStaff.mail = mail
       newStaff.workingHours = schedule
-      this.staffService.postStaff(newStaff).then(
-        result=>{
-          load.close()
-          this.toast.success('Personal agregado con exito')
-          this.close()
-        }
-      )
+      if(this.id){
+        this.staffService.updateStaff(this.id, newStaff).then(
+          result=>{
+            load.close()
+            this.toast.success('Personal actualizado con exito')
+            this.close()
+          }
+        )
+      }else{
+        this.staffService.postStaff(newStaff).then(
+          result=>{
+            load.close()
+            this.toast.success('Personal agregado con exito')
+            this.close()
+          }
+        )
+      }
+
     }
   }
 
