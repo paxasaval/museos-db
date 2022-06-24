@@ -4,7 +4,7 @@
     justify-content: space-between;
 }
 
-.main{
+.mainContainer{
     width: 85%;
     height: 100vh;
     overflow-y: scroll;
@@ -89,6 +89,8 @@
 .Container2{
     display: flex;
     width: 25%;
+    text-align: end;
+    align-items: flex-end;
 }
 
 .formInput{
@@ -98,7 +100,7 @@
     width: 10vw;
 }
 .titleCon1{
-    margin-bottom: 3vh;
+    margin-bottom: 4vh;
     font-size: 1.5em;
     font-weight: 500;
     color: var(--primary);
@@ -106,13 +108,13 @@
 .formInput{
     width: 90%;
     display: flex;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
 }
 
 .labelStyle{
     display: flex;
     width: 20%;
-    height: 1.75vh;
+    height: 1.80vh;
     font-size: 1.2em;
     font-weight: 500;
 
@@ -124,6 +126,13 @@
     border-radius: 5px;
     padding-left: 0.5em;
 
+}
+
+.btnFiltar{
+    background-color: var(--primary);
+    color: #f1f1f1;
+    margin-right:2vh;
+    width: 8vw;
 }
 
 

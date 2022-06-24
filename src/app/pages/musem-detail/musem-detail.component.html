@@ -2,7 +2,7 @@
     <div class="der">
         <app-sidebar></app-sidebar>
     </div>
-    <main class="main">
+    <main class="mainContainer">
         <div class="imgStyle">
             <img src="../../../assets/museo3.jpg" alt="">
         </div>
@@ -44,7 +44,14 @@
                     <div class="formInput">
                         <p class="labelStyle">Fecha de Fin:</p>
                         <input matInput formControlName="name" class="inputStyle" type="text">
-                    </div>             
+                    </div>       
+                    <section>
+                        <div>
+                            <button class="btnFiltar" mat-raised-button>
+                                Filtrar
+                            </button>
+                        </div>
+                    </section>      
             </section>
             <section class="Container2">
                 <div>
