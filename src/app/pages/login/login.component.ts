@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -8,7 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy{
+
+  observers: Subscription[]=[]
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -38,7 +41,7 @@ export class LoginComponent implements OnInit {
     }
 
     const { email, password } = this.loginForm.value;
-    this.authService.login(email, password).pipe(
+    var obs = this.authService.login(email, password).pipe(
       this.toast.observe({
         success: 'Ha iniciado sesión con exito',
         loading: 'Iniciando sesion...',
@@ -46,7 +49,12 @@ export class LoginComponent implements OnInit {
       })
     ).subscribe(() => {
     });
+    this.observers.push(obs)
 
   }
-
+  ngOnDestroy(): void {
+    this.observers.forEach(x=>{
+      x.unsubscribe()
+    })
+  }
 }

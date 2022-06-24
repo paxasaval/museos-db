@@ -45,6 +45,7 @@ export class AuthService {
               this.router.navigate(['museos'])
             } else if (result.name==='gestor') {
               //console.log('Gestor porque el yisus quiere Gestor XD')
+              console.log(user.museo)
               this.router.navigate([`museos/${user.museo!}`])
             }else if (result.name==='visualizador') {
               this.router.navigate(['museos'])
