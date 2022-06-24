@@ -19,7 +19,7 @@
                     <span class="descripcion">descripcion</span> 
                 </div>   
             </section> 
-            <section class="headerBtn">
+            <section class="header2">
                 <div>
                     <button class="btnEdit" mat-raised-button>
                         Editar Información
@@ -34,10 +34,9 @@
                 </div>
             </section>
         </section>
-        <section >
-            <section class="Container">
-                <div class="date">
-                    <span>Filtrar fechas</span>
+        <section class="Container">
+            <section class="Container1">             
+                    <p class="titleCon1">Filtrar fechas</p>
                     <div class="formInput">
                         <p class="labelStyle">Fecha de Inicio:</p>
                         <input matInput formControlName="name" class="inputStyle" type="text">
@@ -45,16 +44,21 @@
                     <div class="formInput">
                         <p class="labelStyle">Fecha de Fin:</p>
                         <input matInput formControlName="name" class="inputStyle" type="text">
-                    </div>
-                </div>
-                <div class="btnReport">
-                    <div>
-
-                    </div>
-                </div>
+                    </div>             
             </section>
-            <section>
-
+            <section class="Container2">
+                <div>
+                    <button class="btnReport" mat-raised-button>
+                        Editar Información
+                        <mat-icon class="matIcon">description</mat-icon>
+                    </button>
+                </div>
+                <div>
+                    <button class="btnDownload" mat-raised-button>
+                        Descargar Reporte
+                        <mat-icon class="matIcon">download_for_offline</mat-icon>
+                    </button>
+                </div>
             </section>
         </section>
     </main>

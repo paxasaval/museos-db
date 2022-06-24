@@ -23,6 +23,7 @@
 
 .headerMain{
     display: flex;
+    width: 100%;
 }
 .header1{
     display: flex;
@@ -36,7 +37,7 @@
     }
 }
 
-.headerBtn{
+.header2{
     display: flex;
     width: 25%;
     margin-top: 5vh;
@@ -75,12 +76,65 @@
 }
 
 .Container{
+    display: flex;
+    width: 90%;
     margin-top: 6vh;
     padding-left: 5vw;
 }
+.Container1{
+    width: 70%;
+}
+
+
+.Container2{
+    display: flex;
+    width: 25%;
+}
+
 .formInput{
     display: flex;
 }
 .labelStyle{
     width: 10vw;
+}
+.titleCon1{
+    margin-bottom: 3vh;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: var(--primary);
+}
+.formInput{
+    width: 90%;
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.labelStyle{
+    display: flex;
+    width: 20%;
+    height: 1.75vh;
+    font-size: 1.2em;
+    font-weight: 500;
+
+}
+
+.inputStyle{
+    width: 50%;
+    border: 2px solid #cacaca;
+    border-radius: 5px;
+    padding-left: 0.5em;
+
+}
+
+
+.btnReport{
+    border:2px solid var(--warm);
+    color: var(--warm);
+    margin-right:2vh;
+}
+.btnDownload{
+    background-color: var(--primary);
+    border:2px solid var(--primary);
+    color: #f1f1f1;
+    margin-right:2vh;
 }
