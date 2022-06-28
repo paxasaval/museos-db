@@ -1,4 +1,5 @@
 export interface RecordVisit {
+    museum?: string,
     name?: string,
     identification?: string,
     country?: string,
