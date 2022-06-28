@@ -1,3 +1,5 @@
+import { RolService } from './../../../services/rol.service';
+import { UserService } from './../../../services/user.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
@@ -5,6 +7,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Museo } from 'src/app/models/museo';
 import { MuseosService } from 'src/app/services/museos.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-dialog-museum',
@@ -16,6 +19,7 @@ export class DialogMuseumComponent implements OnInit {
   img?: File
   title = 'Agregar Museo'
   id?:string
+  mail:string[]=[]
   museumForm = new FormGroup(({
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
@@ -33,11 +37,28 @@ export class DialogMuseumComponent implements OnInit {
     private toast: HotToastService,
     private museosService: MuseosService,
     private dialogRef: MatDialogRef<DialogMuseumComponent>,
+    private userService: UserService,
+    private RolService: RolesService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
 
+  fetchUserGestor(){
+    this.RolService.getRolByName('gestor').subscribe(
+      result=>{
+        this.userService.getUserByRol(result[0].id).subscribe(
+          res=>{
+            res.forEach(user=>{
+              this.mail.push(user.id)
+            })
+          }
+        )
+      }
+    )
+  }
+
   ngOnInit(): void {
+    this.fetchUserGestor()
     if(this.data['edit']){
       this.museumForm.get('image')?.setValidators(null)
       this.title='Editar Museo'
