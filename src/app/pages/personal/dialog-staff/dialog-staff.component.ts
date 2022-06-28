@@ -1,9 +1,11 @@
 import { HotToastService } from '@ngneat/hot-toast';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { StaffService } from 'src/app/services/staff.service';
 import { Staff } from 'src/app/models/staff';
+import { RolesService } from 'src/app/services/roles.service';
+import { RolId } from 'src/app/models/rol';
 
 @Component({
   selector: 'app-dialog-staff',
@@ -15,12 +17,12 @@ export class DialogStaffComponent implements OnInit {
   title='Agregar Personal'
   cancel='Cancelar'
   saveChanges=true
+  roles:RolId[]=[]
 
   personalForm = new FormGroup(({
     ci: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
     rol: new FormControl('', [Validators.required]),
-    museo: new FormControl('', [Validators.required]),
     phone: new FormControl('', [Validators.required]),
     mail: new FormControl('', [Validators.required]),
     schedule: new FormControl('', [Validators.required]),
@@ -33,11 +35,23 @@ export class DialogStaffComponent implements OnInit {
     private toast: HotToastService,
     private staffService: StaffService,
     private dialogRef: MatDialogRef<DialogStaffComponent>,
+    private rolService: RolesService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
+  fetchRoles(){
+    this.rolService.getAllRoles().subscribe(
+      result=>{
+        result.forEach(rol=>{
+          this.roles.push(rol)
+        })
+      }
+    )
+  }
+
 
   ngOnInit(): void {
+    this.fetchRoles()
     if(this.data['edit']==true){
       this.title='Editar Personal'
       this.staffService.getStaffByCedula(this.data['personal_id']).subscribe(
@@ -70,7 +84,6 @@ export class DialogStaffComponent implements OnInit {
           this.personalForm.controls['ci'].disable()
           this.personalForm.controls['name'].disable()
           this.personalForm.controls['rol'].disable()
-          this.personalForm.controls['museo'].disable()
           this.personalForm.controls['phone'].disable()
           this.personalForm.controls['mail'].disable()
           this.personalForm.controls['schedule'].disable()
@@ -90,9 +103,6 @@ export class DialogStaffComponent implements OnInit {
   }
   get rol() {
     return this.personalForm.get('rol')
-  }
-  get museo() {
-    return this.personalForm.get('museo')
   }
   get phone() {
     return this.personalForm.get('phone')
