@@ -147,3 +147,53 @@
     color: #f1f1f1;
     margin-right:2vh;
 }
+
+/*Seccion de los chars*/
+.chars{
+    width: 90%;
+    margin-top: 6vh;
+    padding-left: 5vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+.chars article{
+    background-color: #f1f1f1;
+    border-radius: 12px;
+}
+
+.one {
+    grid-column: 1;
+    grid-row: 1;
+  }
+.two {
+    grid-column: 2;
+    grid-row: 1;
+}
+.three {
+    grid-column: 3;
+    grid-row: 1;
+}
+.four {
+    display: grid;
+    grid-column: 1;
+    grid-row: 2;
+    grid-auto-rows: 350px;
+}
+.five {
+    grid-column: 2;
+    grid-row: 2;
+}
+.six {
+    grid-column: 3;
+    grid-row: 2;
+}
+.seven {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-auto-rows: 300px;
+}
