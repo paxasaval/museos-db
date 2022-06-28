@@ -6,7 +6,7 @@
         <div class="imgStyle">
             <img src="../../../assets/museo3.jpg" alt="">
         </div>
-        <section class="headerMain"> 
+        <section class="headerMain">
             <section class="header1">
                 <div class="btnback">
                     <button mat-icon-button>
@@ -16,9 +16,9 @@
                 <div class="infoStyle">
                     <h2 class="title">Museo de la ciudad de Loja</h2>
                     <span class="direccion">direccion</span>
-                    <span class="descripcion">descripcion</span> 
-                </div>   
-            </section> 
+                    <span class="descripcion">descripcion</span>
+                </div>
+            </section>
             <section class="header2">
                 <div>
                     <button class="btnEdit" mat-raised-button>
@@ -35,23 +35,23 @@
             </section>
         </section>
         <section class="Container">
-            <section class="Container1">             
-                    <p class="titleCon1">Filtrar fechas</p>
-                    <div class="formInput">
-                        <p class="labelStyle">Fecha de Inicio:</p>
-                        <input matInput formControlName="name" class="inputStyle" type="text">
+            <section class="Container1">
+                <p class="titleCon1">Filtrar fechas</p>
+                <div class="formInput">
+                    <p class="labelStyle">Fecha de Inicio:</p>
+                    <input matInput formControlName="name" class="inputStyle" type="text">
+                </div>
+                <div class="formInput">
+                    <p class="labelStyle">Fecha de Fin:</p>
+                    <input matInput formControlName="name" class="inputStyle" type="text">
+                </div>
+                <section>
+                    <div>
+                        <button class="btnFiltar" mat-raised-button>
+                            Filtrar
+                        </button>
                     </div>
-                    <div class="formInput">
-                        <p class="labelStyle">Fecha de Fin:</p>
-                        <input matInput formControlName="name" class="inputStyle" type="text">
-                    </div>       
-                    <section>
-                        <div>
-                            <button class="btnFiltar" mat-raised-button>
-                                Filtrar
-                            </button>
-                        </div>
-                    </section>      
+                </section>
             </section>
             <section class="Container2">
                 <div>
@@ -72,7 +72,35 @@
             <article class="one">Total turistas</article>
             <article class="two">Promedio de turistas por día</article>
             <article class="three">Maxima afluencia</article>
-            <article class="four">Procedencia de turistas</article>
+            <article class="four">
+                <section class="sectionChart">
+                    <div>
+                        <span>
+
+                        </span>
+                    </div>
+                    <div class="circulo"></div>
+                </section>
+                <section class="sectionCInfo">
+
+                    <div class="cardInfo">
+                        <span class="label1">Nacionalidades:</span>
+                        <span>442</span>
+                        <span>55%</span>
+                    </div>
+                    <div class="cardInfo">
+                        <span class="label1">Extranjeros:</span>
+                        <span >442</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="cardInfo">
+                        <span class="label1">Locales:</span>
+                        <span>442</span>
+                        <span>10%</span>
+                    </div>
+
+                </section>
+            </article>
             <article class="five">Tipo de turistas</article>
             <article class="six">Género de turistas</article>
             <article class="seven">Periodos con mayor frecuencia de turistas</article>
