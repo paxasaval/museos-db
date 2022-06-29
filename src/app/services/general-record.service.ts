@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { map, Observable } from 'rxjs/';
+import { map, Observable } from 'rxjs';
 import { GeneralRecord, GeneralRecordId } from '../models/generalRecord';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class GeneralRecordService {
 
   constructor(
     private afs: AngularFirestore
-  ) { 
+  ) {
     this.generalRecordCollection = afs.collection<GeneralRecord>('registro_general');
     this.generalRecords = this.generalRecordCollection.valueChanges();
   }
