@@ -7,6 +7,8 @@ import { DialogMuseumComponent } from './dialog-museum/dialog-museum.component';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
+import { GeneralRecordService } from 'src/app/services/general-record.service';
+import { CountriesService } from 'src/app/services/countries.service';
 
 @Component({
   selector: 'app-museum',
@@ -21,8 +23,12 @@ export class MuseumComponent implements OnInit {
   constructor(
      private dialog: MatDialog,
      private museosService: MuseosService,
-     private rolesService: RolesService
+     private rolesService: RolesService,
+     private generalRecordService: GeneralRecordService,
+     private countriesService: CountriesService
     ) { }
+
+
   //pie
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
@@ -41,9 +47,9 @@ export class MuseumComponent implements OnInit {
     }
   };
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
-    labels: [ [ 'Download', 'Sales' ], [ 'In', 'Store', 'Sales' ], 'Mail Sales' ],
+    labels: [ ],
     datasets: [ {
-      data: [ 300, 500, 100 ]
+      data: [100]
     } ]
   };
   public pieChartType: ChartType = 'pie';
@@ -65,9 +71,23 @@ export class MuseumComponent implements OnInit {
       }
     )
   }
+  fetchDataCountries(){
+
+  }
   ngOnInit(): void {
     this.rol = localStorage.getItem('rol')!
-
+    this.countriesService.getAllCountries().subscribe(
+      result=>{
+        result.forEach(country=>{
+          this.pieChartData.labels?.push(country.Id!)
+          this.generalRecordService.getGeneralRecordsByCountry(country.id).subscribe(
+            result=>{
+              console.log(result)
+            }
+          )
+        })
+      }
+    )
     this.fetchMuseos()
   }
 
