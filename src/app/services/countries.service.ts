@@ -39,7 +39,17 @@ export class CountriesService {
   }
 
   getCountryById(id: string) {
-    return this.afs.collection<Country>('paises', ref => ref.where('Id', '==', id)).snapshotChanges().pipe(
+    return this.afs.doc<Country>(`paises/${id}`).snapshotChanges().pipe(
+      map(a => {
+        const data = a.payload.data() as CountryId
+        data.id = a.payload.id
+        return data
+      })
+    )
+  }
+
+  getCountryByIden(iden: string) {
+    return this.afs.collection<Country>('paises', ref => ref.where('Iden', '==', iden)).snapshotChanges().pipe(
       map(actions => actions.map(a=> {
         const data = a.payload.doc.data() as CountryId
         data.id = a.payload.doc.id
