@@ -10,7 +10,7 @@ export interface Country_visit {
     total_visits?: number
 }
 
-export interface dataRegionsVisit {
+export interface DataRegionsVisit {
     region?: string,
     countries?: Region_visit[],
     visit?: number
@@ -50,7 +50,7 @@ export interface Summary {
     place_record?: Place_record[],
     lastMonth_visit?: LastMonth_visit[],
     lastYear_visit?: LastYear_visit[],
-    region_visit?: Region_visit[],
+    region_visit?: DataRegionsVisit[],
     transport_visit?: Transport_visit[],
 }
 export interface SummaryId extends Summary { id: string }
