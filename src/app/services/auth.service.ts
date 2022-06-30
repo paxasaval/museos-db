@@ -21,14 +21,14 @@ export class AuthService {
     private router: Router
     ) {}
 
-  signUp(name: string, email: string, password: string): Observable<any> {
+  signUp(name: string, email: string, password: string, rol:string): Observable<any> {
     return from(
       createUserWithEmailAndPassword(this.auth, email, password)
     ).pipe(switchMap(({ user }) => updateProfile(user, { displayName: name }).then(()=>{
       var newUser: User = {}
           newUser.mail=email
           newUser.name=name
-          newUser.rol='KcyTEOBshsvabhvqmcpz'
+          newUser.rol=rol
           newUser.uid=user.uid
           this.userService.postUser(newUser)
     })));

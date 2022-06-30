@@ -13,7 +13,7 @@ export class SummaryService {
 
   constructor(
     private afs: AngularFirestore
-  ) { 
+  ) {
     this.summaryCollection = afs.collection<Summary>('summaries');
     this.summaries = this.summaryCollection.valueChanges();
   }
@@ -28,7 +28,7 @@ export class SummaryService {
   }
 
   getLastSummary() {
-    return this.afs.collection<Summary>('summaries', ref => ref.orderBy('created','desc')).snapshotChanges().pipe(
+    return this.afs.collection<Summary>('summaries', ref => ref.orderBy('cutoff_date','desc')).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as SummaryId
         data.id = a.payload.doc.id

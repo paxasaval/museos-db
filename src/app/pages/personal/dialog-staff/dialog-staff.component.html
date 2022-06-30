@@ -14,11 +14,10 @@
         </div>
         <div class="formInput">
             <p class="labelStyle">Rol:</p>
-            <input matInput formControlName="rol" class="inputStyle" type="text">
-        </div>
-        <div class="formInput">
-            <p class="labelStyle">Museo:</p>
-            <input matInput formControlName="museo" class="inputStyle" type="select">
+            <mat-select class="inputStyle" formControlName="rol" placeholder="" [disabled]="false">
+              <mat-option *ngFor="let rol of roles" [value]="rol.id">{{rol.name}}</mat-option>
+          </mat-select>
+            <!-- <input matInput formControlName="rol" class="inputStyle" type="text"> -->
         </div>
         <div class="formInput">
             <p class="labelStyle">Teléfono:</p>
@@ -39,7 +38,7 @@
                   save
               </mat-icon>
           </button>
-          <button mat-raised-button class="btnCancel" (click)="close()">
+          <button type="button" mat-raised-button class="btnCancel" (click)="close()">
               {{cancel}}
               <mat-icon>
                   cancel

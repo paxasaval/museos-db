@@ -14,7 +14,7 @@ export class StaffService {
   constructor(
     private afs: AngularFirestore,
     private storage: AngularFirestore
-  ) { 
+  ) {
     this.staffCollection = afs.collection<Staff>('staff');
     this.staffs = this.staffCollection.valueChanges();
   }
@@ -74,11 +74,12 @@ export class StaffService {
     staffReference.set(staff)
   }
 
-  deleteStaff(staff: StaffId) {
-    this.afs.doc<Staff>('staff/' + staff.id).delete();
+  deleteStaff(id: string) {
+    this.afs.doc<Staff>('staff/' + id).delete();
    }
 
   postStaff(staff: Staff) {
+    console.log(staff)
     return this.afs.collection<Staff>('staff').add(staff)
   }
 

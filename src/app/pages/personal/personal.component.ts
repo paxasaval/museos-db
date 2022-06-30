@@ -4,6 +4,7 @@ import { Staff } from 'src/app/models/staff';
 import { StaffService } from 'src/app/services/staff.service';
 import { DialogStaffComponent } from './dialog-staff/dialog-staff.component';
 export interface dataTable{
+    id?:string;
     ci?:string;
     name?:string;
     rol?:string;
@@ -40,9 +41,18 @@ export class PersonalComponent implements OnInit {
         this.dataSource=[]
         result.forEach(x=>{
           let row: dataTable = {}
+          row.id = x.id
           row.ci = x.cedula
           row.name = x.name
-          row.rol = x.rol
+          if(x.rol ===  'KcyTEOBshsvabhvqmcpz'){
+            row.rol = 'Adminstrador'
+          }
+          if(x.rol==='ZFwDIYvZia8PKqIRS9Ng'){
+            row.rol = 'Gestor'
+          }
+          if(x.rol==='kKjkKRN2Kzz01dDxLevq'){
+            row.rol = 'Visualizador'
+          }
           row.museo = x.museo
           row.phone = x.phone
           this.dataSource.push(row)
@@ -73,6 +83,6 @@ export class PersonalComponent implements OnInit {
     })
   }
   deletePersonal(id: string){
-
+    this.staffService.deleteStaff(id)
   }
 }

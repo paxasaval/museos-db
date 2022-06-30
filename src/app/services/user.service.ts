@@ -30,6 +30,16 @@ export class UserService {
     )
    }
 
+   getUserByRol(rol: string){
+      return this.afs.collection<User>('users', ref => ref.where('rol','==',rol)).snapshotChanges().pipe(
+        map(actions=>actions.map(a=>{
+          const data = a.payload.doc.data() as UserId
+          data.id = a.payload.doc.id
+          return data
+        }))
+      )
+   }
+
    postUser(user: User){
      const userReference = this.afs.doc<User>(`users/${user.mail}`)
      userReference.set(user)
