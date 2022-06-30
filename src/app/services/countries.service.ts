@@ -13,7 +13,7 @@ export class CountriesService {
 
   constructor(
     private afs: AngularFirestore
-  ) { 
+  ) {
     this.countriesCollection = afs.collection<Country>('paises');
     this.countries = this.countriesCollection.valueChanges();
   }
@@ -22,6 +22,9 @@ export class CountriesService {
     return this.afs.collection<Country>('paises').snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as CountryId
+        const isMatch = (element:any) => (element)=='﻿Iden';
+        let i  = (Object.keys(data).findIndex(isMatch))
+        data.Iden = Object.values(data)[i]
         data.id = a.payload.doc.id
         return data
       }))
@@ -39,7 +42,17 @@ export class CountriesService {
   }
 
   getCountryById(id: string) {
-    return this.afs.collection<Country>('paises', ref => ref.where('Id', '==', id)).snapshotChanges().pipe(
+    return this.afs.doc<Country>(`paises/${id}`).snapshotChanges().pipe(
+      map(a => {
+        const data = a.payload.data() as CountryId
+        data.id = a.payload.id
+        return data
+      })
+    )
+  }
+
+  getCountryByIden(iden: string) {
+    return this.afs.collection<Country>('paises', ref => ref.where('Iden', '==', iden)).snapshotChanges().pipe(
       map(actions => actions.map(a=> {
         const data = a.payload.doc.data() as CountryId
         data.id = a.payload.doc.id

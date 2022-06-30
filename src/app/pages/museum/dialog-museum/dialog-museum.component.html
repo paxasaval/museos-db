@@ -21,7 +21,10 @@
         </div>
         <div class="formInput">
             <p class="labelStyle">Supervisor:</p>
-            <input matInput formControlName="supervisor" class="inputStyle" type="text">
+            <mat-select class="inputStyle" formControlName="supervisor" placeholder="" [disabled]="false">
+                <mat-option *ngFor="let user of mail" [value]="user">{{user}}</mat-option>
+            </mat-select>
+            <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
         </div>
         <div class="formInput">
             <p class="labelStyle">Imagen de museo:</p>

@@ -8,6 +8,8 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
+import {MatSelectModule} from '@angular/material/select';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [],
@@ -21,7 +23,9 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatSelectModule,
+    NgChartsModule
   ],
   exports:[
     FormsModule,
@@ -32,8 +36,9 @@ import {MatTableModule} from '@angular/material/table';
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    MatTableModule
-
+    MatTableModule,
+    MatSelectModule,
+    NgChartsModule
   ]
 })
 export class MaterialModule { }
