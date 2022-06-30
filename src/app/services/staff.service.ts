@@ -69,9 +69,9 @@ export class StaffService {
     )
   }
 
-  updateStaff(staff: StaffId){
-    const staffReference = this.afs.doc<Staff>(`staff/${staff.id}`)
-    staffReference.set(staff)
+  updateStaff(id: string, staff: any){
+    const staffReference = this.afs.doc<Staff>(`staff/${id}`)
+    return staffReference.set(staff)
   }
 
   deleteStaff(id: string) {

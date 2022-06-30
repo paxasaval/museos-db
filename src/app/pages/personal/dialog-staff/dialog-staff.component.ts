@@ -19,7 +19,7 @@ export class DialogStaffComponent implements OnInit {
   cancel='Cancelar'
   saveChanges=true
   roles:RolId[]=[]
-
+  
   personalForm = new FormGroup(({
     ci: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
