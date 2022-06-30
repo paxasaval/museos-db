@@ -153,12 +153,17 @@ export class MuseumComponent implements OnInit {
       result=>{
         result.forEach(country=>{
           this.pieChartData.labels?.push([country.pais_de_procedencia!,`codigo:${country.Iden!}`])
+          //console.log(country.Iden)
           this.generalRecordService.getGeneralRecordsByCountry(country.Iden!).subscribe(
-            result=>{
+            res=>{
               let record:dataCountryVisit = {}
               record.country=country.Iden
-              record.visit=result.length
+              record.visit=res.length
               this.dataSetCountryVisit.push(record)
+              const isRegionOf = (element:dataRegionVisit)=> (element.region)==(country.region_id)
+              const i = this.dataSetRegionVisit.findIndex(isRegionOf)
+              this.dataSetRegionVisit[i].countries?.push(record.country!)
+              this.dataSetRegionVisit[i].visit!+=record.visit!
               //this.chart?.update();
             }
           )
@@ -173,6 +178,6 @@ export class MuseumComponent implements OnInit {
     console.log(this.dataSetCountryVisit)
     console.log(this.dataSetRegionVisit)
     this.fetchMuseos()
-  }
+  } 
 
 }
