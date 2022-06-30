@@ -12,7 +12,7 @@ export interface Country_visit {
 
 export interface DataRegionsVisit {
     region?: string,
-    countries?: Region_visit[],
+    countries?: Country_visit[],
     visit?: number
 }
 
@@ -23,13 +23,13 @@ export interface Place_record {
 
 export interface Transport_visit {
     item_id?: string,
-    total_visits?: number    
+    total_visits?: number
 }
 
 export interface LastMonth_visit {
-    month?: number,
+    month?: string,
     total_visits?: number
-} 
+}
 
 export interface LastYear_visit {
     year?: string,
@@ -48,9 +48,11 @@ export interface Summary {
     total_record?: number,
     country_visit?: Country_visit[],
     place_record?: Place_record[],
-    lastMonth_visit?: LastMonth_visit[],
+    lastMonth_visit?: number,
+    month_visit?: LastMonth_visit[],
     lastYear_visit?: LastYear_visit[],
     region_visit?: DataRegionsVisit[],
     transport_visit?: Transport_visit[],
+    reason_visit?: Reason_visit[]
 }
 export interface SummaryId extends Summary { id: string }
