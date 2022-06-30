@@ -2,42 +2,50 @@ import { Timestamp } from "firebase/firestore"
 
 export interface Region_visit {
     region?: string,
+    name?: string,
     visit?: number
 }
 
 export interface Country_visit {
     country?: string,
+    name?: string,
     total_visits?: number
 }
 
 export interface DataRegionsVisit {
     region?: string,
     countries?: Country_visit[],
+    name?: string,
     visit?: number
 }
 
 export interface Place_record {
     item_id?: string,
+    name?: string,
     total_visits?: number
 }
 
 export interface Transport_visit {
     item_id?: string,
+    name?: string,
     total_visits?: number
 }
 
 export interface LastMonth_visit {
     month?: string,
+    name?: string,
     total_visits?: number
 }
 
 export interface LastYear_visit {
     year?: string,
+    name?: string,
     total_visits?: number
 }
 
 export interface Reason_visit {
     item_id?: string,
+    name?: string,
     total_visits?: number
 }
 
