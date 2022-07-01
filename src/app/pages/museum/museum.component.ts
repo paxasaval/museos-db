@@ -17,15 +17,6 @@ import { finalize, iif } from 'rxjs';
 import { SummaryService } from 'src/app/services/summary.service';
 import {default as Annotation} from 'chartjs-plugin-annotation';
 
-export function dame_color_aleatorio(){
-  var simbolos, color;
-	simbolos = "0123456789ABCDEF";
-	color = "#";
-	for(var i = 0; i < 6; i++){
-		color = color + simbolos[Math.floor(Math.random() * 16)];
-	}
-  return color
-}
 const colors = {
   bgColor: '',
   txtColor: '',
@@ -618,7 +609,7 @@ export class MuseumComponent implements OnInit {
       let label: string = reason.name!
       this.barChartData.labels?.push(label)
       this.barChartData.datasets[0].data.push(reason.total_visits!)
-      colors.push(dame_color_aleatorio())
+      colors.push(RGBtoHex())
     })
     this.barChartData.datasets[0].backgroundColor=colors
     this.loaded_bar=true
@@ -629,7 +620,7 @@ export class MuseumComponent implements OnInit {
       let label: string = trasnport.name!
       this.hbarChartData.labels?.push(label)
       this.hbarChartData.datasets[0].data.push(trasnport.total_visits!)
-      colors.push(dame_color_aleatorio())
+      colors.push(RGBtoHex())
     })
     this.hbarChartData.datasets[0].backgroundColor=colors
     this.loaded_barh=true

@@ -6,10 +6,48 @@
     <h2 class="title">Puntos de Informacion</h2>
     <h3 class="subtitle">Datos Generales</h3>
     <section class="chars">
-      <article class="one">Procedencia de turistas</article>
-      <article class="two">Fecha de visitas</article>
-      <article class="three">Razon de visitas</article>
-      <article class="four">Medios de trasnporte</article>
+      <article class="one">
+        <h4>Procedencia de turistas</h4>
+        <div class="chart">
+          <canvas
+            baseChart
+            [data]="pieChartData"
+            [type]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+          >
+          </canvas>
+        </div>
+      </article>
+      <article class="two">
+        <h4>Fecha de visitas</h4>
+        <canvas *ngIf="loaded_line" baseChart width="400" height="400"
+                [data]="lineChartData"
+                [options]="lineChartOptions"
+                [type]="lineChartType"
+        ></canvas>
+      </article>
+      <article class="three">
+        <h4>Razon de visitas</h4>
+        <canvas *ngIf="loaded_bar"
+          baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [type]="barChartType"
+        >
+        </canvas>
+      </article>
+      <article class="four"><h4>Medios de trasnporte</h4>
+        <canvas *ngIf="loaded_barh"
+          baseChart
+          [data]="hbarChartData"
+          [options]="hbarChartOptions"
+          [plugins]="hbarChartPlugins"
+          [type]="hbarChartType"
+        >
+        </canvas>
+      </article>
     </section>
     <section class="search">
       <div *ngIf="rol==='kKjkKRN2Kzz01dDxLevq'; else elseBlock" class="search-title">
