@@ -22,6 +22,11 @@
       </article>
       <article class="two">
         <h4>Fecha de visitas</h4>
+        <canvas *ngIf="loaded_line" baseChart width="400" height="400"
+                [data]="lineChartData"
+                [options]="lineChartOptions"
+                [type]="lineChartType"
+        ></canvas>
       </article>
       <article class="three">
         <h4>Razon de visitas</h4>

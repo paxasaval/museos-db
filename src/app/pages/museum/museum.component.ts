@@ -8,13 +8,14 @@ import { Museo } from 'src/app/models/museo';
 import { MuseosService } from 'src/app/services/museos.service';
 import { DialogMuseumComponent } from './dialog-museum/dialog-museum.component';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { Chart, ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { GeneralRecordService } from 'src/app/services/general-record.service';
 import { CountriesService } from 'src/app/services/countries.service';
 import { CountryId } from 'src/app/models/country';
-import { finalize } from 'rxjs';
+import { finalize, iif } from 'rxjs';
 import { SummaryService } from 'src/app/services/summary.service';
+import {default as Annotation} from 'chartjs-plugin-annotation';
 
 export function dame_color_aleatorio(){
   var simbolos, color;
@@ -83,6 +84,7 @@ export class MuseumComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
   loaded_bar=false
   loaded_barh=false
+  loaded_line=false
 
   //var date
   lath_month = '12'
@@ -148,18 +150,22 @@ export class MuseumComponent implements OnInit {
   place_record: Place_record[] = [
     {
       item_id: '640',
+      name:'Terminal Terrestre',
       total_visits: 0
     },
     {
       item_id: '24',
+      name:'Central',
       total_visits: 0
     },
     {
       item_id: '647',
+      name:'Puerta de la ciudad',
       total_visits: 0
     },
     {
       item_id: '22',
+      name:'Vilcabamba',
       total_visits: 0
     },
   ]
@@ -167,50 +173,62 @@ export class MuseumComponent implements OnInit {
   month_visit: LastMonth_visit[] = [
     {
       month: '1',
+      name:'Enero',
       total_visits: 0
     },
     {
       month: '2',
+      name:'Febrero',
       total_visits: 0
     },
     {
       month: '3',
+      name:'Marzo',
       total_visits: 0
     },
     {
       month: '4',
+      name:'Abril',
       total_visits: 0
     },
     {
       month: '5',
+      name:'Mayo',
       total_visits: 0
     },
     {
       month: '6',
+      name:'Junio',
       total_visits: 0
     },
     {
       month: '7',
+      name:'Julio',
       total_visits: 0
     },
     {
       month: '8',
+      name:'Agosto',
       total_visits: 0
     },
     {
       month: '9',
+      name:'Septiembre',
       total_visits: 0
     },
     {
       month: '10',
+      name:'Octubre',
       total_visits: 0
     },
     {
       month: '11',
+      name:'Noviembre',
       total_visits: 0
     },
     {
       month: '12',
+      name:'Diciembre',
       total_visits: 0
     }
   ]
@@ -236,60 +254,74 @@ export class MuseumComponent implements OnInit {
   reason_visit: Reason_visit[] = [
     {
       item_id: '18',
+      name:'Vacaciones',
       total_visits: 0
     },
     {
       item_id: '21',
+      name:'Familia',
       total_visits: 0
     },
     {
       item_id: '16',
+      name:'Turismo',
       total_visits: 0
     },
     {
       item_id: '27',
+      name:'Trabajo',
       total_visits: 0
     },
     {
       item_id: '28',
+      name:'Negocios',
       total_visits: 0
     },
     {
       item_id: '17',
+      name:'Estudios',
       total_visits: 0
     },
     {
       item_id: '639',
+      name:'Otros',
       total_visits: 0
     },
   ]
   transport_visit: Transport_visit[] = [
     {
       item_id: '638',
+      name:'Otro',
       total_visits: 0
     },
     {
       item_id: '13',
+      name:'Avion',
       total_visits: 0
     },
     {
       item_id: '636',
+      name:'Bicicleta',
       total_visits: 0
     },
     {
       item_id: '14',
+      name:'Moto',
       total_visits: 0
     },
     {
       item_id: '15',
+      name:'Taxi',
       total_visits: 0
     },
     {
       item_id: '637',
+      name:'Barco',
       total_visits: 0
     },
     {
       item_id: '25',
+      name:'Bus',
       total_visits: 0
     }
   ]
@@ -302,8 +334,11 @@ export class MuseumComponent implements OnInit {
     private rolesService: RolesService,
     private generalRecordService: GeneralRecordService,
     private countriesService: CountriesService,
-    private summaryService: SummaryService
-  ) { }
+    private summaryService: SummaryService,
+
+  ) {
+    Chart.register(Annotation)
+   }
 
   //bar-vertical
   public barChartOptions: ChartConfiguration['options'] = {
@@ -362,11 +397,10 @@ export class MuseumComponent implements OnInit {
       ],
 
     };
-    //fin-bar
+  //fin-bar
   //pie
   public pieChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-
     plugins: {
       legend: {
         display: true,
@@ -390,6 +424,53 @@ export class MuseumComponent implements OnInit {
   public pieChartType: ChartType = 'pie';
   public pieChartPlugins = [DatalabelsPlugin];
   //pie-end
+  //line
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [{
+      data:[],
+      label:'Ultimos 12 meses',
+      backgroundColor: 'rgba(148,159,177,0.2)',
+        borderColor: 'rgba(148,159,177,1)',
+        pointBackgroundColor: 'rgba(148,159,177,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(148,159,177,0.8)',
+        fill: 'origin',
+    }],
+    labels:[]
+  }
+  public lineChartOptions: ChartConfiguration['options'] = {
+    elements: {
+      line: {
+        tension: 0.5
+      }
+    },
+    scales: {
+      // We use this empty structure as a placeholder for dynamic theming.
+      x: {},
+      'y-axis-0':
+        {
+          position: 'left',
+        },
+      'y-axis-1': {
+        position: 'right',
+        grid: {
+          color: 'rgba(255,0,0,0.3)',
+        },
+        ticks: {
+          color: 'red'
+        }
+      }
+    },
+    plugins: {
+      legend: {
+        display: true
+      },
+
+    }
+  }
+  public lineChartType: ChartType = 'line';
+  //fin-line
   openDialogNewMuseum(): void {
     const dialogRef = this.dialog.open(DialogMuseumComponent, {
       panelClass: 'app-full-bleed-dialog',
@@ -419,9 +500,23 @@ export class MuseumComponent implements OnInit {
         )
       })
     } */
+  orderMonth(){
+    var month_order:LastMonth_visit[]=[]
+    var x = new Date().getMonth()
+    for (let i = 0; i < 12; i++) {
+      month_order.unshift(this.month_visit[x-1])
+      if(x==1){
+        x=12
+      }else{
+        x-=1
+      }
+    }
+    this.month_visit = month_order
+  }
   fetchData() {
     var total_tourist_visit = 0
     var total_visits_days = 0
+    this.orderMonth()
     this.countriesService.getAllCountries().subscribe(
       result => {
         result.forEach(country => {
@@ -431,6 +526,7 @@ export class MuseumComponent implements OnInit {
             res => {
               let record: Country_visit = {}
               record.country = country.Iden
+              record.name=country.pais_de_procedencia
               record.total_visits = res.length
               this.country_visit.push(record)
               const isRegionOf = (element: Region_visit) => (element.region) == (country.region_id)
@@ -494,32 +590,10 @@ export class MuseumComponent implements OnInit {
         this.fetchpieRegion()
         this.fetchBarReason()
         this.fetchBarTransport()
+        this.fetchLineDate()
         this.chart?.update();
       }
     )
-  }
-  fetchBarReason() {
-    var colors:string[]=[]
-    this.reason_visit.forEach(reason => {
-      let label: string = reason.item_id!
-      this.barChartData.labels?.push(label)
-      this.barChartData.datasets[0].data.push(reason.total_visits!)
-      colors.push(RGBtoHex())
-    })
-    this.barChartData.datasets[0].backgroundColor=colors
-
-    this.loaded_bar=true
-  }
-  fetchBarTransport() {
-    var colors:string[]=[]
-    this.transport_visit.forEach(trasnport => {
-      let label: string = trasnport.item_id!
-      this.hbarChartData.labels?.push(label)
-      this.hbarChartData.datasets[0].data.push(trasnport.total_visits!)
-      colors.push(RGBtoHex())
-    })
-    this.hbarChartData.datasets[0].backgroundColor=colors
-    this.loaded_barh=true
   }
   fetchpieRegion() {
     this.region_visit.forEach(region => {
@@ -530,6 +604,38 @@ export class MuseumComponent implements OnInit {
       this.pieChartData.datasets[0].data.push(region.visit!)
     })
   }
+  fetchLineDate(){
+    this.month_visit.forEach(month=>{
+      let label: string = month.name!
+      this.lineChartData.labels?.push(label)
+      this.lineChartData.datasets[0].data.push(month.total_visits!)
+    })
+    this.loaded_line=true
+  }
+  fetchBarReason() {
+    var colors:string[]=[]
+    this.reason_visit.forEach(reason => {
+      let label: string = reason.name!
+      this.barChartData.labels?.push(label)
+      this.barChartData.datasets[0].data.push(reason.total_visits!)
+      colors.push(dame_color_aleatorio())
+    })
+    this.barChartData.datasets[0].backgroundColor=colors
+    this.loaded_bar=true
+  }
+  fetchBarTransport() {
+    var colors:string[]=[]
+    this.transport_visit.forEach(trasnport => {
+      let label: string = trasnport.name!
+      this.hbarChartData.labels?.push(label)
+      this.hbarChartData.datasets[0].data.push(trasnport.total_visits!)
+      colors.push(dame_color_aleatorio())
+    })
+    this.hbarChartData.datasets[0].backgroundColor=colors
+    this.loaded_barh=true
+  }
+
+
   saveFetchData() {
     let s: Summary = {}
     s.cutoff_date = Timestamp.now()

@@ -49,9 +49,9 @@ export class MuseosService {
     )
    }
 
-   updateMuseo(museo: MuseoId){
-    const museoReference = this.afs.doc<Museo>(`museos/${museo.id}`)
-    museoReference.set(museo)
+   updateMuseo(id:string, museo: any){
+    const museoReference = this.afs.doc<Museo>(`museos/${id}`)
+    return museoReference.set(museo)
   }
 
    postMuseo(museo: Museo){
@@ -59,6 +59,7 @@ export class MuseosService {
    }
 
    deleteMuseo(museo: MuseoId) {
+    console.log(museo)
     this.afs.doc<Museo>('museos/' + museo.id).delete();
    }
 
