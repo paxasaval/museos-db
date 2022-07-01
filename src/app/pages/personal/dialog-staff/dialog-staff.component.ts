@@ -18,16 +18,9 @@ export class DialogStaffComponent implements OnInit {
   title='Agregar Personal'
   cancel='Cancelar'
   saveChanges=true
-<<<<<<< HEAD
 
-  id?:string
-
-  roles:RolId[]=[]
-
-=======
   roles:RolId[]=[]
   
->>>>>>> development
   personalForm = new FormGroup(({
     ci: new FormControl('', [Validators.required]),
     name: new FormControl('', [Validators.required]),
