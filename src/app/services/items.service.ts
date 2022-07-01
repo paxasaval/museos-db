@@ -13,7 +13,7 @@ export class ItemsService {
 
   constructor(
     private afs: AngularFirestore
-  ) { 
+  ) {
     this.itemCollection = afs.collection<Item>('items');
     this.items = this.itemCollection.valueChanges();
   }
@@ -42,6 +42,18 @@ export class ItemsService {
     return this.afs.collection<Item>('items', ref => ref.where('Id', '==', id)).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as ItemId
+        data.id = a.payload.doc.id
+        return data
+      }))
+    )
+  }
+  getItemsByCatalog(id_catalog: string) {
+    return this.afs.collection<Item>('items', ref => ref.where('Catalogo_id', '==', id_catalog)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as ItemId
+        const isMatch = (element:any) => (element)=='﻿Id';
+        let i  = (Object.keys(data).findIndex(isMatch))
+        data.Id = Object.values(data)[i]
         data.id = a.payload.doc.id
         return data
       }))

@@ -1,3 +1,5 @@
+import { ItemsService } from './../../services/items.service';
+import { Item, ItemId } from './../../models/item';
 import { GeneralRecordId } from './../../models/generalRecord';
 import { Country_visit, Place_record, LastMonth_visit, LastYear_visit, DataRegionsVisit, Transport_visit, Region_visit, Reason_visit, Summary } from './../../models/summary';
 import { Timestamp } from 'firebase/firestore';
@@ -7,8 +9,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Museo } from 'src/app/models/museo';
 import { MuseosService } from 'src/app/services/museos.service';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
-import { Chart, ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
+import { Chart, ChartConfiguration, ChartData, ChartDataset, ChartEvent, ChartType } from 'chart.js';
+import { BaseChartDirective, ThemeService } from 'ng2-charts';
 import { GeneralRecordService } from 'src/app/services/general-record.service';
 import { CountriesService } from 'src/app/services/countries.service';
 import { CountryId } from 'src/app/models/country';
@@ -75,7 +77,11 @@ export class InfoPointComponent implements OnInit {
   loaded_bar=false
   loaded_barh=false
   loaded_line=false
-
+  selected_1?: ItemId
+  selected_2?:ItemId
+  selected_1_transport?: ItemId
+  selected_2_transport?:ItemId
+  allPlaces: ItemId[]=[]
   //var date
   lath_month = '12'
   lasth_year = '2021'
@@ -325,6 +331,7 @@ export class InfoPointComponent implements OnInit {
     private generalRecordService: GeneralRecordService,
     private countriesService: CountriesService,
     private summaryService: SummaryService,
+    private itemService: ItemsService
   ) { }
 
   //bar-vertical
@@ -592,8 +599,191 @@ export class InfoPointComponent implements OnInit {
     this.hbarChartData.datasets[0].backgroundColor=colors
     this.loaded_barh=true
   }
+  fetchAllplaces(){
+    this.itemService.getItemsByCatalog('12').subscribe(
+      result=>{
+        result.forEach(item=>{
+          this.allPlaces.push(item)
+        })
+      }
+    )
+  }
+  updateReason(){
+    this.loaded_bar=false
+    this.selected_1=undefined
+    this.selected_2=undefined
+    if(this.barChartData.datasets.length>1){
+      this.barChartData.datasets.pop()
+    }
+    this.barChartData.labels=[]
+    this.barChartData.datasets[0].data=[]
+    this.barChartData.datasets[0].label='Total'
+    this.summaryService.getLastSummary().subscribe(
+      result => {
+        this.cutoff_date = result[0].cutoff_date
+        this.avg_tourist_visit = result[0].avg_tourist_visit!
+        this.avg_visits_days = result[0].avg_visits_days!
+        this.total_record = result[0].total_record!
+        this.country_visit = result[0].country_visit!
+        this.place_record = result[0].place_record!
+        this.lastMonth_visit = result[0].lastMonth_visit!
+        this.month_visit = result[0].month_visit!
+        this.year_visit = result[0].lastYear_visit!
+        this.reason_visit = result[0].reason_visit!
+        this.region_visit = result[0].region_visit!
+        this.transport_visit = result[0].transport_visit!
+        this.fetchBarReason()
+      }
+    )
+  }
+  updateTransport(){
+    this.loaded_barh=false
+    this.selected_1_transport=undefined
+    this.selected_2_transport=undefined
+    if(this.hbarChartData.datasets.length>1){
+      this.hbarChartData.datasets.pop()
+    }
+    this.hbarChartData.labels=[]
+    this.hbarChartData.datasets[0].data=[]
+    this.hbarChartData.datasets[0].label='Total'
+    this.summaryService.getLastSummary().subscribe(
+      result => {
+        this.cutoff_date = result[0].cutoff_date
+        this.avg_tourist_visit = result[0].avg_tourist_visit!
+        this.avg_visits_days = result[0].avg_visits_days!
+        this.total_record = result[0].total_record!
+        this.country_visit = result[0].country_visit!
+        this.place_record = result[0].place_record!
+        this.lastMonth_visit = result[0].lastMonth_visit!
+        this.month_visit = result[0].month_visit!
+        this.year_visit = result[0].lastYear_visit!
+        this.reason_visit = result[0].reason_visit!
+        this.region_visit = result[0].region_visit!
+        this.transport_visit = result[0].transport_visit!
+        this.fetchBarTransport()
+      }
+    )
+  }
+  onPlace1Changes(value:ItemId){
+    //re-set bar
+    this.barChartData.datasets[0].backgroundColor=[RGBtoHex()]
+    this.barChartData.datasets[0].data=[]
+    this.barChartData.datasets[0].label=''
+    this.loaded_bar=false
+    this.reason_visit.forEach(reason=>{
+      reason.total_visits=0
+    })
+    console.log(value)
+    this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
+      result=>{
+        result.forEach(record=>{
+          const isReasonOf = (element: Reason_visit) => (element.item_id) == (record.razon_item_id)
+          const i_reason = this.reason_visit?.findIndex(isReasonOf)
+          this.reason_visit[i_reason].total_visits! += 1
+        })
+        this.barChartData.datasets[0].label=value.Nombre
+        this.reason_visit.forEach(reason=>{
+          this.barChartData.datasets[0].data.push(reason.total_visits!)
+        })
+        this.chart?.update()
+        this.loaded_bar=true
+      }
+    )
 
 
+  }
+  onPlace2Changes(value:ItemId){
+    let serie2:ChartDataset<"bar",number[]> = {
+      data: [],
+      label:''
+    }
+    if(this.barChartData.datasets.length<2){
+      this.barChartData.datasets.push(serie2)
+    }else{
+      this.barChartData.datasets[1].data=[]
+      this.barChartData.datasets[1].label=''
+    }
+    this.loaded_bar=false
+    this.reason_visit.forEach(reason=>{
+      reason.total_visits=0
+    })
+    console.log(value)
+    this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
+      result=>{
+        result.forEach(record=>{
+          const isReasonOf = (element: Reason_visit) => (element.item_id) == (record.razon_item_id)
+          const i_reason = this.reason_visit?.findIndex(isReasonOf)
+          this.reason_visit[i_reason].total_visits! += 1
+        })
+        this.barChartData.datasets[1].label=value.Nombre
+        this.reason_visit.forEach(reason=>{
+          this.barChartData.datasets[1].data.push(reason.total_visits!)
+        })
+        this.chart?.update()
+        this.loaded_bar=true
+      }
+    )
+
+}
+onTransport1Changes(value:ItemId){
+  //re-set bar
+  this.hbarChartData.datasets[0].backgroundColor=[RGBtoHex()]
+  this.hbarChartData.datasets[0].data=[]
+  this.hbarChartData.datasets[0].label=''
+  this.loaded_barh=false
+  this.reason_visit.forEach(reason=>{
+    reason.total_visits=0
+  })
+  this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
+    result=>{
+      result.forEach(record=>{
+        const isReasonOf = (element: Reason_visit) => (element.item_id) == (record.razon_item_id)
+        const i_reason = this.reason_visit?.findIndex(isReasonOf)
+        this.reason_visit[i_reason].total_visits! += 1
+      })
+      this.hbarChartData.datasets[0].label=value.Nombre
+      this.reason_visit.forEach(reason=>{
+        this.hbarChartData.datasets[0].data.push(reason.total_visits!)
+      })
+      this.chart?.update()
+      this.loaded_barh=true
+    }
+  )
+
+
+}
+onTransport2Changes(value:ItemId){
+  let serie2:ChartDataset<"bar",number[]> = {
+    data: [],
+    label:''
+  }
+  if(this.hbarChartData.datasets.length<2){
+    this.hbarChartData.datasets.push(serie2)
+  }else{
+    this.hbarChartData.datasets[1].data=[]
+    this.hbarChartData.datasets[1].label=''
+  }
+  this.loaded_barh=false
+  this.reason_visit.forEach(reason=>{
+    reason.total_visits=0
+  })
+  this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
+    result=>{
+      result.forEach(record=>{
+        const isReasonOf = (element: Reason_visit) => (element.item_id) == (record.razon_item_id)
+        const i_reason = this.reason_visit?.findIndex(isReasonOf)
+        this.reason_visit[i_reason].total_visits! += 1
+      })
+      this.hbarChartData.datasets[1].label=value.Nombre
+      this.reason_visit.forEach(reason=>{
+        this.hbarChartData.datasets[1].data.push(reason.total_visits!)
+      })
+      this.chart?.update()
+      this.loaded_barh=true
+    }
+  )
+
+}
   saveFetchData() {
     let s: Summary = {}
     s.cutoff_date = Timestamp.now()
@@ -615,6 +805,7 @@ export class InfoPointComponent implements OnInit {
     this.rol = localStorage.getItem('rol')!
     //this.fetchData()
     this.fetchSummary()
+    this.fetchAllplaces()
   }
 
 }
