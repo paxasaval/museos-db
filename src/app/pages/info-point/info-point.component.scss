@@ -1,60 +1,94 @@
-.museos{
+.museos {
   display: flex;
   width: 100vw;
   justify-content: space-between;
 }
 
-.main{
+.main {
   width: 80%;
   height: 100vh;
   overflow-y: scroll;
   padding-right: 2em;
 }
+
 .chars {
+  width: 86%;
+  margin-top: 6vh;
+  padding-left: 5vw;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(300px, auto);
+  grid-gap: 5vh;
+  margin-bottom: 1em;
+  padding-bottom: 1em;
 }
-.chars article{
-  background-color: #f1f1f1;
-  border-radius: 12px;
+
+.chars article {
+  background: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+}
+
+.chart{
+  margin-left: 20vh;
+  width: 25vh;
+  height: 25vh;
 }
 .one {
   grid-column: 1;
   grid-row: 1;
 }
+
 .two {
   grid-column: 2;
   grid-row: 1;
 }
+
 .three {
   grid-column: 1;
   grid-row: 2;
 }
+
 .four {
   grid-column: 2;
   grid-row: 2;
 }
-.search{
+
+.search {
   text-align: left;
   width: 100%;
 }
-.search-bar{
+
+.search-bar {
   text-align: center;
   width: 100%;
 }
-.search-input{
+
+.search-input {
   width: 60%;
 }
-.title2{
+
+.title2 {
   display: flex;
   justify-content: space-between;
 }
-.addMuseum{
+
+.addMuseum {
   width: 12vw;
 }
-.plus-icon{
+
+.plus-icon {
   height: 15px;
   width: 15px;
+}
+
+.sectionCInfo{
+  height: 15vh;
+}
+
+.cardInfo{
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  height: 5vh;
+}
+.label1{
+  margin-left: 3vw;
 }

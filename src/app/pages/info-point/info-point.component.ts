@@ -390,7 +390,7 @@ export class InfoPointComponent implements OnInit {
     responsive: true,
     plugins: {
       legend: {
-        display: true,
+        display: false,
         position: 'top',
       },
       datalabels: {
