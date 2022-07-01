@@ -4,7 +4,7 @@ export interface GeneralRecord {
     fecha_de_registro?: string,
     lugar_de_registro_item_id?: string,
     mes_de_registro?: string,
-    numero_de_turistas?: number,
+    numero_de_turistas?: number,//pendiente
     pais_id?: string,
     razon_item_id?: string,
     transporte_item_id?: string,

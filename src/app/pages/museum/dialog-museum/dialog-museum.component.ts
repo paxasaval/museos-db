@@ -18,8 +18,13 @@ export class DialogMuseumComponent implements OnInit {
 
   img?: File
   title = 'Agregar Museo'
+<<<<<<< HEAD
   id?:string
   mail:string[]=[]
+=======
+  mail:string[]=[]
+  id?:string
+>>>>>>> development
   museumForm = new FormGroup(({
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),

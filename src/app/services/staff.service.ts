@@ -74,11 +74,12 @@ export class StaffService {
     return staffReference.set(staff)
   }
 
-  deleteStaff(staff: StaffId) {
-    this.afs.doc<Staff>('staff/' + staff.id).delete();
+  deleteStaff(id: string) {
+    this.afs.doc<Staff>('staff/' + id).delete();
    }
 
   postStaff(staff: Staff) {
+    console.log(staff)
     return this.afs.collection<Staff>('staff').add(staff)
   }
 

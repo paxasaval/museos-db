@@ -34,6 +34,9 @@ export class MuseumCardComponent implements OnInit {
     })
   }
   deleteMuseo(){
+
+    console.log(this.card.id)
+
     this.museoService.deleteMuseo(this.card)
   }
 }
