@@ -1,1 +1,109 @@
-<p>musem-detail works!</p>
+<section class="museumDetail">
+    <div class="der">
+        <app-sidebar></app-sidebar>
+    </div>
+    <main class="mainContainer">
+        <div class="imgStyle">
+            <img src="../../../assets/museo3.jpg" alt="">
+        </div>
+        <section class="headerMain">
+            <section class="header1">
+                <div class="btnback">
+                    <button mat-icon-button>
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+                </div>
+                <div class="infoStyle">
+                    <h2 class="title">Museo de la ciudad de Loja</h2>
+                    <span class="direccion">direccion</span>
+                    <span class="descripcion">descripcion</span>
+                </div>
+            </section>
+            <section class="header2">
+                <div>
+                    <button class="btnEdit" mat-raised-button>
+                        Editar Información
+                        <mat-icon class="matIcon">edit</mat-icon>
+                    </button>
+                </div>
+                <div>
+                    <button class="btnRegister" mat-raised-button>
+                        Registrar visita
+                        <mat-icon class="matIcon">add_circle</mat-icon>
+                    </button>
+                </div>
+            </section>
+        </section>
+        <section class="Container">
+            <section class="Container1">
+                <p class="titleCon1">Filtrar fechas</p>
+                <div class="formInput">
+                    <p class="labelStyle">Fecha de Inicio:</p>
+                    <input matInput formControlName="name" class="inputStyle" type="text">
+                </div>
+                <div class="formInput">
+                    <p class="labelStyle">Fecha de Fin:</p>
+                    <input matInput formControlName="name" class="inputStyle" type="text">
+                </div>
+                <section>
+                    <div>
+                        <button class="btnFiltar" mat-raised-button>
+                            Filtrar
+                        </button>
+                    </div>
+                </section>
+            </section>
+            <section class="Container2">
+                <div>
+                    <button class="btnReport" mat-raised-button>
+                        Editar Información
+                        <mat-icon class="matIcon">description</mat-icon>
+                    </button>
+                </div>
+                <div>
+                    <button class="btnDownload" mat-raised-button>
+                        Descargar Reporte
+                        <mat-icon class="matIcon">download_for_offline</mat-icon>
+                    </button>
+                </div>
+            </section>
+        </section>
+        <section class="chars">
+            <article class="one">Total turistas</article>
+            <article class="two">Promedio de turistas por día</article>
+            <article class="three">Maxima afluencia</article>
+            <article class="four">
+                <section class="sectionChart">
+                    <div>
+                        <span>
+
+                        </span>
+                    </div>
+                    <div class="circulo"></div>
+                </section>
+                <section class="sectionCInfo">
+
+                    <div class="cardInfo">
+                        <span class="label1">Nacionalidades:</span>
+                        <span>442</span>
+                        <span>55%</span>
+                    </div>
+                    <div class="cardInfo">
+                        <span class="label1">Extranjeros:</span>
+                        <span >442</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="cardInfo">
+                        <span class="label1">Locales:</span>
+                        <span>442</span>
+                        <span>10%</span>
+                    </div>
+
+                </section>
+            </article>
+            <article class="five">Tipo de turistas</article>
+            <article class="six">Género de turistas</article>
+            <article class="seven">Periodos con mayor frecuencia de turistas</article>
+        </section>
+    </main>
+</section>
