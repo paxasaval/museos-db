@@ -9,7 +9,7 @@
         <section class="headerMain">
             <section class="header1">
                 <div class="btnback">
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="goBack()">
                         <mat-icon>arrow_back</mat-icon>
                     </button>
                 </div>
@@ -27,7 +27,7 @@
                     </button>
                 </div>
                 <div>
-                    <button class="btnRegister" mat-raised-button>
+                    <button class="btnRegister" mat-raised-button (click)="openDialogRVisit()">
                         Registrar visita
                         <mat-icon class="matIcon">add_circle</mat-icon>
                     </button>

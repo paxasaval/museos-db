@@ -25,6 +25,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { DialogMuseumComponent } from './pages/museum/dialog-museum/dialog-museum.component';
 import { DialogStaffComponent } from './pages/personal/dialog-staff/dialog-staff.component';
 import { MuseumCardComponent } from './pages/museum/museum-card/museum-card.component';
+import { DialogRVisitComponent } from './pages/musem-detail/dialog-r-visit/dialog-r-visit.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MuseumCardComponent } from './pages/museum/museum-card/museum-card.comp
     InfoPointDetailComponent,
     LayerComponent,
     DialogStaffComponent,
-    MuseumCardComponent
+    MuseumCardComponent,
+    DialogRVisitComponent,
   ],
   imports: [
     BrowserModule,

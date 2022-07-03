@@ -29,9 +29,12 @@
 }
 .optionCharts{
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   padding-top: 1vw;
-  padding-right: 2vw;
+  padding-right: 1vw;
+}
+.optionCharts h4{
+  margin-right: 2vw;
 }
 .chart{
   margin-left: 15%;
