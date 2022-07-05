@@ -7,7 +7,11 @@
     <h3 class="subtitle">Datos Generales</h3>
     <section class="chars">
       <article class="one">
-        <h4>Procedencia de turistas</h4>
+        <div class="optionCharts">
+          <h4>Procedencia de turistas</h4>
+          <mat-icon>refresh</mat-icon>
+          <mat-icon>more_vert</mat-icon>
+        </div>
         <div class="chart">
           <canvas
             baseChart
@@ -20,19 +24,19 @@
         </div>
         <section class="sectionCInfo">
           <div class="cardInfo">
-            <span class="label1">Nacionalidades:</span>
-            <span>442</span>
-            <span>55%</span>
+              <span class="label1">Nacionalidades:</span>
+              <span class="label2">442</span>
+              <span class="label3">55%</span>
           </div>
           <div class="cardInfo">
-            <span class="label1">Extranjeros:</span>
-            <span>442</span>
-            <span>45%</span>
+              <span class="label1">Extranjeros:</span>
+              <span class="label2">442</span>
+              <span class="label3">55%</span>
           </div>
           <div class="cardInfo">
-            <span class="label1">Locales:</span>
-            <span>442</span>
-            <span>10%</span>
+              <span class="label1">Locales:</span>
+              <span class="label2">442</span>
+              <span class="label3">55%</span>
           </div>
         </section>
       </article>
@@ -59,7 +63,7 @@
           *ngIf="loaded_line"
           baseChart
           width="400"
-          height="280"
+          height="200"
           [data]="lineChartData"
           [options]="lineChartOptions"
           [type]="lineChartType"
