@@ -38,6 +38,22 @@
       </article>
       <article class="two">
         <h4>Fecha de visitas</h4>
+        <button mat-icon-button (click)="updateDate()">
+          <mat-icon class="mat-18">refresh</mat-icon>
+        </button>
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar 1:</mat-label>
+          <mat-select placeholder="" [(ngModel)]="selected_1_date" (selectionChange)="onDate1Changes($event.value)">
+            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar 2:</mat-label>
+          <mat-select placeholder="" [(ngModel)]="selected_2_date" (selectionChange)="onDate2Changes($event.value)">
+            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
 
         <canvas
           *ngIf="loaded_line"
