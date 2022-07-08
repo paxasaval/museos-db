@@ -110,6 +110,13 @@
   width: 40%;
   margin-left: 2vh;
 }
+
+.Style-long{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .label2{
   width: 30%;
 }
