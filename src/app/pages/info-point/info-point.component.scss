@@ -9,6 +9,9 @@
   height: 100vh;
   overflow-y: scroll;
   padding-right: 2em;
+  h2{
+    margin-bottom: 1em;
+  }
 }
 
 .chars {
@@ -48,7 +51,6 @@
 .one {
   grid-column: 1;
   grid-row: 1;
-
 }
 
 .two {
@@ -81,9 +83,11 @@
   width: 60%;
 }
 
-.title2 {
+.title2{
   display: flex;
   justify-content: space-between;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 .addMuseum {
@@ -94,7 +98,11 @@
   height: 15px;
   width: 15px;
 }
-
+.grid-museos{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 .sectionCInfo{
   height: 15vh;
   margin-top: 5vh;

@@ -329,7 +329,7 @@ export class InfoPointComponent implements OnInit {
   ]
   //fin var summary
   rol = ''
-
+  infoPoints: any[] = []
   constructor(
     private dialog: MatDialog,
     private museosService: MuseosService,
@@ -896,11 +896,33 @@ onTransport2Changes(value:ItemId){
     console.log(s)
     this.summaryService.postSummary(s)
   }
+
+
+
+  //FetchProvicional de museos para las cards
+  fetchinfoPoints() {
+    this.itemService.getItemsByCatalog('12').subscribe(
+      result => {
+        this.infoPoints = []
+        result.forEach(item => {
+          var obj = {
+            id: item.Id, 
+            image: 'https://www.loja.gob.ec/files/image/imagenes/MUN-DE-LOJA32.jpg',
+            name: item.Nombre,
+          }
+          this.infoPoints.push(obj)
+        })
+      }
+    )
+  }
+
+  //***** */
   ngOnInit(): void {
     this.rol = localStorage.getItem('rol')!
     //this.fetchData()
     this.fetchSummary()
     this.fetchAllplaces()
+    this.fetchinfoPoints()
   }
 
 }
