@@ -32,11 +32,11 @@
             </div>
         </div>
         <div class="classification">
-            <div class="formInput">
+            <div class="formInput2">
                 <p class="labelStyle2">Mujeres:</p>
                 <input matInput formControlName="identification" class="inputStyle" type="text">
             </div>
-            <div class="formInput">
+            <div class="formInput2">
                 <p class="labelStyle2">Hombres:</p>
                 <input matInput formControlName="identification" class="inputStyle" type="text">
             </div>
@@ -58,6 +58,14 @@
         <div class="formInput">
             <p class="labelStyle">Comentario:</p>
             <input matInput formControlName="name" class="inputStyle" type="text">
+        </div>
+        <div class="sectionButton">
+            <button type="submit" mat-raised-button class="btnSave">
+                Guardar               
+            </button>
+            <button type="button"  mat-raised-button class="btnCancel" (click)="close()">
+                Cancelar          
+            </button>
         </div>
     </form>
 </section>
