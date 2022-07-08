@@ -74,11 +74,17 @@ function RGBtoHex() {
 })
 export class InfoPointComponent implements OnInit {
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+  @ViewChild(BaseChartDirective) chart2: BaseChartDirective | undefined;
+  @ViewChild(BaseChartDirective) chart3: BaseChartDirective | undefined;
+  @ViewChild(BaseChartDirective) chart4: BaseChartDirective | undefined;
+
   loaded_bar=false
   loaded_barh=false
   loaded_line=false
   selected_1?: ItemId
   selected_2?:ItemId
+  selected_1_date?: ItemId
+  selected_2_date?:ItemId
   selected_1_transport?: ItemId
   selected_2_transport?:ItemId
   allPlaces: ItemId[]=[]
@@ -608,6 +614,34 @@ export class InfoPointComponent implements OnInit {
       }
     )
   }
+  updateDate(){
+    this.loaded_line=false
+    this.selected_1=undefined
+    this.selected_2=undefined
+    if(this.lineChartData.datasets.length>1){
+      this.lineChartData.datasets.pop()
+    }
+    this.lineChartData.labels=[]
+    this.lineChartData.datasets[0].data=[]
+    this.lineChartData.datasets[0].label='Total'
+    this.summaryService.getLastSummary().subscribe(
+      result => {
+        this.cutoff_date = result[0].cutoff_date
+        this.avg_tourist_visit = result[0].avg_tourist_visit!
+        this.avg_visits_days = result[0].avg_visits_days!
+        this.total_record = result[0].total_record!
+        this.country_visit = result[0].country_visit!
+        this.place_record = result[0].place_record!
+        this.lastMonth_visit = result[0].lastMonth_visit!
+        this.month_visit = result[0].month_visit!
+        this.year_visit = result[0].lastYear_visit!
+        this.reason_visit = result[0].reason_visit!
+        this.region_visit = result[0].region_visit!
+        this.transport_visit = result[0].transport_visit!
+        this.fetchLineDate()
+      }
+    )
+  }
   updateReason(){
     this.loaded_bar=false
     this.selected_1=undefined
@@ -664,6 +698,67 @@ export class InfoPointComponent implements OnInit {
       }
     )
   }
+  onDate1Changes(value:ItemId){
+    //re-set bar
+    this.lineChartData.datasets[0].backgroundColor=[RGBtoHex()]
+    this.lineChartData.datasets[0].data=[]
+    this.lineChartData.datasets[0].label=''
+    this.loaded_line=false
+    this.month_visit.forEach(month=>{
+      month.total_visits=0
+    })
+    //console.log(value)
+    this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
+      result=>{
+        result.forEach(record=>{
+          const isDateOf = (element: LastMonth_visit) => (element.month) == (record.mes_de_registro)
+          const i_reason = this.month_visit?.findIndex(isDateOf)
+          this.month_visit[i_reason].total_visits! += 1
+        })
+        this.lineChartData.datasets[0].label=value.Nombre
+        this.month_visit.forEach(month=>{
+          this.lineChartData.datasets[0].data.push(month.total_visits!)
+        })
+        this.chart?.update()
+        this.loaded_line=true
+      }
+    )
+
+
+  }
+  onDate2Changes(value:ItemId){
+    let serie2:ChartDataset<"line",number[]> = {
+      data: [],
+      label:''
+    }
+    if(this.lineChartData.datasets.length<2){
+      this.lineChartData.datasets.push(serie2)
+    }else{
+      this.lineChartData.datasets[1].data=[]
+      this.lineChartData.datasets[1].label=''
+    }
+    this.loaded_line=false
+    this.month_visit.forEach(month=>{
+      month.total_visits=0
+    })
+    //console.log(value)
+    this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
+      result=>{
+        result.forEach(record=>{
+          const isDateOf = (element: LastMonth_visit) => (element.month) == (record.mes_de_registro)
+          const i_reason = this.month_visit?.findIndex(isDateOf)
+          this.month_visit[i_reason].total_visits! += 1
+        })
+        this.lineChartData.datasets[1].label=value.Nombre
+        this.month_visit.forEach(month=>{
+          this.lineChartData.datasets[1].data.push(month.total_visits!)
+        })
+        this.chart?.update()
+        this.loaded_line=true
+      }
+    )
+
+}
   onPlace1Changes(value:ItemId){
     //re-set bar
     this.barChartData.datasets[0].backgroundColor=[RGBtoHex()]
