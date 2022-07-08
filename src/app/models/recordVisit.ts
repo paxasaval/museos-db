@@ -6,10 +6,10 @@ export interface RecordVisit {
     numberOfCompanions?: number,
     adults?: number,
     children?: number,
-    mem?: number,
+    men?: number,
     women?: number,
     transport?: string,
     reasonForVisit?: string,
     comment?: string
 }
-export interface RecordVisitId extends RecordVisit { id: string } 
+export interface RecordVisitId extends RecordVisit { id: string }

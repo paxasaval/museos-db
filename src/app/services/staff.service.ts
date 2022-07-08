@@ -40,7 +40,7 @@ export class StaffService {
   }
 
   getStaffByMuseum(museo: string){
-    return this.afs.collection<Staff>('staff', ref => ref.where('museo', '==', museo)).snapshotChanges().pipe(
+    return this.afs.collection<Staff>('staff', ref => ref.where('museum', '==', museo)).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as StaffId
         data.id = a.payload.doc.id

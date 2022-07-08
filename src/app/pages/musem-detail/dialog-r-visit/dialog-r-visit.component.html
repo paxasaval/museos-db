@@ -2,7 +2,7 @@
     <section class="header">
         <h2 class="h2">Registar Visita</h2>
     </section>
-    <form  class="form">
+    <form  [formGroup]="visitForm" (ngSubmit)="submit()"class="form">
         <div class="formInput">
             <p class="labelStyle">Nombre:</p>
             <input matInput formControlName="name" class="inputStyle" type="text">
@@ -12,9 +12,15 @@
             <input matInput formControlName="identification" class="inputStyle" type="text">
         </div>
         <div class="formInput">
+          <p class="labelStyle">Museo:</p>
+          <mat-select class="inputStyle" formControlName="museum" placeholder="" (selectionChange)="changeMuseo($event.value)">
+              <mat-option *ngFor="let museo of allMuseos" [value]="museo.id">{{museo.name}}</mat-option>
+          </mat-select>
+      </div>
+        <div class="formInput">
             <p class="labelStyle">Supervisor:</p>
             <mat-select class="inputStyle" formControlName="supervisor" placeholder="" >
-                <mat-option  ></mat-option>
+                <mat-option *ngFor="let supervisor of allSupervisor" [value]="supervisor.mail">{{supervisor.name}}</mat-option>
             </mat-select>
         </div>
         <div class="classification">
@@ -24,47 +30,47 @@
             </div>
             <div class="formInput2">
                 <p class="labelStyle2">Aultos:</p>
-                <input matInput formControlName="identification" class="inputStyle2" type="text">
+                <input matInput formControlName="adult" class="inputStyle2" type="text">
             </div>
             <div class="formInput2">
                 <p class="labelStyle2">Niños:</p>
-                <input matInput formControlName="identification" class="inputStyle2" type="text">
+                <input matInput formControlName="children" class="inputStyle2" type="text">
             </div>
         </div>
         <div class="classification">
             <div class="formInput2">
                 <p class="labelStyle2">Mujeres:</p>
-                <input matInput formControlName="identification" class="inputStyle" type="text">
+                <input matInput formControlName="woman" class="inputStyle" type="text">
             </div>
             <div class="formInput2">
                 <p class="labelStyle2">Hombres:</p>
-                <input matInput formControlName="identification" class="inputStyle" type="text">
+                <input matInput formControlName="men" class="inputStyle" type="text">
             </div>
         </div>
         <div class="formInput">
             <p class="labelStyle">Medio de transporte:</p>
-            <mat-select class="inputStyle" formControlName="supervisor" placeholder="" >
-                <mat-option  ></mat-option>
+            <mat-select class="inputStyle" formControlName="transport" placeholder="" >
+                <mat-option *ngFor="let transport of allTransport" [value]="transport.Id">{{transport.Nombre}}</mat-option>
             </mat-select>
             <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
         </div>
         <div class="formInput">
             <p class="labelStyle">Motivo de visita:</p>
-            <mat-select class="inputStyle" formControlName="supervisor" placeholder="" >
-                <mat-option  ></mat-option>
+            <mat-select class="inputStyle" formControlName="reason" placeholder="" >
+                <mat-option *ngFor="let reason of allReason" [value]="reason.Id">{{reason.Nombre}}</mat-option>
             </mat-select>
             <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
         </div>
         <div class="formInput">
             <p class="labelStyle">Comentario:</p>
-            <input matInput formControlName="name" class="inputStyle" type="text">
+            <input matInput formControlName="commit" class="inputStyle" type="text">
         </div>
         <div class="sectionButton">
-            <button type="submit" mat-raised-button class="btnSave">
-                Guardar               
+            <button type="submit" mat-raised-button class="btnSave" [disabled]="!visitForm.valid">
+                Guardar
             </button>
             <button type="button"  mat-raised-button class="btnCancel" (click)="close()">
-                Cancelar          
+                Cancelar
             </button>
         </div>
     </form>

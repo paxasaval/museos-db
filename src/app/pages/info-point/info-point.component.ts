@@ -826,19 +826,19 @@ onTransport1Changes(value:ItemId){
   this.hbarChartData.datasets[0].data=[]
   this.hbarChartData.datasets[0].label=''
   this.loaded_barh=false
-  this.reason_visit.forEach(reason=>{
-    reason.total_visits=0
+  this.transport_visit.forEach(transport=>{
+    transport.total_visits=0
   })
   this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
     result=>{
       result.forEach(record=>{
-        const isReasonOf = (element: Reason_visit) => (element.item_id) == (record.razon_item_id)
-        const i_reason = this.reason_visit?.findIndex(isReasonOf)
-        this.reason_visit[i_reason].total_visits! += 1
+        const isTransportOf = (element: Transport_visit) => (element.item_id) == (record.transporte_item_id)
+        const i_transport = this.transport_visit?.findIndex(isTransportOf)
+        this.transport_visit[i_transport].total_visits! += 1
       })
       this.hbarChartData.datasets[0].label=value.Nombre
-      this.reason_visit.forEach(reason=>{
-        this.hbarChartData.datasets[0].data.push(reason.total_visits!)
+      this.transport_visit.forEach(transport=>{
+        this.hbarChartData.datasets[0].data.push(transport.total_visits!)
       })
       this.chart?.update()
       this.loaded_barh=true
@@ -859,19 +859,19 @@ onTransport2Changes(value:ItemId){
     this.hbarChartData.datasets[1].label=''
   }
   this.loaded_barh=false
-  this.reason_visit.forEach(reason=>{
-    reason.total_visits=0
+  this.transport_visit.forEach(transport=>{
+    transport.total_visits=0
   })
   this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
     result=>{
       result.forEach(record=>{
-        const isReasonOf = (element: Reason_visit) => (element.item_id) == (record.razon_item_id)
-        const i_reason = this.reason_visit?.findIndex(isReasonOf)
-        this.reason_visit[i_reason].total_visits! += 1
+        const isTransportOf = (element: Transport_visit) => (element.item_id) == (record.transporte_item_id)
+        const i_transport = this.transport_visit?.findIndex(isTransportOf)
+        this.reason_visit[i_transport].total_visits! += 1
       })
       this.hbarChartData.datasets[1].label=value.Nombre
-      this.reason_visit.forEach(reason=>{
-        this.hbarChartData.datasets[1].data.push(reason.total_visits!)
+      this.transport_visit.forEach(transport=>{
+        this.hbarChartData.datasets[1].data.push(transport.total_visits!)
       })
       this.chart?.update()
       this.loaded_barh=true
