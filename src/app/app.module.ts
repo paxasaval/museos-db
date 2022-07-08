@@ -26,6 +26,7 @@ import { DialogMuseumComponent } from './pages/museum/dialog-museum/dialog-museu
 import { DialogStaffComponent } from './pages/personal/dialog-staff/dialog-staff.component';
 import { MuseumCardComponent } from './pages/museum/museum-card/museum-card.component';
 import { DialogRVisitComponent } from './pages/musem-detail/dialog-r-visit/dialog-r-visit.component';
+import { InfoPointCardComponent } from './pages/info-point/info-point-card/info-point-card.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DialogRVisitComponent } from './pages/musem-detail/dialog-r-visit/dialo
     DialogStaffComponent,
     MuseumCardComponent,
     DialogRVisitComponent,
+    InfoPointCardComponent,
   ],
   imports: [
     BrowserModule,

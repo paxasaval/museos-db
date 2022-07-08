@@ -1,0 +1,16 @@
+
+<section class="card">
+    <section class="img" (click)="openInfoPoint()">
+      <img [src]="card.image" alt="">
+    </section>
+    <section class="info">
+      <h3 class="title">{{card.name}}</h3>
+      <button mat-icon-button (click)="editInfoPoint()">
+        <mat-icon class="icon" svgIcon="edit"></mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteInfoPoint()">
+        <mat-icon class="icon" svgIcon="delete"></mat-icon>
+      </button>
+    </section>
+  </section>
+  

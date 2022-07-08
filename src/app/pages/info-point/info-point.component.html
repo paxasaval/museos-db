@@ -3,7 +3,7 @@
     <app-sidebar></app-sidebar>
   </div>
   <main class="main">
-    <h2 class="title">Puntos de Informacion</h2>
+    <h2 class="title">Puntos de Información</h2>
     <h3 class="subtitle">Datos Generales</h3>
     <section class="chars">
       <article class="one">
@@ -149,11 +149,15 @@
       </div>
       <ng-template #elseBlock>
         <div class="title2">
-          <h2 class="title">Museos disponibles</h2>
+          <h2 class="title">Puntos de Informacion disponibles</h2>  
         </div>
       </ng-template>
     </section>
-    <p *ngIf="rol === 'kKjkKRN2Kzz01dDxLevq'">Visualizador</p>
-    <p *ngIf="rol === 'KcyTEOBshsvabhvqmcpz'">Administrador</p>
+    <div class="grid-museos">
+      <app-info-point-card
+        *ngFor="let infoPoint of infoPoints"
+        [card]="infoPoint"
+      ></app-info-point-card>
+    </div>
   </main>
 </section>

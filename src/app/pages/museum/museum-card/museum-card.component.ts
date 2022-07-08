@@ -19,6 +19,7 @@ export class MuseumCardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log(this.card)
   }
 
   openMuseo(){
