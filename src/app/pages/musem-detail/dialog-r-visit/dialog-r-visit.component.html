@@ -1,0 +1,71 @@
+<section class="dialogRvisit">
+    <section class="header">
+        <h2 class="h2">Registar Visita</h2>
+    </section>
+    <form  class="form">
+        <div class="formInput">
+            <p class="labelStyle">Nombre:</p>
+            <input matInput formControlName="name" class="inputStyle" type="text">
+        </div>
+        <div class="formInput">
+            <p class="labelStyle">Identificacion:</p>
+            <input matInput formControlName="identification" class="inputStyle" type="text">
+        </div>
+        <div class="formInput">
+            <p class="labelStyle">Supervisor:</p>
+            <mat-select class="inputStyle" formControlName="supervisor" placeholder="" >
+                <mat-option  ></mat-option>
+            </mat-select>
+        </div>
+        <div class="classification">
+            <div class="formInput2">
+                <p class="labelStyle">Nº de acompañantes:</p>
+                <input matInput formControlName="companions" class="inputStyle2" type="text">
+            </div>
+            <div class="formInput2">
+                <p class="labelStyle2">Aultos:</p>
+                <input matInput formControlName="identification" class="inputStyle2" type="text">
+            </div>
+            <div class="formInput2">
+                <p class="labelStyle2">Niños:</p>
+                <input matInput formControlName="identification" class="inputStyle2" type="text">
+            </div>
+        </div>
+        <div class="classification">
+            <div class="formInput2">
+                <p class="labelStyle2">Mujeres:</p>
+                <input matInput formControlName="identification" class="inputStyle" type="text">
+            </div>
+            <div class="formInput2">
+                <p class="labelStyle2">Hombres:</p>
+                <input matInput formControlName="identification" class="inputStyle" type="text">
+            </div>
+        </div>
+        <div class="formInput">
+            <p class="labelStyle">Medio de transporte:</p>
+            <mat-select class="inputStyle" formControlName="supervisor" placeholder="" >
+                <mat-option  ></mat-option>
+            </mat-select>
+            <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
+        </div>
+        <div class="formInput">
+            <p class="labelStyle">Motivo de visita:</p>
+            <mat-select class="inputStyle" formControlName="supervisor" placeholder="" >
+                <mat-option  ></mat-option>
+            </mat-select>
+            <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
+        </div>
+        <div class="formInput">
+            <p class="labelStyle">Comentario:</p>
+            <input matInput formControlName="name" class="inputStyle" type="text">
+        </div>
+        <div class="sectionButton">
+            <button type="submit" mat-raised-button class="btnSave">
+                Guardar               
+            </button>
+            <button type="button"  mat-raised-button class="btnCancel" (click)="close()">
+                Cancelar          
+            </button>
+        </div>
+    </form>
+</section>

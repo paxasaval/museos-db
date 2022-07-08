@@ -18,6 +18,7 @@ export class DialogStaffComponent implements OnInit {
   title='Agregar Personal'
   cancel='Cancelar'
   saveChanges=true
+
   roles:RolId[]=[]
   
   personalForm = new FormGroup(({

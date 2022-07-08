@@ -17,15 +17,55 @@ import { finalize, iif } from 'rxjs';
 import { SummaryService } from 'src/app/services/summary.service';
 import {default as Annotation} from 'chartjs-plugin-annotation';
 
-export function dame_color_aleatorio(){
-  var simbolos, color;
-	simbolos = "0123456789ABCDEF";
-	color = "#";
-	for(var i = 0; i < 6; i++){
-		color = color + simbolos[Math.floor(Math.random() * 16)];
-	}
-  return color
+const colors = {
+  bgColor: '',
+  txtColor: '',
+  btnColor: '',
+  btnFocus: ''
 }
+export function newColor() {
+  const hBase = Math.random();
+  const newH = Math.floor(hBase * 360);
+  const newL = Math.floor(Math.random() * 16) + 75;
+
+  colors.bgColor = `hsl(${newH}, 100%, ${newL}%)`;
+  colors.txtColor = `hsl(${newH}, 100%, 5%)`;
+  colors.btnColor = `hsl(${newH}, 100%, 98%)`;
+  colors.btnFocus = `hsl(${newH}, 100%, 95%)`;
+
+  const [ r, g, b ] = HSLtoRGB(hBase, 1, newL*.01);
+  return [r,g,b]
+}
+export function HSLtoRGB(h:number, s:number, l:number) {
+  let r, g, b;
+
+  const rd = (a:number) => {
+    return Math.floor(Math.max(Math.min(a*256, 255), 0));
+  };
+
+  const hueToRGB = (m:number, n:number, o:number) => {
+    if (o < 0) o += 1;
+    if (o > 1) o -= 1;
+    if (o < 1/6) return m + (n - m) * 6 * o;
+    if (o < 1/2) return n;
+    if (o < 2/3) return m + (n - m) * (2/3 - o) * 6;
+    return m;
+  }
+
+  const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+  const p = 2 * l - q;
+
+  r = hueToRGB(p, q, h + 1/3);
+  g = hueToRGB(p, q, h);
+  b = hueToRGB(p, q, h - 1/3);
+
+  return [rd(r), rd(g), rd(b)]
+}
+function RGBtoHex() {
+  const [r,g,b]=newColor()
+  return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
+}
+
 @Component({
   selector: 'app-museum',
   templateUrl: './museum.component.html',
@@ -354,7 +394,7 @@ export class MuseumComponent implements OnInit {
     responsive: true,
     plugins: {
       legend: {
-        display: true,
+        display: false,
         position: 'top',
       },
       datalabels: {
@@ -569,7 +609,7 @@ export class MuseumComponent implements OnInit {
       let label: string = reason.name!
       this.barChartData.labels?.push(label)
       this.barChartData.datasets[0].data.push(reason.total_visits!)
-      colors.push(dame_color_aleatorio())
+      colors.push(RGBtoHex())
     })
     this.barChartData.datasets[0].backgroundColor=colors
     this.loaded_bar=true
@@ -580,7 +620,7 @@ export class MuseumComponent implements OnInit {
       let label: string = trasnport.name!
       this.hbarChartData.labels?.push(label)
       this.hbarChartData.datasets[0].data.push(trasnport.total_visits!)
-      colors.push(dame_color_aleatorio())
+      colors.push(RGBtoHex())
     })
     this.hbarChartData.datasets[0].backgroundColor=colors
     this.loaded_barh=true

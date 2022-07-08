@@ -3,22 +3,145 @@
     <app-sidebar></app-sidebar>
   </div>
   <main class="main">
-    <h2 class="title">Puntos de Informacion</h2>
+    <h2 class="title">Puntos de Información</h2>
     <h3 class="subtitle">Datos Generales</h3>
     <section class="chars">
-      <article class="one">Procedencia de turistas</article>
-      <article class="two">Fecha de visitas</article>
-      <article class="three">Razon de visitas</article>
-      <article class="four">Medios de trasnporte</article>
+      <article class="one">
+        <div class="optionCharts">
+          <h4>Procedencia de turistas</h4>
+          <mat-icon>refresh</mat-icon>
+          <mat-icon>more_vert</mat-icon>
+        </div>
+        <div class="chart">
+          <canvas
+            baseChart
+            [data]="pieChartData"
+            [type]="pieChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+          >
+          </canvas>
+        </div>
+        <section class="sectionCInfo">
+          <div class="cardInfo">
+              <span class="label1">Nacionalidades:</span>
+              <span class="label2">442</span>
+              <span class="label3">55%</span>
+          </div>
+          <div class="cardInfo">
+              <span class="label1">Extranjeros:</span>
+              <span class="label2">442</span>
+              <span class="label3">55%</span>
+          </div>
+          <div class="cardInfo">
+              <span class="label1">Locales:</span>
+              <span class="label2">442</span>
+              <span class="label3">55%</span>
+          </div>
+        </section>
+      </article>
+      <article class="two">
+        <h4>Fecha de visitas</h4>
+        <button mat-icon-button (click)="updateDate()">
+          <mat-icon class="mat-18">refresh</mat-icon>
+        </button>
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar 1:</mat-label>
+          <mat-select placeholder="" [(ngModel)]="selected_1_date" (selectionChange)="onDate1Changes($event.value)">
+            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar 2:</mat-label>
+          <mat-select placeholder="" [(ngModel)]="selected_2_date" (selectionChange)="onDate2Changes($event.value)">
+            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <canvas
+          *ngIf="loaded_line"
+          baseChart
+          width="400"
+          height="200"
+          [data]="lineChartData"
+          [options]="lineChartOptions"
+          [type]="lineChartType"
+        ></canvas>
+      </article>
+      <article class="three">
+        <h4>Razon de visitas</h4>
+        <button mat-icon-button (click)="updateReason()">
+          <mat-icon class="mat-18">refresh</mat-icon>
+        </button>
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar 1:</mat-label>
+          <mat-select placeholder="" [(ngModel)]="selected_1" (selectionChange)="onPlace1Changes($event.value)">
+            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar 2:</mat-label>
+          <mat-select placeholder="" [(ngModel)]="selected_2" (selectionChange)="onPlace2Changes($event.value)">
+            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <canvas
+          *ngIf="loaded_bar"
+          baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [type]="barChartType"
+        >
+        </canvas>
+      </article>
+      <article class="four">
+        <h4>Medios de trasnporte</h4>
+        <button mat-icon-button (click)="updateTransport()">
+          <mat-icon class="mat-18">refresh</mat-icon>
+        </button>
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar 1:</mat-label>
+          <mat-select placeholder="" [(ngModel)]="selected_1_transport" (selectionChange)="onTransport1Changes($event.value)">
+            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Lugar 2:</mat-label>
+          <mat-select placeholder="" [(ngModel)]="selected_2_transport" (selectionChange)="onTransport2Changes($event.value)">
+            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <canvas
+          *ngIf="loaded_barh"
+          baseChart
+          [data]="hbarChartData"
+          [options]="hbarChartOptions"
+          [plugins]="hbarChartPlugins"
+          [type]="hbarChartType"
+        >
+        </canvas>
+      </article>
     </section>
     <section class="search">
-      <div *ngIf="rol==='kKjkKRN2Kzz01dDxLevq'; else elseBlock" class="search-title">
+      <div
+        *ngIf="rol === 'kKjkKRN2Kzz01dDxLevq'; else elseBlock"
+        class="search-title"
+      >
         <h2 class="title">Puntos de informacion</h2>
         <div class="search-bar">
           <form class="search-form">
             <mat-form-field class="search-input" appearance="outline">
               <mat-label>Buscar</mat-label>
-              <input matInput type="text" placeholder="Museo puerta de la ciudad" #input>
+              <input
+                matInput
+                type="text"
+                placeholder="Museo puerta de la ciudad"
+                #input
+              />
               <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
           </form>
@@ -26,13 +149,15 @@
       </div>
       <ng-template #elseBlock>
         <div class="title2">
-          <h2 class="title">Museos disponibles</h2>
+          <h2 class="title">Puntos de Informacion disponibles</h2>  
         </div>
-
       </ng-template>
-
     </section>
-    <p *ngIf="rol==='kKjkKRN2Kzz01dDxLevq'">Visualizador</p>
-    <p *ngIf="rol==='KcyTEOBshsvabhvqmcpz'">Administrador</p>
+    <div class="grid-museos">
+      <app-info-point-card
+        *ngFor="let infoPoint of infoPoints"
+        [card]="infoPoint"
+      ></app-info-point-card>
+    </div>
   </main>
 </section>

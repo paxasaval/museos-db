@@ -77,4 +77,13 @@ export class GeneralRecordService {
       }))
     )
   }
+  getGeneralRecordsByPlace(place: string) {
+    return this.afs.collection<GeneralRecord>('registro_general', ref => ref.where('lugar_de_registro_item_id', '==', place)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as GeneralRecordId
+        data.id = a.payload.doc.id
+        return data
+      }))
+    )
+  }
 }
