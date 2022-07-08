@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Timestamp } from 'firebase/firestore';
 import { map, Observable } from 'rxjs';
 import { RecordVisit, RecordVisitId } from '../models/recordVisit';
 
@@ -47,6 +48,16 @@ export class RecordVisitService {
     )
   }
 
+  getVisitByDate(date: Timestamp) {
+    return this.afs.collection<RecordVisit>('visits', ref => ref.where('date', '==', date)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as RecordVisitId
+        data.id = a.payload.doc.id
+        return data
+      }))
+    )
+  }
+  
   getVisitsByName(name: string) {
     return this.afs.collection<RecordVisit>('visits', ref => ref.where('name', "==", name)).snapshotChanges().pipe(
       map(actions => actions.map(a => {

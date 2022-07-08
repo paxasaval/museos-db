@@ -1,5 +1,8 @@
+import { Timestamp } from "firebase/firestore"
+
 export interface RecordVisit {
     museum?: string,
+    date?: Timestamp,
     name?: string,
     identification?: string,
     country?: string,
