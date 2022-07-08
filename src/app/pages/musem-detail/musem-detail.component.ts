@@ -41,13 +41,13 @@ export class MusemDetailComponent implements OnInit {
     )
   }
   fetchTotals(){
-    this.recorVisitService.getAllVisits().subscribe(
+    this.recorVisitService.getVisitsByMuseum(this.id).subscribe(
       result=>{
         this.total_visit=0
         result.forEach(record=>{
           this.total_tourist+=record.numberOfCompanions!
           this.total_visit+=1
-          this.average_visit=this.total_tourist/this.total_visit
+          this.average_visit= Math.round(this.total_tourist/this.total_visit)
           if(this.max_currency<record.numberOfCompanions!){
             this.max_currency=record.numberOfCompanions!
           }
