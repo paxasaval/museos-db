@@ -21,9 +21,12 @@ export class UserService {
    }
 
    getUserById(id: string){
+    console.log(id)
     return this.afs.doc<User>(`users/${id}`).snapshotChanges().pipe(
       map(a=>{
+        console.log(a.payload.data())
         const data = a.payload.data() as UserId
+        console.log(data)
         data.id = a.payload.id
         return data
       })
