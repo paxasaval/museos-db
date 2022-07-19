@@ -89,22 +89,30 @@
       </article>
       <article class="three">
         <h4>Razon de visitas</h4>
-        <button mat-icon-button (click)="updateReason()">
-          <mat-icon class="mat-18">refresh</mat-icon>
-        </button>
-        <mat-form-field appearance="outline">
-          <mat-label>Lugar 1:</mat-label>
-          <mat-select placeholder="" [(ngModel)]="selected_1" (selectionChange)="onPlace1Changes($event.value)">
-            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Lugar 2:</mat-label>
-          <mat-select placeholder="" [(ngModel)]="selected_2" (selectionChange)="onPlace2Changes($event.value)">
-            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        
+        <section class="filter">
+          <section class="filter1">
+            <mat-form-field appearance="outline">
+              <mat-label>Lugar 1:</mat-label>
+              <mat-select placeholder="" [(ngModel)]="selected_1" (selectionChange)="onPlace1Changes($event.value)">
+                <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+    
+          </section>
+          <section class="filter2">
+            <mat-form-field appearance="outline">
+              <mat-label>Lugar 2:</mat-label>
+              <mat-select placeholder="" [(ngModel)]="selected_2" (selectionChange)="onPlace2Changes($event.value)">
+                <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+          <button mat-icon-button (click)="updateReason()">
+            <mat-icon class="mat-18">refresh</mat-icon>
+          </button>
+        </section>
+   
         <canvas
           *ngIf="loaded_bar"
           baseChart
@@ -116,23 +124,28 @@
         </canvas>
       </article>
       <article class="four">
-        <h4>Medios de trasnporte</h4>
-        <button mat-icon-button (click)="updateTransport()">
-          <mat-icon class="mat-18">refresh</mat-icon>
-        </button>
-        <mat-form-field appearance="outline">
-          <mat-label>Lugar 1:</mat-label>
-          <mat-select placeholder="" [(ngModel)]="selected_1_transport" (selectionChange)="onTransport1Changes($event.value)">
-            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Lugar 2:</mat-label>
-          <mat-select placeholder="" [(ngModel)]="selected_2_transport" (selectionChange)="onTransport2Changes($event.value)">
-            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+        <h4>Medios de trasnporte</h4>      
+        <section class="filter">
+          <section class="filter1">
+            <mat-form-field appearance="outline">
+              <mat-label>Lugar 1:</mat-label>
+              <mat-select placeholder="" [(ngModel)]="selected_1_transport" (selectionChange)="onTransport1Changes($event.value)">
+                <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+          <section class="filter2">
+            <mat-form-field appearance="outline">
+              <mat-label>Lugar 2:</mat-label>
+              <mat-select placeholder="" [(ngModel)]="selected_2_transport" (selectionChange)="onTransport2Changes($event.value)">
+                <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+          <button mat-icon-button (click)="updateTransport()">
+            <mat-icon class="mat-18">refresh</mat-icon>
+          </button>
+        </section>
         <canvas
           *ngIf="loaded_barh"
           baseChart
