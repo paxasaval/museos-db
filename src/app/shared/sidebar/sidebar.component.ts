@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SidebarComponent implements OnInit {
 
   user_id!:string
-  name:string = 't'
+  name!:string
   rol!:string
   seePersonal=false
   seePoint=false
@@ -57,7 +57,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.user_id=localStorage.getItem('user')!
     this.fetchUserInfo()
-    console.log(this.name)
+    console.log(this.user_id)
   }
 
 }

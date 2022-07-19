@@ -19,7 +19,6 @@
     text-align: start;
     color: #f1f1f1;
 }
-//estilo del formulario
 .form{
     display: flex;
     flex-direction: column;
@@ -45,8 +44,10 @@
     border: 2px solid #cacaca;
     border-radius: 5px;
     padding-left: 0.5em;
-}
+}   
 
+
+//
 .classification{
     display: flex;
     width: 100%;
@@ -74,14 +75,7 @@
     font-size: 1.2em;
     font-weight: 500;
 
-}
-.text-large{
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  font-size: 1em;
-  margin: 0;
-  width: 100%;
-}
+}   
 .sectionButton{
     display: flex;
     align-items: flex-end;

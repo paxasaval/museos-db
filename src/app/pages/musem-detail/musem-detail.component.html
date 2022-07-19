@@ -4,7 +4,7 @@
     </div>
     <main class="mainContainer">
         <div class="imgStyle">
-            <img src="../../../assets/museo3.jpg" alt="">
+            <img [src]="image" alt="">
         </div>
         <section class="headerMain">
             <section class="header1">
@@ -14,9 +14,9 @@
                     </button>
                 </div>
                 <div class="infoStyle">
-                    <h2 class="title">Museo de la ciudad de Loja</h2>
-                    <span class="direccion">direccion</span>
-                    <span class="descripcion">descripcion</span>
+                    <h2 class="title">{{title}}</h2>
+                    <span class="direccion">{{addres}}</span>
+                    <span class="descripcion">{{description}}</span>
                 </div>
             </section>
             <section class="header2">
@@ -39,11 +39,11 @@
                 <p class="titleCon1">Filtrar fechas</p>
                 <div class="formInput">
                     <p class="labelStyle">Fecha de Inicio:</p>
-                    <input matInput formControlName="name" class="inputStyle" type="text">
+                    <input matInput class="inputStyle" type="text">
                 </div>
                 <div class="formInput">
                     <p class="labelStyle">Fecha de Fin:</p>
-                    <input matInput formControlName="name" class="inputStyle" type="text">
+                    <input matInput class="inputStyle" type="text">
                 </div>
                 <section>
                     <div>
@@ -69,9 +69,15 @@
             </section>
         </section>
         <section class="chars">
-            <article class="one">Total turistas</article>
-            <article class="two">Promedio de turistas por día</article>
-            <article class="three">Maxima afluencia</article>
+            <article class="one">Total turistas
+              <p>{{total_tourist}}</p>
+            </article>
+            <article class="two">Promedio de turistas por visita
+              <p>{{average_visit}}</p>
+            </article>
+            <article class="three">Maxima afluencia
+              <p>{{max_currency}}</p>
+            </article>
             <article class="four">
                 <section class="sectionChart">
                     <div>

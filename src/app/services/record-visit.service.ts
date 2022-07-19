@@ -39,12 +39,12 @@ export class RecordVisitService {
   }
 
   getVisitsByMuseum(museum: string) {
-    return this.afs.doc<RecordVisit>(`visits/${museum}`).snapshotChanges().pipe(
-      map(a => {
-        const data = a.payload.data() as RecordVisitId
-        data.id = a.payload.id
+    return this.afs.collection<RecordVisit>('visits', ref => ref.where('museum', "==", museum)).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as RecordVisitId
+        data.id = a.payload.doc.id
         return data
-      })
+      }))
     )
   }
 

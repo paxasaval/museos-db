@@ -5,6 +5,17 @@
   <main class="main">
     <h2 class="title">Puntos de Información</h2>
     <h3 class="subtitle">Datos Generales</h3>
+    <section class="chars1">
+      <article class="one1">Total turistas
+        <p>{{avg_tourist_visit | number : '1.0-0'}}</p>
+      </article>
+      <article class="two1">Promedio de turistas por visita
+        <p>{{avg_visits_days | number : '1.0-0'}}</p>
+      </article>
+      <article class="three1">Maxima afluencia
+        <p>{{total_record | number : '1.0-0'}}</p>
+      </article>
+    </section>
     <section class="chars">
       <article class="one">
         <div class="optionCharts">
@@ -42,23 +53,30 @@
       </article>
       <article class="two">
         <h4>Fecha de visitas</h4>
-        <button mat-icon-button (click)="updateDate()">
-          <mat-icon class="mat-18">refresh</mat-icon>
-        </button>
-        <mat-form-field appearance="outline">
-          <mat-label>Lugar 1:</mat-label>
-          <mat-select placeholder="" [(ngModel)]="selected_1_date" (selectionChange)="onDate1Changes($event.value)">
-            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Lugar 2:</mat-label>
-          <mat-select placeholder="" [(ngModel)]="selected_2_date" (selectionChange)="onDate2Changes($event.value)">
-            <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-
+        
+        <section class="filter">
+          <div class="filter1">
+            <mat-form-field appearance="outline">
+              <mat-label>Lugar 1:</mat-label>
+              <mat-select placeholder="" [(ngModel)]="selected_1_date" (selectionChange)="onDate1Changes($event.value)">
+                <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="filter2">
+            <mat-form-field appearance="outline">
+              <mat-label>Lugar 2:</mat-label>
+              <mat-select placeholder="" [(ngModel)]="selected_2_date" (selectionChange)="onDate2Changes($event.value)" class="select2">
+                <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <button mat-icon-button (click)="updateDate()">
+            <mat-icon class="mat-18">refresh</mat-icon>
+          </button>
+  
+        </section>
         <canvas
           *ngIf="loaded_line"
           baseChart
