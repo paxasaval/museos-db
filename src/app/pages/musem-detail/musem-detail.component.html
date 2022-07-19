@@ -35,24 +35,24 @@
             </section>
         </section>
         <section class="Container">
-            <section class="Container1">
+            <form [formGroup]="filterGroup" (ngSubmit)="filterByDate()" class="Container1">
                 <p class="titleCon1">Filtrar fechas</p>
                 <div class="formInput">
                     <p class="labelStyle">Fecha de Inicio:</p>
-                    <input matInput class="inputStyle" type="date">
+                    <input formControlName="start" matInput class="inputStyle" type="date">
                 </div>
                 <div class="formInput">
                     <p class="labelStyle">Fecha de Fin:</p>
-                    <input matInput class="inputStyle" type="date">
+                    <input formControlName="end" matInput class="inputStyle" type="date">
                 </div>
                 <section>
                     <div>
-                        <button class="btnFiltar" mat-raised-button>
+                        <button type="submit" class="btnFiltar" mat-raised-button [disabled]="!filterGroup.valid">
                             Filtrar
                         </button>
                     </div>
                 </section>
-            </section>
+              </form>
             <section class="Container2">
                 <div>
                     <button class="btnReport" mat-raised-button>
@@ -80,7 +80,7 @@
             </article>
             <article class="four">
                 <p class="titleCard">Procedencia de turistas</p>
-                <section class="sectionChart">
+                <section *ngIf="loaded_pie" class="sectionChart">
                   <div class="chart">
                     <canvas *ngIf="loaded_pie"
                     baseChart
@@ -103,7 +103,7 @@
             </article>
             <article class="five">
               <p class="titleCard">Tipo de turistas</p>
-              <section class="sectionChart">
+              <section *ngIf="loaded_pie2"class="sectionChart">
                 <div class="chart">
                   <canvas *ngIf="loaded_pie2"
                   baseChart
@@ -127,7 +127,7 @@
             </article>
             <article class="six">
               <p class="titleCard">Género de turistas</p>
-              <section class="sectionChart">
+              <section *ngIf="loaded_pie3" class="sectionChart">
                 <div class="chart">
                   <canvas *ngIf="loaded_pie3"
                   baseChart

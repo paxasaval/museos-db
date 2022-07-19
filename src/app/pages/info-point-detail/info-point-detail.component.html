@@ -14,19 +14,20 @@
           </button>
         </div>
         <div class="infoStyle">
-          <h2 class="title">Vilcabamba</h2>
-          <span class="direccion">direccion</span>
-          <span class="descripcion">descripcion</span>
+          <h2 class="title">{{name}}</h2>
+          <span class="direccion">{{address}}</span>
+          <span class="descripcion">{{descrption}}</span>
         </div>
       </section>
     </section>
     <section class="Container">
-      <section class="Container1">
+      <form [formGroup]="filterGroup" (ngSubmit)="filterByDate()" class="Container1">
         <p class="titleCon1">Filtrar fechas</p>
         <div class="formInput">
           <p class="labelStyle">Fecha de Inicio:</p>
           <input
             matInput
+            formControlName="start"
             class="inputStyle"
             type="date"
           />
@@ -35,16 +36,17 @@
           <p class="labelStyle">Fecha de Fin:</p>
           <input
             matInput
+            formControlName="end"
             class="inputStyle"
             type="date"
           />
         </div>
         <section>
           <div>
-            <button class="btnFiltar" mat-raised-button>Filtrar</button>
+            <button type="submit" class="btnFiltar" mat-raised-button [disabled]="!filterGroup.valid" >Filtrar</button>
           </div>
         </section>
-      </section>
+      </form>
       <section class="Container2">
         <div>
           <button class="btnReport" mat-raised-button>
