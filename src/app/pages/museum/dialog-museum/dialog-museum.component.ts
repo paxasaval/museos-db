@@ -77,24 +77,29 @@ export class DialogMuseumComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchUserGestor()
+    
     if(this.data['edit']){
       this.museumForm.get('image')?.setValidators(null)
       this.title='Editar Museo'
       this.museosService.getMuseoById(this.data['museo_id']).subscribe(
         result=>{
           this.id=result.id
+          this.supervisors=[]
+          result.supervisor?.forEach(s=>{
+            this.supervisors.push(s)
+          })
           this.museumForm.setValue({
             name:result.name,
             address:result.address,
             description:result.description,
             schedule:result.schedule,
-            supervisor:result.supervisor,
+            supervisor:this.supervisors,
             image: null
           })
         }
       )
     }
+    this.fetchUserGestor()
   }
 
   get name() {
@@ -127,7 +132,11 @@ export class DialogMuseumComponent implements OnInit {
       newMuseum.address = address
       newMuseum.description = description
       newMuseum.schedule = schedule
-      newMuseum.supervisor = supervisor
+      newMuseum.supervisor=[]
+      this.supervisors.forEach(s=>{
+        newMuseum.supervisor?.push(s)
+      })
+
       this.museosService.onUploadImage(this.img!).then(
         img => {
           img.ref.getDownloadURL().then(
