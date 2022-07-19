@@ -80,36 +80,82 @@
             </article>
             <article class="four">
                 <section class="sectionChart">
-                    <div>
-                        <span>
-
-                        </span>
-                    </div>
-                    <div class="circulo"></div>
+                  <div class="chart">
+                    <canvas *ngIf="loaded_pie"
+                    baseChart
+                    [data]="pieChartData"
+                    [type]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                  >
+                  </canvas>
+                  </div>
                 </section>
-                <section class="sectionCInfo">
-
-                    <div class="cardInfo">
-                        <span class="label1">Nacionalidades:</span>
-                        <span>442</span>
-                        <span>55%</span>
-                    </div>
-                    <div class="cardInfo">
-                        <span class="label1">Extranjeros:</span>
-                        <span >442</span>
-                        <span>45%</span>
-                    </div>
-                    <div class="cardInfo">
-                        <span class="label1">Locales:</span>
-                        <span>442</span>
-                        <span>10%</span>
-                    </div>
-
+                <section *ngIf="loaded_pie" class="sectionCInfo">
+                  <div *ngFor="let percent of percents_country" class="cardInfo">
+                    <span [ngStyle]="{color: percent.color}" class="label1">{{percent.name}}</span>
+                    <span [ngStyle]="{color: percent.color}">{{percent.percent|number:'1.2-2'}}</span>
+                    <span [ngStyle]="{color: percent.color}">%</span>
+                  </div>
                 </section>
             </article>
-            <article class="five">Tipo de turistas</article>
-            <article class="six">Género de turistas</article>
-            <article class="seven">Periodos con mayor frecuencia de turistas</article>
+            <article class="five">
+              Tipo de turistas
+              <section class="sectionChart">
+                <div class="chart">
+                  <canvas *ngIf="loaded_pie2"
+                  baseChart
+                  [data]="pieChartData2"
+                  [type]="pieChartType2"
+                  [options]="pieChartOptions2"
+                  [plugins]="pieChartPlugins2"
+                >
+                </canvas>
+                </div>
+
+              </section>
+              <section *ngIf="loaded_pie2" class="sectionCInfo">
+                <div *ngFor="let percent of percents_type" class="cardInfo">
+                  <span class="label1">{{percent.name}}</span>
+                  <span>{{percent.percent|number:'1.2-2'}}</span>
+                  <span>%</span>
+                </div>
+              </section>
+            </article>
+            <article class="six">
+              Género de turistas
+              <section class="sectionChart">
+                <div class="chart">
+                  <canvas *ngIf="loaded_pie3"
+                  baseChart
+                  [data]="pieChartData3"
+                  [type]="pieChartType3"
+                  [options]="pieChartOptions3"
+                  [plugins]="pieChartPlugins3"
+                >
+                </canvas>
+                </div>
+
+              </section>
+              <section *ngIf="loaded_pie3" class="sectionCInfo">
+                <div *ngFor="let percent of percents_gener" class="cardInfo">
+                  <span class="label1">{{percent.name}}</span>
+                  <span>{{percent.percent|number:'1.2-2'}}</span>
+                  <span>%</span>
+                </div>
+              </section>
+            </article>
+            <article class="seven">
+              Periodos con mayor frecuencia de turistas
+              <section *ngIf="loaded_bar" class="sectionChart">
+                <canvas baseChart
+                [data]="barChartData"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [type]="barChartType"
+                ></canvas>
+              </section>
+            </article>
         </section>
     </main>
 </section>
