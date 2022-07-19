@@ -494,12 +494,10 @@ export class InfoPointDetailComponent implements OnInit {
 
         })
         //bestMonth
-        console.log(this.month_visit)
         this.month_visit.forEach(month=>{
           if(month.total_visits!>this.best_visit_month){
             this.best_visit_month=month.total_visits!
             this.best_month=month.name!
-            console.log(this.best_month)
           }
         })
         this.avg_month_visit=this.total_record/12
