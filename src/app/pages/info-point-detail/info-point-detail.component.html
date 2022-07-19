@@ -61,9 +61,18 @@
       </section>
     </section>
     <section class="chars">
-      <article class="one">Total turistas</article>
-      <article class="two">Promedio de turistas por día</article>
-      <article class="three">Maxima afluencia</article>
+      <article class="one">
+        Total Visitas
+        <p>{{total_record}}</p>
+      </article>
+      <article class="two">
+        Promedio de visitas por mes
+        <p>{{avg_month_visit|number: '1.0-0'}}</p>
+      </article>
+      <article class="three">
+        Mes con mayor afluencia
+        <p>{{best_month}}: <span>{{best_visit_month}}</span></p>
+      </article>
       <article class="four">
         <section class="sectionChart">
           <div class="chart">
@@ -79,81 +88,31 @@
 
         </section>
         <section *ngIf="loaded_pie" class="sectionCInfo">
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[0].name}}</span>
-            <span>{{percents_country[0].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[1].name}}</span>
-            <span>{{percents_country[1].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[2].name}}</span>
-            <span>{{percents_country[2].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[3].name}}</span>
-            <span>{{percents_country[3].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[4].name}}</span>
-            <span>{{percents_country[4].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[5].name}}</span>
-            <span>{{percents_country[5].percent|number:'1.2-2'}}</span>
-            <span>%</span>
+          <div *ngFor="let percent of percents_country" class="cardInfo">
+            <span [ngStyle]="{color: percent.color}" class="label1">{{percent.name}}</span>
+            <span [ngStyle]="{color: percent.color}">{{percent.percent|number:'1.2-2'}}</span>
+            <span [ngStyle]="{color: percent.color}">%</span>
           </div>
         </section>
       </article>
-      <article class="five">Tipo de turistas
+      <article class="five">Motivo de viaje
         <section class="sectionChart">
           <div class="chart">
             <canvas *ngIf="loaded_pie2"
             baseChart
-            [data]="pieChartData"
-            [type]="pieChartType"
-            [options]="pieChartOptions"
-            [plugins]="pieChartPlugins"
+            [data]="pieChartData2"
+            [type]="pieChartType2"
+            [options]="pieChartOptions2"
+            [plugins]="pieChartPlugins2"
           >
           </canvas>
           </div>
 
         </section>
         <section *ngIf="loaded_pie2" class="sectionCInfo">
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[0].name}}</span>
-            <span>{{percents_country[0].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[1].name}}</span>
-            <span>{{percents_country[1].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[2].name}}</span>
-            <span>{{percents_country[2].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[3].name}}</span>
-            <span>{{percents_country[3].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[4].name}}</span>
-            <span>{{percents_country[4].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[5].name}}</span>
-            <span>{{percents_country[5].percent|number:'1.2-2'}}</span>
+          <div *ngFor="let percent of percents_reason" class="cardInfo">
+            <span class="label1">{{percent.name}}</span>
+            <span>{{percent.percent|number:'1.2-2'}}</span>
             <span>%</span>
           </div>
         </section>
@@ -163,93 +122,35 @@
           <div class="chart">
             <canvas *ngIf="loaded_pie3"
             baseChart
-            [data]="pieChartData"
-            [type]="pieChartType"
-            [options]="pieChartOptions"
-            [plugins]="pieChartPlugins"
+            [data]="pieChartData3"
+            [type]="pieChartType3"
+            [options]="pieChartOptions3"
+            [plugins]="pieChartPlugins3"
           >
           </canvas>
           </div>
 
         </section>
-        <section *ngIf="loaded_pie3" class="sectionCInfo">
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[0].name}}</span>
-            <span>{{percents_country[0].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[1].name}}</span>
-            <span>{{percents_country[1].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[2].name}}</span>
-            <span>{{percents_country[2].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[3].name}}</span>
-            <span>{{percents_country[3].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[4].name}}</span>
-            <span>{{percents_country[4].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[5].name}}</span>
-            <span>{{percents_country[5].percent|number:'1.2-2'}}</span>
+       <section *ngIf="loaded_pie3" class="sectionCInfo">
+          <div *ngFor="let percent of percents_trasnport" class="cardInfo">
+            <span class="label1">{{percent.name}}</span>
+            <span>{{percent.percent|number:'1.2-2'}}</span>
             <span>%</span>
           </div>
         </section>
       </article>
       <article class="seven">Periodos con mayor frecuencia de turistas
-        <section class="sectionChart">
-          <div class="chart">
-            <canvas *ngIf="loaded_pie"
-            baseChart
-            [data]="pieChartData"
-            [type]="pieChartType"
-            [options]="pieChartOptions"
-            [plugins]="pieChartPlugins"
-          >
-          </canvas>
-          </div>
+        <section *ngIf="loaded_bar" class="sectionChart">
+          <canvas baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [type]="barChartType"
+          ></canvas>
 
         </section>
-        <section *ngIf="loaded_pie" class="sectionCInfo">
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[0].name}}</span>
-            <span>{{percents_country[0].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[1].name}}</span>
-            <span>{{percents_country[1].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[2].name}}</span>
-            <span>{{percents_country[2].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[3].name}}</span>
-            <span>{{percents_country[3].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[4].name}}</span>
-            <span>{{percents_country[4].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
-          <div class="cardInfo">
-            <span class="label1">{{percents_country[5].name}}</span>
-            <span>{{percents_country[5].percent|number:'1.2-2'}}</span>
-            <span>%</span>
-          </div>
+        <section  class="sectionCInfo">
+
         </section>
       </article>
     </section>
