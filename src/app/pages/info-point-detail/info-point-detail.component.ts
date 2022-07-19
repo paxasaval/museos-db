@@ -1,3 +1,5 @@
+import { MatDialog } from '@angular/material/dialog';
+import { DialogRVisitInfoPComponent } from './dialog-r-visit-info-p/dialog-r-visit-info-p.component';
 import { CountriesService } from './../../services/countries.service';
 import { RecordVisitId } from './../../models/recordVisit';
 import { ItemsService } from 'src/app/services/items.service';
@@ -327,11 +329,11 @@ export class InfoPointDetailComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private dialog: MatDialog,
     private generalRecordService: GeneralRecordService,
     private route: ActivatedRoute,
     private itemService: ItemsService,
     private countriesService: CountriesService
-
   ) { }
   //pie
   public pieChartOptions: ChartConfiguration['options'] = {
@@ -425,6 +427,15 @@ export class InfoPointDetailComponent implements OnInit {
 
   goBack() {
     this.router.navigate(['/puntos-de-informacion']);
+  }
+  openDialogRVisit():void{
+    const dialogRef = this.dialog.open(DialogRVisitInfoPComponent, {
+      panelClass: 'app-full-bleed-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
