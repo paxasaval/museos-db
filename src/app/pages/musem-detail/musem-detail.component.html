@@ -39,11 +39,11 @@
                 <p class="titleCon1">Filtrar fechas</p>
                 <div class="formInput">
                     <p class="labelStyle">Fecha de Inicio:</p>
-                    <input matInput class="inputStyle" type="text">
+                    <input matInput class="inputStyle" type="date">
                 </div>
                 <div class="formInput">
                     <p class="labelStyle">Fecha de Fin:</p>
-                    <input matInput class="inputStyle" type="text">
+                    <input matInput class="inputStyle" type="date">
                 </div>
                 <section>
                     <div>
@@ -79,6 +79,7 @@
               <p>{{max_currency}}</p>
             </article>
             <article class="four">
+                <p class="titleCard">Procedencia de turistas</p>
                 <section class="sectionChart">
                   <div class="chart">
                     <canvas *ngIf="loaded_pie"
@@ -93,14 +94,15 @@
                 </section>
                 <section *ngIf="loaded_pie" class="sectionCInfo">
                   <div *ngFor="let percent of percents_country" class="cardInfo">
-                    <span [ngStyle]="{color: percent.color}" class="label1">{{percent.name}}</span>
-                    <span [ngStyle]="{color: percent.color}">{{percent.percent|number:'1.2-2'}}</span>
-                    <span [ngStyle]="{color: percent.color}">%</span>
+                    <span  [ngStyle]="{background: percent.color}" class="point"></span>
+                    <span  class="label1">{{percent.name}}</span>
+                    <span  class="label2">{{percent.percent|number:'1.2-2'}}</span>
+                    <span >%</span>
                   </div>
                 </section>
             </article>
             <article class="five">
-              Tipo de turistas
+              <p class="titleCard">Tipo de turistas</p>
               <section class="sectionChart">
                 <div class="chart">
                   <canvas *ngIf="loaded_pie2"
@@ -116,14 +118,15 @@
               </section>
               <section *ngIf="loaded_pie2" class="sectionCInfo">
                 <div *ngFor="let percent of percents_type" class="cardInfo">
-                  <span class="label1">{{percent.name}}</span>
-                  <span>{{percent.percent|number:'1.2-2'}}</span>
+                  <span  [ngStyle]="{background: percent.color}" class="point"></span>
+                  <span class="label1">{{percent.name}}:</span>
+                  <span class="label2">{{percent.percent|number:'1.2-2'}}</span>
                   <span>%</span>
                 </div>
               </section>
             </article>
             <article class="six">
-              Género de turistas
+              <p class="titleCard">Género de turistas</p>
               <section class="sectionChart">
                 <div class="chart">
                   <canvas *ngIf="loaded_pie3"
@@ -139,16 +142,17 @@
               </section>
               <section *ngIf="loaded_pie3" class="sectionCInfo">
                 <div *ngFor="let percent of percents_gener" class="cardInfo">
-                  <span class="label1">{{percent.name}}</span>
-                  <span>{{percent.percent|number:'1.2-2'}}</span>
+                  <span  [ngStyle]="{background: percent.color}" class="point"></span>
+                  <span class="label1">{{percent.name}}:</span>
+                  <span class="label2">{{percent.percent|number:'1.2-2'}}</span>
                   <span>%</span>
                 </div>
               </section>
             </article>
             <article class="seven">
-              Periodos con mayor frecuencia de turistas
-              <section *ngIf="loaded_bar" class="sectionChart">
-                <canvas baseChart
+              <p class="titleCard">Periodos con mayor frecuencia de turistas</p>
+              <section *ngIf="loaded_bar" class="sectionChart2">
+                <canvas baseChart width="30" height="5"
                 [data]="barChartData"
                 [options]="barChartOptions"
                 [plugins]="barChartPlugins"

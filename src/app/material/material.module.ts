@@ -10,6 +10,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { NgChartsModule } from 'ng2-charts';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   declarations: [],
@@ -25,7 +26,8 @@ import { NgChartsModule } from 'ng2-charts';
     MatDialogModule,
     MatTableModule,
     MatSelectModule,
-    NgChartsModule
+    NgChartsModule,
+    MatChipsModule
   ],
   exports:[
     FormsModule,
@@ -38,7 +40,8 @@ import { NgChartsModule } from 'ng2-charts';
     MatDialogModule,
     MatTableModule,
     MatSelectModule,
-    NgChartsModule
+    NgChartsModule,
+    MatChipsModule
   ]
 })
 export class MaterialModule { }
