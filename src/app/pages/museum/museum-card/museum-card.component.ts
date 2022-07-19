@@ -19,7 +19,7 @@ export class MuseumCardComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    console.log(this.card)
+    //console.log(this.card)
   }
 
   openMuseo(){
@@ -36,7 +36,7 @@ export class MuseumCardComponent implements OnInit {
   }
   deleteMuseo(){
 
-    console.log(this.card.id)
+    //console.log(this.card.id)
 
     this.museoService.deleteMuseo(this.card)
   }
