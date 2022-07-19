@@ -8,11 +8,12 @@ import { Museo } from 'src/app/models/museo';
 import { MuseosService } from 'src/app/services/museos.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RolesService } from 'src/app/services/roles.service';
-import { Observable } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {MatChipInputEvent} from '@angular/material/chips';
 import { StaffService } from 'src/app/services/staff.service';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { start } from 'repl';
 @Component({
   selector: 'app-dialog-museum',
   templateUrl: './dialog-museum.component.html',
@@ -50,8 +51,15 @@ export class DialogMuseumComponent implements OnInit {
     private userService: UserService,
     private RolService: RolesService,
     private staffService: StaffService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+
+    
+  ) {
+    this.filterStaff = this.StaffCtrl.valueChanges.pipe(
+      startWith(null),
+      map((staff: string | null) => (staff ? this._filter(staff): this.mail.slice()))
+    ) ;
+  }
 
 
   fetchUserGestor(){
@@ -176,5 +184,10 @@ export class DialogMuseumComponent implements OnInit {
     this.supervisors.push(event.option.viewValue);
     this.userInput.nativeElement.value='';
     this.StaffCtrl.setValue(null);
+  }
+
+  private _filter(value:string):string[]{
+    const filterValue = value.toLocaleLowerCase();
+    return this.mail.filter(staff => staff.toLowerCase().includes(filterValue));
   }
 }
