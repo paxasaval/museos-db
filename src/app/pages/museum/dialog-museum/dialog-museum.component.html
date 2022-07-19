@@ -21,9 +21,25 @@
         </div>
         <div class="formInput">
             <p class="labelStyle">Supervisor:</p>
-            <mat-select class="inputStyle" formControlName="supervisor" placeholder="" [disabled]="false">
-                <mat-option *ngFor="let user of mail" [value]="user">{{user}}</mat-option>
-            </mat-select>
+            <mat-chip-list #chipList class="inputStyle" formControlName="supervisor" placeholder="" [disabled]="false">
+                <mat-chip *ngFor="let user of mail"  (removed)="remove(user)">{{user}}
+                    <button matChipRemove><mat-icon>cancel</mat-icon></button>
+                </mat-chip>
+                <input placeholder="Nuevo supervisor"
+                    #userInput
+                    [formControl]="StaffCtrl"
+                    [matAutocomplete]="auto"
+                    [matChipInputFor]="chipList"
+                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                    (matChipInputTokenEnd)="add($event)"
+                >
+            </mat-chip-list>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let user of filterStaff | async" [value] = "user">
+                    {{user}}
+                </mat-option>
+
+            </mat-autocomplete>
             <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
         </div>
         <div class="formInput">

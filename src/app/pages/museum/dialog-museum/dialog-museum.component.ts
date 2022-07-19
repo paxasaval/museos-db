@@ -2,24 +2,33 @@ import { RolService } from './../../../services/rol.service';
 import { UserService } from './../../../services/user.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Museo } from 'src/app/models/museo';
 import { MuseosService } from 'src/app/services/museos.service';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { RolesService } from 'src/app/services/roles.service';
-
+import { Observable } from 'rxjs';
+import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
+import {MatChipInputEvent} from '@angular/material/chips';
+import { StaffService } from 'src/app/services/staff.service';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
 @Component({
   selector: 'app-dialog-museum',
   templateUrl: './dialog-museum.component.html',
   styleUrls: ['./dialog-museum.component.scss']
 })
 export class DialogMuseumComponent implements OnInit {
-
+  separatorKeysCodes: number[] = [ENTER, COMMA];
   img?: File
   title = 'Agregar Museo'
   mail:string[]=[]
   id?:string
+
+  filterStaff?: Observable<string[]>;
+  supervisors: string[] = [];
+  StaffCtrl = new FormControl('');
+
   museumForm = new FormGroup(({
     name: new FormControl('', [Validators.required]),
     address: new FormControl('', [Validators.required]),
@@ -31,6 +40,7 @@ export class DialogMuseumComponent implements OnInit {
 
   myControl = new FormControl();
 
+  @ViewChild('userInput') userInput!: ElementRef<HTMLInputElement>;
 
   constructor(
     public dialog: MatDialog,
@@ -39,6 +49,7 @@ export class DialogMuseumComponent implements OnInit {
     private dialogRef: MatDialogRef<DialogMuseumComponent>,
     private userService: UserService,
     private RolService: RolesService,
+    private staffService: StaffService,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
@@ -146,4 +157,24 @@ export class DialogMuseumComponent implements OnInit {
     this.dialogRef.close()
   }
 
+  add(event:MatChipInputEvent):void{
+    const value = (event.value || '').trim();
+    if(value){
+      this.supervisors.push(value);
+    }
+    event.chipInput!.clear();
+    this.StaffCtrl.setValue(null);
+  }
+  remove(user: string): void {
+    const index = this.supervisors.indexOf(user);
+    if(index>=0){
+      this.supervisors.splice(index,1);
+    }
+  }
+  
+  selected(event:MatAutocompleteSelectedEvent):void{
+    this.supervisors.push(event.option.viewValue);
+    this.userInput.nativeElement.value='';
+    this.StaffCtrl.setValue(null);
+  }
 }
