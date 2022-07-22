@@ -78,7 +78,7 @@
     </section>
     <section class="chars">     
       <article class="four">
-        <p class="titleCard">Procedencia de turistas</p>
+        <h4 class="titleCard">Procedencia de turistas</h4>
         <section class="sectionChart">
           <div class="chart">
             <canvas *ngIf="loaded_pie"
@@ -101,7 +101,7 @@
         </section>
       </article>
       <article class="five">
-        <p class="titleCard">Motivo de viaje</p>
+        <h4 class="titleCard">Motivo de viaje</h4>
         <section class="sectionChart">
           <div class="chart">
             <canvas *ngIf="loaded_pie2"
@@ -125,7 +125,7 @@
         </section>
       </article>
       <article class="six">
-        <p class="titleCard">Medio de transporte</p>
+        <h4 class="titleCard">Medio de transporte</h4>
         <section class="sectionChart">
           <div class="chart">
             <canvas *ngIf="loaded_pie3"
@@ -149,7 +149,7 @@
         </section>
       </article>
       <article class="seven">
-        <p class="titleCard">Periodos con mayor frecuencia de turistas</p>
+        <h4 class="titleCard">Periodos con mayor frecuencia de turistas</h4>
         <section *ngIf="loaded_bar" class="sectionChart2">
           <canvas baseChart width="15" height="4"
           [data]="barChartData"
