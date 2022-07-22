@@ -131,4 +131,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   text-align: center;
   padding: 0.5rem;
 }
-
+.c-red svg path{
+  fill: var(--accent)!important;
+}
