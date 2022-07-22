@@ -22,7 +22,7 @@
     height: 80%;
     width: 100%;
     overflow: hidden;
-  
+
   }
   .img img{
     width: 100%;
@@ -40,4 +40,11 @@
     color: var(--primary);
     margin-top: 0.25em;
     margin-bottom: 0;
+  }
+  .icon{
+    position: relative;
+    top: -0.2em;
+  }
+  .c-red svg path{
+    fill: var(--accent)!important;
   }
