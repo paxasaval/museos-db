@@ -48,53 +48,64 @@
   padding-left: 5vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   grid-gap: 5vh;
+  grid-auto-rows: minmax(15vh, auto);
   margin-bottom: 1em;
   padding-bottom: 1em;
 }
 
 .chars article {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+  color: var(--primary);
+  font-size: 0.95em;
 }
-.optionCharts{
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 1vw;
-  padding-right: 1vw;
+.chars article p{
+  font-size: 0.9em;
+  color: black;
+  padding-top: 1em;
 }
-.optionCharts h4{
-  margin-right: 2vw;
-}
+
+
 .chart{
-  margin-left: 15%;
   width: 20vh;
   height: 20vh;
 }
 
 .two,.three,.four{
-  padding: 3vh;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  padding-bottom: 1vw;
 }
 .one {
-  grid-column: 1;
-  grid-row: 1;
+  grid-area: 1 / 1 / 3 / 2;
 }
 
 .two {
-  grid-column: 2/5;
-  grid-row: 1/1;
+  grid-area: 1 / 2 / 3 / 5;
 }
 
 .three {
-  grid-column: 1/3;
-  grid-row: 2/2;
-  padding: 3.5vh;
+  grid-area: 3 / 1 / 5 / 3;
 }
 
 .four {
-  grid-column: 3/5;
-  grid-row: 2/2;
+  grid-area: 3 / 3 / 5 / 5;
+}
+
+.sectionChart{
+  display: flex;
+  flex-direction: column;
+  height: 25vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .search {
@@ -132,16 +143,31 @@
   flex-wrap: wrap;
 }
 .sectionCInfo{
-  height: 15vh;
-  margin-top: 5vh;
+  height: 20vh;
+  overflow-y: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: var(--primary) #e0e0e0;
+}
+.sectionCInfo::-webkit-scrollbar-thumb{
+  background-color: var(--primary);
+  border-radius: 10px;
+  border: 0.5px solid #ffffff;
+}
+
+.sectionCInfo::-webkit-scrollbar {
+  width: 16px;
+}
+.sectionCInfo::-webkit-scrollbar-track {
+  background: #e0e0e0;
 }
 
 .cardInfo{
   display: flex;
+  text-align: start;
   width: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   height: 5vh;
-  padding-top: 3vh;
+  padding-top: 2vh;
 }
 
 .label1{
@@ -158,23 +184,29 @@
 .filter{
   display: flex;
   width: 100%;
-  justify-content: center;
+}
+.filters{
+  display: flex;
+  flex-direction: column;
 }
 .filter1{
   display: flex;
-  width: 35%;
-  justify-content: center;
-  margin-left: 1vw;
-}
-.filter2{
-  display: flex;
-  width: 35%;
-  justify-content: center;
-  margin-left: 1vw;
-  margin-right: 1vw;
+  width: 100%;
 }
 
 mat-form-field{
-  width: 15vw;
+  width: 20vw;
   margin-left: 1vw;
+}
+.titleCard{
+  text-align: start;
+  margin-left: 1vw;
+  font-size: 1.25em;
+  margin-top: 2vh;
+  color: var(--primary);
+}
+.Style-long{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
