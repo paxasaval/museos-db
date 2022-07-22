@@ -11,6 +11,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatSelectModule} from '@angular/material/select';
 import { NgChartsModule } from 'ng2-charts';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -27,7 +28,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTableModule,
     MatSelectModule,
     NgChartsModule,
-    MatChipsModule
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   exports:[
     FormsModule,
@@ -41,7 +43,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatTableModule,
     MatSelectModule,
     NgChartsModule,
-    MatChipsModule
+    MatChipsModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule { }

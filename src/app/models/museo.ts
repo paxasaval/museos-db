@@ -3,7 +3,7 @@ export interface Museo {
     address?: string,
     description?: string,
     schedule?: string,
-    supervisor?: string,
+    supervisor?: string[],
     image?: string
 }
 export interface MuseoId extends Museo{ id: string }

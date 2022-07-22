@@ -170,7 +170,35 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
     color: var(--primary);
+    font-size: 0.95em;
+}
+.chars1{
+    width: 86%;
+    margin-top: 6vh;
+    padding-left: 5vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5vh;
+    grid-auto-rows: minmax(15vh, auto);
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+
+.chars1 article{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 1em;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    color: var(--primary);
     font-size: 1.5em;
+}
+.chars1 article p{
+    font-size: 0.9em;
+    color: rgb(68, 67, 67);
+    padding-top: 1em;
 }
 
 .chars article p{
@@ -284,7 +312,6 @@ width: 20%;
 }
 
 .chart{
-  margin-left: 15%;
   width: 20vh;
   height: 20vh;
 }
@@ -292,6 +319,7 @@ width: 20%;
 .titleCard{
     text-align: start;
     margin-left: 1vw;
+    font-size: 1em;
 }
 
 .point{
