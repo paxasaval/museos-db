@@ -82,15 +82,17 @@
     padding-left: 5vw;
 }
 .Container1{
-    width: 63%;
+    width: 50%;
 }
 
 
 .Container2{
     display: flex;
-    width: 25%;
+    width: 50%;
     text-align: end;
     align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 6.5vw;
 }
 
 .formInput{
@@ -106,14 +108,14 @@
     color: var(--primary);
 }
 .formInput{
-    width: 90%;
+    width: 100%;
     display: flex;
     margin-bottom: 1.5em;
 }
 
 .labelStyle{
     display: flex;
-    width: 20%;
+    width: 30%;
     height: 1.80vh;
     font-size: 1.2em;
     font-weight: 500;
@@ -156,6 +158,7 @@
     padding-left: 5vw;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-gap: 5vh;
     grid-auto-rows: minmax(15vh, auto);
     margin-bottom: 1em;
@@ -221,24 +224,18 @@
     grid-row: 1;
 }
 .four {
-    display: grid;
-    grid-column: 1;
-    grid-row: 2;
+    grid-area: 1 / 1 / 2 / 2;
 }
 .five {
-    grid-column: 2;
-    grid-row: 2;
+    grid-area: 1 / 2 / 2 / 3
 }
 .six {
-    grid-column: 3;
-    grid-row: 2;
+    grid-area: 1 / 3 / 2 / 4;
 }
 .seven {
-    display: grid;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-auto-rows: 50vh;
+    grid-area: 2 / 1 / 3 / 4;
 }
+
 
 .sectionChart{
     display: flex;
@@ -319,7 +316,9 @@ width: 20%;
 .titleCard{
     text-align: start;
     margin-left: 1vw;
-    font-size: 1em;
+    font-size: 1.25em;
+    margin-top: 2vh;
+    color: var(--primary);
 }
 
 .point{

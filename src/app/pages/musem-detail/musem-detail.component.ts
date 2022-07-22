@@ -11,6 +11,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MuseosService } from 'src/app/services/museos.service';
 import { RecordVisitService } from 'src/app/services/record-visit.service';
 import { CountriesService } from 'src/app/services/countries.service';
+import { DialogMuseumComponent } from '../museum/dialog-museum/dialog-museum.component';
 
 const colors = {
   bgColor: '',
@@ -107,6 +108,7 @@ export interface Period {
 export class MusemDetailComponent implements OnInit {
   @ViewChildren(BaseChartDirective) charts!: QueryList<BaseChartDirective>;
 
+  
   //form
   filterGroup = new FormGroup({
     start: new FormControl('', [Validators.required]),
@@ -707,6 +709,17 @@ export class MusemDetailComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  editMuseo(){
+    const dialogRef = this.dialog.open(DialogMuseumComponent,{
+      panelClass: 'app-full-bleed-dialog',
+      data: {
+        'edit': true,
+        'museo_id': this.id
+      }
+    })
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = params['id']
