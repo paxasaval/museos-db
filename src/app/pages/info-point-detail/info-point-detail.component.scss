@@ -158,6 +158,7 @@
     padding-left: 5vw;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-gap: 5vh;
     grid-auto-rows: minmax(15vh, auto);
     margin-bottom: 1em;
@@ -223,24 +224,18 @@
     grid-row: 1;
 }
 .four {
-    display: grid;
-    grid-column: 1;
-    grid-row: 2;
+    grid-area: 1 / 1 / 2 / 2;
 }
 .five {
-    grid-column: 2;
-    grid-row: 2;
+    grid-area: 1 / 2 / 2 / 3
 }
 .six {
-    grid-column: 3;
-    grid-row: 2;
+    grid-area: 1 / 3 / 2 / 4;
 }
 .seven {
-    display: grid;
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-auto-rows: 50vh;
+    grid-area: 2 / 1 / 3 / 4;
 }
+
 
 .sectionChart{
     display: flex;
