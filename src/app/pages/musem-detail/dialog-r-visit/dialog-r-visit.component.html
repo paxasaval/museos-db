@@ -24,28 +24,30 @@
             </mat-select>
         </div>
         <div class="classification">
-            <div class="formInput2">
+            <div class="formInput-dad">
                 <p class="labelStyle text-large">Nº de acompañantes:</p>
-                <input matInput formControlName="companions" class="inputStyle2" type="text">
             </div>
-            <div class="formInput2">
-                <p class="labelStyle2">Aultos:</p>
-                <input matInput formControlName="adult" class="inputStyle2" type="text">
-            </div>
-            <div class="formInput2">
-                <p class="labelStyle2">Niños:</p>
-                <input matInput formControlName="children" class="inputStyle2" type="text">
+            <div class="formInput-child">
+              <input matInput formControlName="companions" class="inputStyle3" type="number" min="0" step="1" value="0" placeholder="0">
+                <p class="labelStyle3">Aultos:</p>
+                <input matInput formControlName="adult" class="inputStyle3" type="number" min="0" step="1" value="0" placeholder="0">
+                  <p class="labelStyle3">Niños:</p>
+                <input matInput formControlName="children" class="inputStyle3" type="number" min="0" step="1" value="0" placeholder="0">
             </div>
         </div>
         <div class="classification">
-            <div class="formInput2">
-                <p class="labelStyle2">Mujeres:</p>
-                <input matInput formControlName="woman" class="inputStyle" type="text">
-            </div>
-            <div class="formInput2">
-                <p class="labelStyle2">Hombres:</p>
-                <input matInput formControlName="men" class="inputStyle" type="text">
-            </div>
+          <div class="formInput-dad dad-2">
+            <p class="labelStyle text-large">Sexo:</p>
+          </div>
+          <div class="formInput-child child-2">
+            <p class="labelStyle2 label4">Mujeres:</p>
+            <input matInput formControlName="woman" class="inputStyle input4" type="number" min="0" step="1" value="0" placeholder="0">
+
+            <p class="labelStyle2 label4">Hombres:</p>
+            <input matInput formControlName="men" class="inputStyle input4" type="number" min="0" step="1" value="0" placeholder="0">
+          </div>
+
+
         </div>
         <div class="formInput">
             <p class="labelStyle">Medio de transporte:</p>
