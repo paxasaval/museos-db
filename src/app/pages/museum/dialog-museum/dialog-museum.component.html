@@ -17,31 +17,36 @@
         </div>
         <div class="formInput">
             <p class="labelStyle">Horarios de atención:</p>
-            <input matInput formControlName="schedule" class="inputStyle" type="time">
-            <input matInput formControlName="schedule" class="inputStyle" type="time">
+            <div  class="formInput3">
+                <input matInput formControlName="schedule" class="inputStyle2" type="time">
+                <input matInput formControlName="schedule" class="inputStyle2" type="time">
+            </div>      
         </div>
         <div class="formInput">
             <p class="labelStyle">Supervisor:</p>
-            <mat-chip-list #chipList class="inputStyle" formControlName="supervisor" placeholder="" [disabled]="false">
-                <mat-chip *ngFor="let user of supervisors"  (removed)="remove(user)">{{user}}
-                    <button matChipRemove><mat-icon>cancel</mat-icon></button>
-                </mat-chip>    
-            </mat-chip-list>
-            <input placeholder="Nuevo supervisor"
-                    #userInput
-                    [formControl]="StaffCtrl"
-                    [matAutocomplete]="auto"
-                    [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    (matChipInputTokenEnd)="add($event)"
-                    class="inputStyle"
-                >
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
-                <mat-option *ngFor="let user of filterStaff | async" [value] = "user">
-                    {{user}}
-                </mat-option>
-            </mat-autocomplete>
-            <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
+            <div class="formInput2">
+                <mat-chip-list #chipList class="inputStyle4" formControlName="supervisor" placeholder="" [disabled]="false">
+                    <mat-chip *ngFor="let user of supervisors"  (removed)="remove(user)">{{user}}
+                        <button matChipRemove><mat-icon>cancel</mat-icon></button>
+                    </mat-chip>    
+                </mat-chip-list>
+                <input placeholder="Nuevo supervisor"
+                        #userInput
+                        [formControl]="StaffCtrl"
+                        [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        (matChipInputTokenEnd)="add($event)"
+                        class="inputStyle3"
+                    >
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)" >
+                    <mat-option *ngFor="let user of filterStaff | async" [value] = "user">
+                        {{user}}
+                    </mat-option>
+                </mat-autocomplete>
+                <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
+            </div>
+            
         </div>
         <div class="formInput">
             <p class="labelStyle">Imagen de museo:</p>

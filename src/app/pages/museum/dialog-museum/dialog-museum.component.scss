@@ -5,7 +5,7 @@
 
 .dialogMuseum{
     height: 65vh;
-    width: 30vw;
+    width: 40vw;
 }
 
 // estilo del encabezado
@@ -31,6 +31,22 @@
 
 .formInput{
     display: flex;
+    width: 100%;
+    margin-bottom: 1em;
+    align-items: stretch;
+}
+.formInput2{
+    display: flex;
+    width: 100%;
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    margin-bottom: 1em;
+}
+.formInput3{
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
     margin-bottom: 1em;
 }
 
@@ -40,15 +56,43 @@
     height: 1.75vh;
     font-size: 1.2em;
     font-weight: 500;
-
+    margin-right: 1vw;
 }
 
 .inputStyle{
     width: 60%;
+    height: 3.5vh;
     border: 2px solid #cacaca;
     border-radius: 5px;
     padding-left: 0.5em;
 
+}
+.inputStyle2{
+    width: 20%;   
+    height: 3.5vh;
+    border: 2px solid #cacaca;
+    border-radius: 5px;
+    padding-left: 0.5em;
+    margin-left: 1vw;
+}
+.inputStyle3{
+    width: 55%;
+    border: 2px solid #cacaca;
+    border-radius: 5px;
+    margin: 0;
+    padding: 0.3em;
+}
+input.mat-chip-input {
+    width: 80%;
+    flex: 0;
+}
+.inputStyle4{
+    width: 80%;
+    height: 3.5vh;
+    border: 2px solid #cacaca;
+    border-radius: 5px;
+    padding-left: 0.5em;
+    margin-top: 1vh;
 }
 
 #file{
