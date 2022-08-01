@@ -35,7 +35,8 @@ export class DialogMuseumComponent implements OnInit {
     address: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     schedule: new FormControl('', [Validators.required]),
-    supervisor: new FormControl('', [Validators.required]),
+    schedule2: new FormControl('', [Validators.required]),
+    supervisor: new FormControl('', []),
     image: new FormControl('', [Validators.required]),
   }))
 
@@ -53,7 +54,7 @@ export class DialogMuseumComponent implements OnInit {
     private staffService: StaffService,
     @Inject(MAT_DIALOG_DATA) public data: any,
 
-    
+
   ) {
     this.filterStaff = this.StaffCtrl.valueChanges.pipe(
       startWith(null),
@@ -70,7 +71,7 @@ export class DialogMuseumComponent implements OnInit {
             res.forEach(user=>{
               this.mail.push(user.id)
               console.log(user);
-              
+
             })
           }
         )
@@ -79,7 +80,7 @@ export class DialogMuseumComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
     if(this.data['edit']){
       this.museumForm.get('image')?.setValidators(null)
       this.title='Editar Museo'
@@ -116,6 +117,9 @@ export class DialogMuseumComponent implements OnInit {
   get schedule() {
     return this.museumForm.get('schedule')
   }
+  get schedule2() {
+    return this.museumForm.get('schedule2')
+  }
   get supervisor() {
     return this.museumForm.get('supervisor')
   }
@@ -128,12 +132,13 @@ export class DialogMuseumComponent implements OnInit {
       return
     } else {
       const load = this.toast.loading("Cargando...")
-      const { name, address, description, schedule, supervisor } = this.museumForm.value;
+      const { name, address, description, schedule,schedule2, supervisor } = this.museumForm.value;
       var newMuseum: Museo = {};
       newMuseum.name = name
       newMuseum.address = address
       newMuseum.description = description
       newMuseum.schedule = schedule
+      newMuseum.schedule2 = schedule2
       newMuseum.supervisor=[]
       this.supervisors.forEach(s=>{
         newMuseum.supervisor?.push(s)
@@ -190,7 +195,7 @@ export class DialogMuseumComponent implements OnInit {
       this.supervisors.splice(index,1);
     }
   }
-  
+
   selected(event:MatAutocompleteSelectedEvent):void{
     this.supervisors.push(event.option.viewValue);
     this.userInput.nativeElement.value='';
