@@ -36,7 +36,7 @@ export class DialogMuseumComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
     schedule: new FormControl('', [Validators.required]),
     schedule2: new FormControl('', [Validators.required]),
-    supervisor: new FormControl('', [Validators.required]),
+    supervisor: new FormControl('', []),
     image: new FormControl('', [Validators.required]),
   }))
 
