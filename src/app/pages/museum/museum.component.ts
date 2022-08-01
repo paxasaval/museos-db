@@ -468,7 +468,7 @@ export class MuseumComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      //console.log(`Dialog result: ${result}`);
     });
   }
   fetchMuseos() {
@@ -641,7 +641,7 @@ export class MuseumComponent implements OnInit {
     s.reason_visit = this.reason_visit
     s.region_visit = this.region_visit
     s.transport_visit = this.transport_visit
-    console.log(s)
+    //console.log(s)
     this.summaryService.postSummary(s)
   }
 
