@@ -1,3 +1,4 @@
+import { ExportToPdfService } from './../../services/export-to-pdf.service';
 import { Percents } from './../info-point-detail/info-point-detail.component';
 import { ItemsService } from './../../services/items.service';
 import { Item, ItemId } from './../../models/item';
@@ -376,7 +377,9 @@ export class InfoPointComponent implements OnInit {
     private generalRecordService: GeneralRecordService,
     private countriesService: CountriesService,
     private summaryService: SummaryService,
-    private itemService: ItemsService
+    private itemService: ItemsService,
+    private exportPdfService: ExportToPdfService
+
   ) { }
 
   //bar-vertical
@@ -963,6 +966,10 @@ onTransport2Changes(value:ItemId){
         })
       }
     )
+  }
+  exportPDF(){
+    let name = `Report ${new Date()}`
+    this.exportPdfService.createPdfs(name,'chars')
   }
 
   //***** */

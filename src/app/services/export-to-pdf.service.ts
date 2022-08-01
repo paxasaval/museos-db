@@ -16,7 +16,7 @@ export class ExportToPdfService {
     let data = document.getElementById(element)
     //let data = document.getElementById('content');
     html2canvas(data!).then((canvas:any) => {
-      let imgWidth = 208;
+      let imgWidth = 190;
       let pageHeight = 300;
       let imgHeight = canvas.height * imgWidth / canvas.width;
       let heightLeft = imgHeight;

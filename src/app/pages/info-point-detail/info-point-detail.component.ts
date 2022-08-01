@@ -1,3 +1,4 @@
+import { ExportToPdfService } from './../../services/export-to-pdf.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogRVisitInfoPComponent } from './dialog-r-visit-info-p/dialog-r-visit-info-p.component';
@@ -345,7 +346,9 @@ export class InfoPointDetailComponent implements OnInit {
     private generalRecordService: GeneralRecordService,
     private route: ActivatedRoute,
     private itemService: ItemsService,
-    private countriesService: CountriesService
+    private countriesService: CountriesService,
+    private exportPdfService: ExportToPdfService
+
   ) { }
   //pie
   public pieChartOptions: ChartConfiguration['options'] = {
@@ -751,6 +754,10 @@ export class InfoPointDetailComponent implements OnInit {
       }
     )
 
+  }
+  exportPDF(){
+    let name = `Report ${new Date()}`
+    this.exportPdfService.createPdfs(name,'chars')
   }
   get start() {
     return this.filterGroup.get('start')
