@@ -421,13 +421,7 @@ export class InfoPointComponent implements OnInit {
         display: false,
         position: 'top',
       },
-      datalabels: {
-        formatter: (value, ctx) => {
-          if (ctx.chart.data.labels) {
-            return ctx.chart.data.labels[ctx.dataIndex];
-          }
-        },
-      },
+
     }
   };
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
@@ -437,7 +431,7 @@ export class InfoPointComponent implements OnInit {
     ]
   };
   public pieChartType: ChartType = 'pie';
-  public pieChartPlugins = [DatalabelsPlugin];
+  public pieChartPlugins = [];
   //pie-end
   //line
   public lineChartData: ChartConfiguration['data'] = {
@@ -466,12 +460,6 @@ export class InfoPointComponent implements OnInit {
       'y-axis-0':
         {
           position: 'left',
-        },
-      'y-axis-1': {
-        position: 'right',
-        grid: {
-          color: 'rgba(255,0,0,0.3)',
-        },
         ticks: {
           color: 'red'
         }
@@ -592,9 +580,7 @@ export class InfoPointComponent implements OnInit {
     }]
     var colors: string[] = []
     this.region_visit.forEach(region => {
-      let label: string = region.region!
-      region.countries?.forEach(c => {
-      })
+      let label: string = region.name!
       this.pieChartData.labels?.push(label)
       this.pieChartData.datasets[0].data.push(region.visit!)
       colors.push(RGBtoHex())
