@@ -572,6 +572,10 @@ export class InfoPointComponent implements OnInit {
     )
   }
   fetchpieRegion() {
+    this.pieChartData.labels=[]
+    this.pieChartData.datasets=[{
+      data:[]
+    }]
     var colors: string[] = []
     this.region_visit.forEach(region => {
       let label: string = region.region!
@@ -877,7 +881,7 @@ onTransport2Changes(value:ItemId){
       result.forEach(record=>{
         const isTransportOf = (element: Transport_visit) => (element.item_id) == (record.transporte_item_id)
         const i_transport = this.transport_visit?.findIndex(isTransportOf)
-        this.reason_visit[i_transport].total_visits! += 1
+        this.transport_visit[i_transport].total_visits! += 1
       })
       this.hbarChartData.datasets[1].label=value.Nombre
       this.transport_visit.forEach(transport=>{
