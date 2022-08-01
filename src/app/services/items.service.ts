@@ -39,9 +39,12 @@ export class ItemsService {
   }
 
   getItemsById(id: string) {
-    return this.afs.collection<Item>('items', ref => ref.where('Id', '==', id)).snapshotChanges().pipe(
+    return this.afs.collection<Item>('items', ref => ref.where('﻿Id', '==', id)).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as ItemId
+        const isMatch = (element:any) => (element)=='﻿Id';
+        let i  = (Object.keys(data).findIndex(isMatch))
+        data.Id = Object.values(data)[i]
         data.id = a.payload.doc.id
         return data
       }))

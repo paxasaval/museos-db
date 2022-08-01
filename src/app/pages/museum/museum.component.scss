@@ -66,7 +66,6 @@
   margin-right: 2vw;
 }
 .chart{
-  margin-left: 15%;
   width: 20vh;
   height: 20vh;
 }
@@ -91,6 +90,14 @@
 .four {
   grid-column: 3/5;
   grid-row: 2/2;
+}
+.sectionChart{
+  display: flex;
+  flex-direction: column;
+  height: 25vh;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .search{
   text-align: left;
@@ -122,16 +129,31 @@
   flex-wrap: wrap;
 }
 .sectionCInfo{
-  height: 15vh;
-  margin-top: 5vh;
+  height: 20vh;
+  overflow-y: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: var(--primary) #e0e0e0;
+}
+.sectionCInfo::-webkit-scrollbar-thumb{
+  background-color: var(--primary);
+  border-radius: 10px;
+  border: 0.5px solid #ffffff;
+}
+
+.sectionCInfo::-webkit-scrollbar {
+  width: 16px;
+}
+.sectionCInfo::-webkit-scrollbar-track {
+  background: #e0e0e0;
 }
 
 .cardInfo{
   display: flex;
+  text-align: start;
   width: 100%;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
   height: 5vh;
-  padding-top: 3vh;
+  padding-top: 2vh;
 }
 
 .label1{
@@ -150,4 +172,16 @@
 }
 .label3{
   width: 20%;
+}
+.titleCard{
+  text-align: start;
+  margin-left: 1vw;
+  font-size: 1.25em;
+  margin-top: 2vh;
+  color: var(--primary);
+}
+.Style-long{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }

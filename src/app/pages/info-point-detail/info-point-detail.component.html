@@ -14,37 +14,39 @@
           </button>
         </div>
         <div class="infoStyle">
-          <h2 class="title">Vilcabamba</h2>
-          <span class="direccion">direccion</span>
-          <span class="descripcion">descripcion</span>
+          <h2 class="title">{{name}}</h2>
+          <span class="direccion">{{address}}</span>
+          <span class="descripcion">{{descrption}}</span>
         </div>
       </section>
     </section>
     <section class="Container">
-      <section class="Container1">
+      <form [formGroup]="filterGroup" (ngSubmit)="filterByDate()" class="Container1">
         <p class="titleCon1">Filtrar fechas</p>
         <div class="formInput">
           <p class="labelStyle">Fecha de Inicio:</p>
           <input
             matInput
+            formControlName="start"
             class="inputStyle"
-            type="text"
+            type="date"
           />
         </div>
         <div class="formInput">
           <p class="labelStyle">Fecha de Fin:</p>
           <input
             matInput
+            formControlName="end"
             class="inputStyle"
-            type="text"
+            type="date"
           />
         </div>
         <section>
           <div>
-            <button class="btnFiltar" mat-raised-button>Filtrar</button>
+            <button type="submit" class="btnFiltar" mat-raised-button [disabled]="!filterGroup.valid" >Filtrar</button>
           </div>
         </section>
-      </section>
+      </form>
       <section class="Container2">
         <div>
           <button class="btnReport" mat-raised-button>
@@ -60,7 +62,7 @@
         </div>
       </section>
     </section>
-    <section class="chars">
+    <section class="chars1">
       <article class="one">
         Total Visitas
         <p>{{total_record}}</p>
@@ -73,7 +75,10 @@
         Mes con mayor afluencia
         <p>{{best_month}}: <span>{{best_visit_month}}</span></p>
       </article>
+    </section>
+    <section class="chars">     
       <article class="four">
+        <h4 class="titleCard">Procedencia de turistas</h4>
         <section class="sectionChart">
           <div class="chart">
             <canvas *ngIf="loaded_pie"
@@ -88,13 +93,15 @@
         </section>
         <section *ngIf="loaded_pie" class="sectionCInfo">
           <div *ngFor="let percent of percents_country" class="cardInfo">
-            <span [ngStyle]="{color: percent.color}" class="label1">{{percent.name}}</span>
-            <span [ngStyle]="{color: percent.color}">{{percent.percent|number:'1.2-2'}}</span>
-            <span [ngStyle]="{color: percent.color}">%</span>
+            <span  [ngStyle]="{background: percent.color}" class="point"></span>
+            <span  class="label1">{{percent.name}}:</span>
+            <span  class="label2">{{percent.percent|number:'1.2-2'}}</span>
+            <span  >%</span>
           </div>
         </section>
       </article>
-      <article class="five">Motivo de viaje
+      <article class="five">
+        <h4 class="titleCard">Motivo de viaje</h4>
         <section class="sectionChart">
           <div class="chart">
             <canvas *ngIf="loaded_pie2"
@@ -110,13 +117,15 @@
         </section>
         <section *ngIf="loaded_pie2" class="sectionCInfo">
           <div *ngFor="let percent of percents_reason" class="cardInfo">
-            <span class="label1">{{percent.name}}</span>
-            <span>{{percent.percent|number:'1.2-2'}}</span>
+            <span  [ngStyle]="{background: percent.color}" class="point"></span>
+            <span class="label1">{{percent.name}}:</span>
+            <span class="label2">{{percent.percent|number:'1.2-2'}}</span>
             <span>%</span>
           </div>
         </section>
       </article>
-      <article class="six">Género de turistas
+      <article class="six">
+        <h4 class="titleCard">Medio de transporte</h4>
         <section class="sectionChart">
           <div class="chart">
             <canvas *ngIf="loaded_pie3"
@@ -132,15 +141,17 @@
         </section>
        <section *ngIf="loaded_pie3" class="sectionCInfo">
           <div *ngFor="let percent of percents_trasnport" class="cardInfo">
-            <span class="label1">{{percent.name}}</span>
-            <span>{{percent.percent|number:'1.2-2'}}</span>
+            <span  [ngStyle]="{background: percent.color}" class="point"></span>
+            <span class="label1">{{percent.name}}:</span>
+            <span class="label2">{{percent.percent|number:'1.2-2'}}</span>
             <span>%</span>
           </div>
         </section>
       </article>
-      <article class="seven">Periodos con mayor frecuencia de turistas
-        <section *ngIf="loaded_bar" class="sectionChart">
-          <canvas baseChart
+      <article class="seven">
+        <h4 class="titleCard">Periodos con mayor frecuencia de turistas</h4>
+        <section *ngIf="loaded_bar" class="sectionChart2">
+          <canvas baseChart width="15" height="4"
           [data]="barChartData"
           [options]="barChartOptions"
           [plugins]="barChartPlugins"
