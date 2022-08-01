@@ -19,8 +19,8 @@
             <p class="labelStyle">Horarios de atención:</p>
             <div  class="formInput3">
                 <input matInput formControlName="schedule" class="inputStyle2" type="time">
-                <input matInput formControlName="schedule" class="inputStyle2" type="time">
-            </div>      
+                <input matInput formControlName="schedule2" class="inputStyle2" type="time">
+            </div>
         </div>
         <div class="formInput">
             <p class="labelStyle">Supervisor:</p>
@@ -28,7 +28,7 @@
                 <mat-chip-list #chipList class="inputStyle4" formControlName="supervisor" placeholder="" [disabled]="false">
                     <mat-chip *ngFor="let user of supervisors"  (removed)="remove(user)">{{user}}
                         <button matChipRemove><mat-icon>cancel</mat-icon></button>
-                    </mat-chip>    
+                    </mat-chip>
                 </mat-chip-list>
                 <input placeholder="Nuevo supervisor"
                         #userInput
@@ -46,7 +46,7 @@
                 </mat-autocomplete>
                 <!-- <input matInput formControlName="supervisor" class="inputStyle" type="text"> -->
             </div>
-            
+
         </div>
         <div class="formInput">
             <p class="labelStyle">Imagen de museo:</p>
