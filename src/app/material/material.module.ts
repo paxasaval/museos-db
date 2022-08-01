@@ -12,7 +12,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { NgChartsModule } from 'ng2-charts';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import { AvatarModule } from 'ngx-avatar'
 @NgModule({
   declarations: [],
   imports: [
@@ -29,7 +29,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatSelectModule,
     NgChartsModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    AvatarModule
   ],
   exports:[
     FormsModule,
@@ -44,7 +45,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatSelectModule,
     NgChartsModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    AvatarModule
   ]
 })
 export class MaterialModule { }
