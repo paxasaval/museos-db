@@ -420,13 +420,6 @@ export class MuseumComponent implements OnInit {
         display: false,
         position: 'top',
       },
-      datalabels: {
-        formatter: (value, ctx) => {
-          if (ctx.chart.data.labels) {
-            return ctx.chart.data.labels[ctx.dataIndex];
-          }
-        },
-      },
     }
   };
   public pieChartData: ChartData<'pie', number[], string | string[]> = {
@@ -436,7 +429,7 @@ export class MuseumComponent implements OnInit {
     ]
   };
   public pieChartType: ChartType = 'pie';
-  public pieChartPlugins = [DatalabelsPlugin];
+  public pieChartPlugins = [];
   //pie-end
   //line
   public lineChartData: ChartConfiguration['data'] = {
