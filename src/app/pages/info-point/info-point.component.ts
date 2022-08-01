@@ -768,7 +768,7 @@ export class InfoPointComponent implements OnInit {
     this.reason_visit.forEach(reason=>{
       reason.total_visits=0
     })
-    console.log(value)
+    //console.log(value)
     this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
       result=>{
         result.forEach(record=>{
@@ -802,7 +802,7 @@ export class InfoPointComponent implements OnInit {
     this.reason_visit.forEach(reason=>{
       reason.total_visits=0
     })
-    console.log(value)
+    //console.log(value)
     this.generalRecordService.getGeneralRecordsByPlace(value.Id!).subscribe(
       result=>{
         result.forEach(record=>{
@@ -893,7 +893,7 @@ onTransport2Changes(value:ItemId){
     s.reason_visit = this.reason_visit
     s.region_visit = this.region_visit
     s.transport_visit = this.transport_visit
-    console.log(s)
+    //console.log(s)
     this.summaryService.postSummary(s)
   }
 
