@@ -626,9 +626,7 @@ export class MuseumComponent implements OnInit {
     this.pieChartData.labels=[]
     this.pieChartData.datasets[0].data=[]
     this.region_visit.forEach(region => {
-      let label: string = region.region!
-      region.countries?.forEach(c => {
-      })
+      let label: string = region.name!
       this.pieChartData.labels?.push(label)
       this.pieChartData.datasets[0].data.push(region.visit!)
       colors.push(RGBtoHex())
