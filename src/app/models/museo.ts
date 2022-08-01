@@ -3,6 +3,7 @@ export interface Museo {
     address?: string,
     description?: string,
     schedule?: string,
+    schedule2?: string,
     supervisor?: string[],
     image?: string
 }
