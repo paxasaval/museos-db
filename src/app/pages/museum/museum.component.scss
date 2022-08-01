@@ -1,10 +1,10 @@
-.museos{
+.museos {
   display: flex;
   width: 100vw;
   justify-content: space-between;
 }
 
-.main{
+.main {
   width: 80%;
   height: 100vh;
   overflow-y: scroll;
@@ -13,7 +13,6 @@
     margin-bottom: 1em;
   }
 }
-
 
 .chars1{
   width: 86%;
@@ -30,6 +29,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding-top: 1em;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
@@ -38,59 +38,67 @@
 }
 .chars1 article p{
   font-size: 0.9em;
-  color: black;
+  color: rgb(68, 67, 67);
   padding-top: 1em;
 }
+
 .chars {
   width: 86%;
   margin-top: 6vh;
   padding-left: 5vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   grid-gap: 5vh;
+  grid-auto-rows: minmax(15vh, auto);
   margin-bottom: 1em;
   padding-bottom: 1em;
 }
-.chars article{
+
+.chars article {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
   background: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;;
+  border-radius: 10px;
+  color: var(--primary);
+  font-size: 0.95em;
 }
-.optionCharts{
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 1vw;
-  padding-right: 1vw;
+.chars article p{
+  font-size: 0.9em;
+  color: black;
+  padding-top: 1em;
 }
-.optionCharts h4{
-  margin-right: 2vw;
-}
+
+
 .chart{
   width: 20vh;
   height: 20vh;
 }
+
 .two,.three,.four{
-  padding: 3vh;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  padding-bottom: 1vw;
 }
 .one {
-  grid-column: 1;
-  grid-row: 1;
+  grid-area: 1 / 1 / 3 / 2;
 }
+
 .two {
-  grid-column: 2/5;
-  grid-row: 1/1;
+  grid-area: 1 / 2 / 3 / 5;
 }
 
 .three {
-  grid-column: 1/3;
-  grid-row: 2/2;
-  padding: 3vh;
+  grid-area: 3 / 1 / 5 / 3;
 }
 
 .four {
-  grid-column: 3/5;
-  grid-row: 2/2;
+  grid-area: 3 / 3 / 5 / 5;
 }
+
 .sectionChart{
   display: flex;
   flex-direction: column;
@@ -99,27 +107,34 @@
   justify-content: center;
   text-align: center;
 }
-.search{
+
+.search {
   text-align: left;
   width: 100%;
+  margin-top: 10vh;
 }
-.search-bar{
+
+.search-bar {
   text-align: center;
   width: 100%;
 }
-.search-input{
+
+.search-input {
   width: 60%;
 }
+
 .title2{
   display: flex;
   justify-content: space-between;
   padding-bottom: 1em;
   margin-bottom: 1em;
 }
-.addMuseum{
+
+.addMuseum {
   width: 12vw;
 }
-.plus-icon{
+
+.plus-icon {
   height: 15px;
   width: 15px;
 }
@@ -160,18 +175,29 @@
   width: 40%;
   margin-left: 2vh;
 }
-
-.Style-long{
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 .label2{
   width: 30%;
 }
 .label3{
   width: 20%;
+}
+
+.filter{
+  display: flex;
+  width: 100%;
+}
+.filters{
+  display: flex;
+  flex-direction: column;
+}
+.filter1{
+  display: flex;
+  width: 100%;
+}
+
+mat-form-field{
+  width: 20vw;
+  margin-left: 1vw;
 }
 .titleCard{
   text-align: start;

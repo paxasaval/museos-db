@@ -4,7 +4,7 @@
 }
 
 .dialogMuseum{
-    height: 65vh;
+    height: 75vh;
     width: 40vw;
 }
 
@@ -34,6 +34,7 @@
     width: 100%;
     margin-bottom: 1em;
     align-items: stretch;
+    justify-content: space-between;
 }
 .formInput2{
     display: flex;
@@ -88,10 +89,13 @@ input.mat-chip-input {
 }
 .inputStyle4{
     width: 80%;
-    height: 3.5vh;
+    height: auto;
+    min-height: 5.5vh;
     border: 2px solid #cacaca;
     border-radius: 5px;
     padding-left: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     margin-top: 1vh;
 }
 
