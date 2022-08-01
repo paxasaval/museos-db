@@ -1,3 +1,4 @@
+import { Percents } from './../info-point-detail/info-point-detail.component';
 import { ItemsService } from './../../services/items.service';
 import { Item, ItemId } from './../../models/item';
 import { GeneralRecordId } from './../../models/generalRecord';
@@ -67,6 +68,7 @@ function RGBtoHex() {
   return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
 }
 
+
 @Component({
   selector: 'app-info-point',
   templateUrl: './info-point.component.html',
@@ -91,6 +93,9 @@ export class InfoPointComponent implements OnInit {
   //var date
   lath_month = '12'
   lasth_year = '2021'
+  //var percents
+  percentsRegion:Percents[]=[]
+  colorPie:string[]=[]
   //var summary
   country_visit: Country_visit[] = []
   region_visit: DataRegionsVisit[] = [
@@ -567,13 +572,18 @@ export class InfoPointComponent implements OnInit {
     )
   }
   fetchpieRegion() {
+    var colors: string[] = []
     this.region_visit.forEach(region => {
       let label: string = region.region!
       region.countries?.forEach(c => {
       })
       this.pieChartData.labels?.push(label)
       this.pieChartData.datasets[0].data.push(region.visit!)
+      colors.push(RGBtoHex())
     })
+    this.pieChartData.datasets[0].backgroundColor=colors
+    this.colorPie=colors
+    this.fetchPercetsRegion()
   }
   fetchLineDate(){
     this.month_visit.forEach(month=>{
@@ -896,6 +906,16 @@ onTransport2Changes(value:ItemId){
     //console.log(s)
     this.summaryService.postSummary(s)
   }
+  fetchPercetsRegion(){
+    let total = this.total_record
+    let array:Percents[]=[]
+    let i = 0
+    this.region_visit.forEach(region=>{
+      array.push({name:region.name!,percent:(region.visit!*100/total)!,color:this.colorPie[i]})
+      i+=1
+    })
+    this.percentsRegion=array
+  }
 
 
 
@@ -906,7 +926,7 @@ onTransport2Changes(value:ItemId){
         this.infoPoints = []
         result.forEach(item => {
           var obj = {
-            id: item.Id, 
+            id: item.Id,
             image: 'https://www.loja.gob.ec/files/image/imagenes/MUN-DE-LOJA32.jpg',
             name: item.Nombre,
           }

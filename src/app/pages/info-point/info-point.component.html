@@ -30,28 +30,19 @@
             >
             </canvas>
           </div>
-        </section> 
+        </section>
         <section class="sectionCInfo">
-          <div class="cardInfo">
-              <span class="label1 Style-long">Nacionalidades:</span>
-              <span class="label2">442</span>
-              <span class="label3">55%</span>
-          </div>
-          <div class="cardInfo">
-              <span class="label1 Style-long">Extranjeros:</span>
-              <span class="label2">442</span>
-              <span class="label3">55%</span>
-          </div>
-          <div class="cardInfo">
-              <span class="label1 Style-long">Locales:</span>
-              <span class="label2 Style-long">442</span>
-              <span class="label3 Style-long">55%</span>
+          <div class="cardInfo" *ngFor="let percent of percentsRegion">
+              <span [ngStyle]="{background: percent.color}" class="point"></span>
+              <span class="label1 Style-long">{{percent.name}}:</span>
+              <span class="label3">{{percent.percent|number:'1.2-2'}}</span>
+              <span>%</span>
           </div>
         </section>
       </article>
       <article class="two">
         <h4  class="titleCard">Fecha de visitas</h4>
-        
+
         <section class="filter">
           <section class="filters">
             <div class="filter1">
@@ -89,7 +80,7 @@
       </article>
       <article class="three">
         <h4  class="titleCard">Razon de visitas</h4>
-        
+
         <section class="filter">
           <section class="filters">
             <section class="filter1">
@@ -99,7 +90,7 @@
                   <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
                 </mat-select>
               </mat-form-field>
-      
+
             </section>
             <section class="filter1">
               <mat-form-field appearance="outline">
@@ -114,9 +105,9 @@
             <button mat-icon-button (click)="updateReason()">
               <mat-icon class="mat-18">refresh</mat-icon>
             </button>
-          </section> 
+          </section>
         </section>
-   
+
         <canvas
           *ngIf="loaded_bar"
           baseChart
@@ -128,7 +119,7 @@
         </canvas>
       </article>
       <article class="four">
-        <h4 class="titleCard">Medios de trasnporte</h4>      
+        <h4 class="titleCard">Medios de trasnporte</h4>
         <section class="filter">
           <section class="filters" >
             <section class="filter1">
@@ -153,8 +144,8 @@
               <mat-icon class="mat-18">refresh</mat-icon>
             </button>
           </section>
-          
-          
+
+
         </section>
         <canvas
           *ngIf="loaded_barh"
@@ -190,7 +181,7 @@
       </div>
       <ng-template #elseBlock>
         <div class="title2">
-          <h2 class="title">Puntos de Informacion disponibles</h2>  
+          <h2 class="title">Puntos de Informacion disponibles</h2>
         </div>
       </ng-template>
     </section>
