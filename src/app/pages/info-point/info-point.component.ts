@@ -68,6 +68,30 @@ function RGBtoHex() {
   return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
 }
 
+function ordenarPorBurbuja2(arrayDesordenado: Percents[]): Percents[] {
+  // Copia el array recibido
+  let tempArray: Percents[] = arrayDesordenado;
+  let volverAOrdenar: boolean = false
+  // Recorre el array
+  tempArray.forEach(function (valor, key) {
+    // Comprueba si el primero es mayor que el segundo y no esta en la última posición
+    if (tempArray[key].percent! > tempArray[key + 1]?.percent! && tempArray.length - 1 != key) {
+      // Intercambia la primera posición por la segunda
+      let primerNum: Percents = tempArray[key]
+      let segundoNum: Percents = tempArray[key + 1]
+      tempArray[key] = segundoNum
+      tempArray[key + 1] = primerNum
+      // Si debe volver a ordenarlo
+      volverAOrdenar = true
+    }
+  })
+  // Vuelve a llamar al función
+  if (volverAOrdenar) {
+    ordenarPorBurbuja2(tempArray)
+  }
+  // Array ordenado
+  return tempArray
+}
 
 @Component({
   selector: 'app-info-point',
@@ -919,7 +943,7 @@ onTransport2Changes(value:ItemId){
       i+=1
     })
     console.log(this.region_visit)
-    this.percentsRegion=array
+    this.percentsRegion=ordenarPorBurbuja2(array).reverse()
   }
 
 
