@@ -1,3 +1,4 @@
+import { HotToastService } from '@ngneat/hot-toast';
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -7,14 +8,16 @@ import html2canvas from 'html2canvas';
 })
 export class ExportToPdfService {
   document: any;
-  constructor() { }
+  constructor(private toast: HotToastService
+    ) { }
 
   createPdfs(filename: string, element: string) {
+    var load = this.toast.loading('.Generando pdf...')
     let data = document.getElementById(element)
     //let data = document.getElementById('content');
-    html2canvas(data!).then(canvas => {
+    html2canvas(data!).then((canvas:any) => {
       let imgWidth = 208;
-      let pageHeight = 295;
+      let pageHeight = 300;
       let imgHeight = canvas.height * imgWidth / canvas.width;
       let heightLeft = imgHeight;
 
@@ -29,7 +32,8 @@ export class ExportToPdfService {
         pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      pdf.save(filename); // Generated PDF
+      pdf.save(filename);
+      load.close() // Generated PDF
     });
   }
 }

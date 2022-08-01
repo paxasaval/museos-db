@@ -1,3 +1,4 @@
+import { Percents } from './../info-point-detail/info-point-detail.component';
 import { ItemsService } from './../../services/items.service';
 import { Item, ItemId } from './../../models/item';
 import { GeneralRecordId } from './../../models/generalRecord';
@@ -67,6 +68,7 @@ function RGBtoHex() {
   return `#${r.toString(16)}${g.toString(16)}${b.toString(16)}`;
 }
 
+
 @Component({
   selector: 'app-info-point',
   templateUrl: './info-point.component.html',
@@ -91,56 +93,69 @@ export class InfoPointComponent implements OnInit {
   //var date
   lath_month = '12'
   lasth_year = '2021'
+  //var percents
+  percentsRegion:Percents[]=[]
+  colorPie:string[]=[]
   //var summary
   country_visit: Country_visit[] = []
   region_visit: DataRegionsVisit[] = [
     {
       region: '1',
+      name:'Africa',
       countries: [],
       visit: 0
     },
     {
       region: '2',
+      name:'Asia',
       countries: [],
       visit: 0
     },
     {
       region: '3',
+      name:'America del sur',
       countries: [],
       visit: 0
     },
     {
       region: '4',
+      name:'America del norte',
       countries: [],
       visit: 0
     },
     {
       region: '5',
+      name:'America central',
       countries: [],
       visit: 0
     },
     {
       region: '6',
+      name:'Europa 1',
       countries: [],
       visit: 0
     },
     {
       region: '7',
+      name:'Europa 2',
       countries: [],
       visit: 0
     },
     {
       region: '8',
+      name:'Asia',
       countries: [],
       visit: 0
     },
     {
       region: '9',
+      name:'America central 2',
       countries: [],
       visit: 0
     },
     {
       region: '10',
+      name:'Ocerania',
       countries: [],
       visit: 0
     },
@@ -556,7 +571,11 @@ export class InfoPointComponent implements OnInit {
         this.month_visit = result[0].month_visit!
         this.year_visit = result[0].lastYear_visit!
         this.reason_visit = result[0].reason_visit!
-        this.region_visit = result[0].region_visit!
+        result[0].region_visit!.forEach(region=>{
+          const isRegion = (element:Region_visit)=>(element.region)==(region.region)
+          const i_region = this.region_visit.findIndex(isRegion)
+          this.region_visit[i_region].visit=region.visit
+        })
         this.transport_visit = result[0].transport_visit!
         this.fetchpieRegion()
         this.fetchBarReason()
@@ -567,13 +586,22 @@ export class InfoPointComponent implements OnInit {
     )
   }
   fetchpieRegion() {
+    this.pieChartData.labels=[]
+    this.pieChartData.datasets=[{
+      data:[]
+    }]
+    var colors: string[] = []
     this.region_visit.forEach(region => {
       let label: string = region.region!
       region.countries?.forEach(c => {
       })
       this.pieChartData.labels?.push(label)
       this.pieChartData.datasets[0].data.push(region.visit!)
+      colors.push(RGBtoHex())
     })
+    this.pieChartData.datasets[0].backgroundColor=colors
+    this.colorPie=colors
+    this.fetchPercetsRegion()
   }
   fetchLineDate(){
     this.month_visit.forEach(month=>{
@@ -867,7 +895,7 @@ onTransport2Changes(value:ItemId){
       result.forEach(record=>{
         const isTransportOf = (element: Transport_visit) => (element.item_id) == (record.transporte_item_id)
         const i_transport = this.transport_visit?.findIndex(isTransportOf)
-        this.reason_visit[i_transport].total_visits! += 1
+        this.transport_visit[i_transport].total_visits! += 1
       })
       this.hbarChartData.datasets[1].label=value.Nombre
       this.transport_visit.forEach(transport=>{
@@ -896,6 +924,17 @@ onTransport2Changes(value:ItemId){
     //console.log(s)
     this.summaryService.postSummary(s)
   }
+  fetchPercetsRegion(){
+    let total = this.total_record
+    let array:Percents[]=[]
+    let i = 0
+    this.region_visit.forEach(region=>{
+      array.push({name:region.name!,percent:(region.visit!*100/total)!,color:this.colorPie[i]})
+      i+=1
+    })
+    console.log(this.region_visit)
+    this.percentsRegion=array
+  }
 
 
 
@@ -906,7 +945,7 @@ onTransport2Changes(value:ItemId){
         this.infoPoints = []
         result.forEach(item => {
           var obj = {
-            id: item.Id, 
+            id: item.Id,
             image: 'https://www.loja.gob.ec/files/image/imagenes/MUN-DE-LOJA32.jpg',
             name: item.Nombre,
           }

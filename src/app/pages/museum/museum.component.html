@@ -8,19 +8,16 @@
     <!--<button mat-button (click)="saveFetchData()">Save Data</button>-->
     <section class="chars1">
       <article class="one1">Total turistas
-        <p>1415</p>
+        <p>{{total_record | number : '1.0-0'}}</p>
       </article>
       <article class="two1">Promedio de turistas por visita
-        <p>5.6</p>
-      </article>
-      <article class="three1">Maxima afluencia
-        <p>1000</p>
+        <p>{{avg_tourist_visit | number : '1.0-0'}}</p>
       </article>
     </section>
     <section class="chars">
       <article class="one">
         <h4 class="titleCard">Procedencia de turistas</h4>
-        <section class="sectionChart"> 
+        <section class="sectionChart">
           <div class="chart">
             <canvas
               baseChart
@@ -33,25 +30,41 @@
           </div>
         </section>
         <section class="sectionCInfo">
-          <div class="cardInfo">
-              <span class="label1 Style-long">Nacionalidades:</span>
-              <span class="label2">442</span>
-              <span class="label3">55%</span>
-          </div>
-          <div class="cardInfo">
-              <span class="label1">Extranjeros:</span>
-              <span class="label2">442</span>
-              <span class="label3">55%</span>
-          </div>
-          <div class="cardInfo">
-              <span class="label1">Locales:</span>
-              <span class="label2">442</span>
-              <span class="label3">55%</span>
+          <div *ngFor="let percent of percentsRegion" class="cardInfo">
+            <span  [ngStyle]="{background: percent.color}" class="point"></span>
+            <span  class="label1">{{percent.name}}:</span>
+            <span  class="label2">{{percent.percent|number:'1.2-2'}}</span>
+            <span  >%</span>
           </div>
         </section>
       </article>
       <article class="two">
         <h4 class="titleCard">Fecha de visitas</h4>
+        <section class="filter">
+          <section class="filters">
+            <div class="filter1">
+              <mat-form-field appearance="outline">
+                <mat-label>Lugar 1:</mat-label>
+                <mat-select placeholder="" [(ngModel)]="selected_1_date" (selectionChange)="onDate1Changes($event.value)">
+                  <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="filter1">
+              <mat-form-field appearance="outline">
+                <mat-label>Lugar 2:</mat-label>
+                <mat-select placeholder="" [(ngModel)]="selected_2_date" (selectionChange)="onDate2Changes($event.value)" class="select2">
+                  <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </section>
+          <section class="refresh">
+            <button mat-icon-button (click)="updateDate()">
+              <mat-icon class="mat-18">refresh</mat-icon>
+            </button>
+          </section>
+        </section>
         <canvas *ngIf="loaded_line" baseChart width="400" height="150"
                 [data]="lineChartData"
                 [options]="lineChartOptions"
@@ -60,6 +73,33 @@
       </article>
       <article class="three">
         <h4>Razon de visitas</h4>
+        <section class="filter">
+          <section class="filters">
+            <section class="filter1">
+              <mat-form-field appearance="outline">
+                <mat-label>Lugar 1:</mat-label>
+                <mat-select placeholder="" [(ngModel)]="selected_1" (selectionChange)="onPlace1Changes($event.value)">
+                  <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+            </section>
+            <section class="filter1">
+              <mat-form-field appearance="outline">
+                <mat-label>Lugar 2:</mat-label>
+                <mat-select placeholder="" [(ngModel)]="selected_2" (selectionChange)="onPlace2Changes($event.value)">
+                  <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </section>
+          </section>
+          <section class="refresh">
+            <button mat-icon-button (click)="updateReason()">
+              <mat-icon class="mat-18">refresh</mat-icon>
+            </button>
+          </section>
+        </section>
+
         <canvas *ngIf="loaded_bar"
           baseChart
           [data]="barChartData"
@@ -70,6 +110,33 @@
         </canvas>
       </article>
       <article class="four"><h4>Medios de trasnporte</h4>
+        <section class="filter">
+          <section class="filters" >
+            <section class="filter1">
+              <mat-form-field appearance="outline">
+                <mat-label>Lugar 1:</mat-label>
+                <mat-select placeholder="" [(ngModel)]="selected_1_transport" (selectionChange)="onTransport1Changes($event.value)">
+                  <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </section>
+            <section class="filter1">
+              <mat-form-field appearance="outline">
+                <mat-label>Lugar 2:</mat-label>
+                <mat-select placeholder="" [(ngModel)]="selected_2_transport" (selectionChange)="onTransport2Changes($event.value)">
+                  <mat-option *ngFor="let place of allPlaces" [value]="place">{{place.Nombre}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </section>
+          </section>
+          <section class="refresh">
+            <button mat-icon-button (click)="updateTransport()">
+              <mat-icon class="mat-18">refresh</mat-icon>
+            </button>
+          </section>
+
+
+        </section>
         <canvas *ngIf="loaded_barh"
           baseChart
           [data]="hbarChartData"
