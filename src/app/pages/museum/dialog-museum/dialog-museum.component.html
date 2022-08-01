@@ -46,7 +46,6 @@
         <div class="formInput">
             <p class="labelStyle">Imagen de museo:</p>
             <input  class="inputStyle" formControlName="image" type="file" name="archivo" id="file" accept=".jpeg,.jpg,.png" hidden (change)="onFileSelected($event)" #fileInput>
-            <img class="imageLoad" src="" />
             <button type="button" mat-raised-button class="btnArchivo" (click)="fileInput.click()">
                 Subir Imagen
             </button>
