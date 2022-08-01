@@ -1,93 +1,118 @@
 <section class="museumDetail">
-    <div class="der">
-        <app-sidebar></app-sidebar>
+  <div class="der">
+    <app-sidebar></app-sidebar>
+  </div>
+  <main class="mainContainer">
+    <div class="imgStyle">
+      <img [src]="image" alt="" />
     </div>
-    <main class="mainContainer">
-        <div class="imgStyle">
-            <img [src]="image" alt="">
+    <section class="headerMain">
+      <section class="header1">
+        <div class="btnback">
+          <button mat-icon-button (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+          </button>
         </div>
-        <section class="headerMain">
-            <section class="header1">
-                <div class="btnback">
-                    <button mat-icon-button (click)="goBack()">
-                        <mat-icon>arrow_back</mat-icon>
-                    </button>
-                </div>
-                <div class="infoStyle">
-                    <h2 class="title">{{title}}</h2>
-                    <span class="direccion">{{addres}}</span>
-                    <span class="descripcion">{{description}}</span>
-                </div>
-            </section>
-            <section class="header2">
-                <div>
-                    <button class="btnEdit" mat-raised-button (click)="editMuseo()">
-                        Editar Información
-                        <mat-icon class="matIcon">edit</mat-icon>
-                    </button>
-                </div>
-                <div>
-                    <button class="btnRegister" mat-raised-button (click)="openDialogRVisit()">
-                        Registrar visita
-                        <mat-icon class="matIcon">add_circle</mat-icon>
-                    </button>
-                </div>
-            </section>
+        <div class="infoStyle">
+          <h2 class="title">{{ title }}</h2>
+          <span class="direccion">{{ addres }}</span>
+          <span class="descripcion">{{ description }}</span>
+        </div>
+      </section>
+      <section class="header2">
+        <div>
+          <button class="btnEdit" mat-raised-button (click)="editMuseo()">
+            Editar Información
+            <mat-icon class="matIcon">edit</mat-icon>
+          </button>
+        </div>
+        <div>
+          <button
+            class="btnRegister"
+            mat-raised-button
+            (click)="openDialogRVisit()"
+          >
+            Registrar visita
+            <mat-icon class="matIcon">add_circle</mat-icon>
+          </button>
+        </div>
+      </section>
+    </section>
+    <section class="Container">
+      <form
+        [formGroup]="filterGroup"
+        (ngSubmit)="filterByDate()"
+        class="Container1"
+      >
+        <p class="titleCon1">Filtrar fechas</p>
+        <div class="formInput">
+          <p class="labelStyle">Fecha de Inicio:</p>
+          <input
+            formControlName="start"
+            matInput
+            class="inputStyle"
+            type="date"
+          />
+        </div>
+        <div class="formInput">
+          <p class="labelStyle">Fecha de Fin:</p>
+          <input
+            formControlName="end"
+            matInput
+            class="inputStyle"
+            type="date"
+          />
+        </div>
+        <section>
+          <div>
+            <button
+              type="submit"
+              class="btnFiltar"
+              mat-raised-button
+              [disabled]="!filterGroup.valid"
+            >
+              Filtrar
+            </button>
+          </div>
         </section>
-        <section class="Container">
-            <form [formGroup]="filterGroup" (ngSubmit)="filterByDate()" class="Container1">
-                <p class="titleCon1">Filtrar fechas</p>
-                <div class="formInput">
-                    <p class="labelStyle">Fecha de Inicio:</p>
-                    <input formControlName="start" matInput class="inputStyle" type="date">
-                </div>
-                <div class="formInput">
-                    <p class="labelStyle">Fecha de Fin:</p>
-                    <input formControlName="end" matInput class="inputStyle" type="date">
-                </div>
-                <section>
-                    <div>
-                        <button type="submit" class="btnFiltar" mat-raised-button [disabled]="!filterGroup.valid">
-                            Filtrar
-                        </button>
-                    </div>
-                </section>
-              </form>
-            <section class="Container2">
-                <div>
-                    <button class="btnReport" mat-raised-button>
-                        Editar Información
-                        <mat-icon class="matIcon">description</mat-icon>
-                    </button>
-                </div>
-                <div>
-                    <button class="btnDownload" mat-raised-button>
-                        Descargar Reporte
-                        <mat-icon class="matIcon">download_for_offline</mat-icon>
-                    </button>
-                </div>
-            </section>
-        </section>
-        <section class="chars1">
-            <article class="one">
-              Total turistas
-              <p>{{total_tourist}}</p>
-            </article>
-            <article class="two">
-              Promedio de turistas por visita
-              <p>{{average_visit}}</p>
-            </article>
-            <article class="three">
-              Maxima afluencia
-              <p>{{max_currency}}</p>
-            </article>           
-        </section>
-        <section class="chars">
-          <article class="four">
-            <h4 class="titleCard">Procedencia de turistas</h4>
-            <section *ngIf="loaded_pie" class="sectionChart">
-              <div class="chart">
-                <canvas *ngIf="loaded_pie"
+      </form>
+      <section class="Container2">
+        <div>
+          <button class="btnReport" mat-raised-button>
+            Editar Información
+            <mat-icon class="matIcon">description</mat-icon>
+          </button>
+        </div>
+        <div>
+          <button class="btnDownload" mat-raised-button (click)="exportPDF()">
+            Descargar Reporte
+            <mat-icon class="matIcon">download_for_offline</mat-icon>
+          </button>
+        </div>
+      </section>
+    </section>
+    <section id="chars">
+      <section class="chars1">
+        <article class="one">
+          Total turistas
+          <p>{{ total_tourist }}</p>
+        </article>
+        <article class="two">
+          Promedio de turistas por visita
+          <p>{{ average_visit }}</p>
+        </article>
+        <article class="three">
+          Maxima afluencia
+          <p>{{ max_currency }}</p>
+        </article>
+      </section>
+      <section class="chars">
+        <article class="four">
+          <h4 class="titleCard">Procedencia de turistas</h4>
+          <section *ngIf="loaded_pie" class="sectionChart">
+            <div class="chart">
+              <canvas
+                *ngIf="loaded_pie"
                 baseChart
                 [data]="pieChartData"
                 [type]="pieChartType"
@@ -95,37 +120,43 @@
                 [plugins]="pieChartPlugins"
               >
               </canvas>
-              </div>
-            </section>
-            <section *ngIf="loaded_pie" class="sectionCInfo">
-              <div *ngFor="let percent of percents_country" class="cardInfo">
-                <span  [ngStyle]="{background: percent.color}" class="point"></span>
-                <span  class="label1">{{percent.name}}</span>
-                <span  class="label2">{{percent.percent|number:'1.2-2'}}</span>
-                <span >%</span>
-              </div>
-            </section>
+            </div>
+          </section>
+          <section *ngIf="loaded_pie" class="sectionCInfo">
+            <div *ngFor="let percent of percents_country" class="cardInfo">
+              <span
+                [ngStyle]="{ background: percent.color }"
+                class="point"
+              ></span>
+              <span class="label1">{{ percent.name }}</span>
+              <span class="label2">{{ percent.percent | number: "1.2-2" }}</span>
+              <span>%</span>
+            </div>
+          </section>
         </article>
         <article class="five">
           <h4 class="titleCard">Tipo de turistas</h4>
-          <section *ngIf="loaded_pie2"class="sectionChart">
+          <section *ngIf="loaded_pie2" class="sectionChart">
             <div class="chart">
-              <canvas *ngIf="loaded_pie2"
-              baseChart
-              [data]="pieChartData2"
-              [type]="pieChartType2"
-              [options]="pieChartOptions2"
-              [plugins]="pieChartPlugins2"
-            >
-            </canvas>
+              <canvas
+                *ngIf="loaded_pie2"
+                baseChart
+                [data]="pieChartData2"
+                [type]="pieChartType2"
+                [options]="pieChartOptions2"
+                [plugins]="pieChartPlugins2"
+              >
+              </canvas>
             </div>
-
           </section>
           <section *ngIf="loaded_pie2" class="sectionCInfo">
             <div *ngFor="let percent of percents_type" class="cardInfo">
-              <span  [ngStyle]="{background: percent.color}" class="point"></span>
-              <span class="label1">{{percent.name}}:</span>
-              <span class="label2">{{percent.percent|number:'1.2-2'}}</span>
+              <span
+                [ngStyle]="{ background: percent.color }"
+                class="point"
+              ></span>
+              <span class="label1">{{ percent.name }}:</span>
+              <span class="label2">{{ percent.percent | number: "1.2-2" }}</span>
               <span>%</span>
             </div>
           </section>
@@ -134,22 +165,25 @@
           <h4 class="titleCard">Género de turistas</h4>
           <section *ngIf="loaded_pie3" class="sectionChart">
             <div class="chart">
-              <canvas *ngIf="loaded_pie3"
-              baseChart
-              [data]="pieChartData3"
-              [type]="pieChartType3"
-              [options]="pieChartOptions3"
-              [plugins]="pieChartPlugins3"
-            >
-            </canvas>
+              <canvas
+                *ngIf="loaded_pie3"
+                baseChart
+                [data]="pieChartData3"
+                [type]="pieChartType3"
+                [options]="pieChartOptions3"
+                [plugins]="pieChartPlugins3"
+              >
+              </canvas>
             </div>
-
           </section>
           <section *ngIf="loaded_pie3" class="sectionCInfo">
             <div *ngFor="let percent of percents_gener" class="cardInfo">
-              <span  [ngStyle]="{background: percent.color}" class="point"></span>
-              <span class="label1">{{percent.name}}:</span>
-              <span class="label2">{{percent.percent|number:'1.2-2'}}</span>
+              <span
+                [ngStyle]="{ background: percent.color }"
+                class="point"
+              ></span>
+              <span class="label1">{{ percent.name }}:</span>
+              <span class="label2">{{ percent.percent | number: "1.2-2" }}</span>
               <span>%</span>
             </div>
           </section>
@@ -157,14 +191,19 @@
         <article class="seven">
           <h4 class="titleCard">Periodos con mayor frecuencia de turistas</h4>
           <section *ngIf="loaded_bar" class="sectionChart2">
-            <canvas baseChart width="30" height="5"
-            [data]="barChartData"
-            [options]="barChartOptions"
-            [plugins]="barChartPlugins"
-            [type]="barChartType"
+            <canvas
+              baseChart
+              width="30"
+              height="5"
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [type]="barChartType"
             ></canvas>
           </section>
         </article>
-        </section>
-    </main>
+      </section>
+    </section>
+
+  </main>
 </section>

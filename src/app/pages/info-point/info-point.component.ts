@@ -101,51 +101,61 @@ export class InfoPointComponent implements OnInit {
   region_visit: DataRegionsVisit[] = [
     {
       region: '1',
+      name:'Africa',
       countries: [],
       visit: 0
     },
     {
       region: '2',
+      name:'Asia',
       countries: [],
       visit: 0
     },
     {
       region: '3',
+      name:'America del sur',
       countries: [],
       visit: 0
     },
     {
       region: '4',
+      name:'America del norte',
       countries: [],
       visit: 0
     },
     {
       region: '5',
+      name:'America central',
       countries: [],
       visit: 0
     },
     {
       region: '6',
+      name:'Europa 1',
       countries: [],
       visit: 0
     },
     {
       region: '7',
+      name:'Europa 2',
       countries: [],
       visit: 0
     },
     {
       region: '8',
+      name:'Asia',
       countries: [],
       visit: 0
     },
     {
       region: '9',
+      name:'America central 2',
       countries: [],
       visit: 0
     },
     {
       region: '10',
+      name:'Ocerania',
       countries: [],
       visit: 0
     },
@@ -561,7 +571,11 @@ export class InfoPointComponent implements OnInit {
         this.month_visit = result[0].month_visit!
         this.year_visit = result[0].lastYear_visit!
         this.reason_visit = result[0].reason_visit!
-        this.region_visit = result[0].region_visit!
+        result[0].region_visit!.forEach(region=>{
+          const isRegion = (element:Region_visit)=>(element.region)==(region.region)
+          const i_region = this.region_visit.findIndex(isRegion)
+          this.region_visit[i_region].visit=region.visit
+        })
         this.transport_visit = result[0].transport_visit!
         this.fetchpieRegion()
         this.fetchBarReason()
@@ -918,6 +932,7 @@ onTransport2Changes(value:ItemId){
       array.push({name:region.name!,percent:(region.visit!*100/total)!,color:this.colorPie[i]})
       i+=1
     })
+    console.log(this.region_visit)
     this.percentsRegion=array
   }
 

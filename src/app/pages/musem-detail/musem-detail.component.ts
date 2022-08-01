@@ -1,3 +1,4 @@
+import { ExportToPdfService } from './../../services/export-to-pdf.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import DatalabelsPlugin from 'chartjs-plugin-datalabels';
 import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
@@ -108,7 +109,7 @@ export interface Period {
 export class MusemDetailComponent implements OnInit {
   @ViewChildren(BaseChartDirective) charts!: QueryList<BaseChartDirective>;
 
-  
+
   //form
   filterGroup = new FormGroup({
     start: new FormControl('', [Validators.required]),
@@ -322,7 +323,8 @@ export class MusemDetailComponent implements OnInit {
     private router: Router,
     private museoService: MuseosService,
     private recorVisitService: RecordVisitService,
-    private countriesService: CountriesService
+    private countriesService: CountriesService,
+    private exportPdfService: ExportToPdfService
 
   ) { }
   //pie
@@ -697,6 +699,12 @@ export class MusemDetailComponent implements OnInit {
 
       })
   }
+
+  exportPDF(){
+    let name = `Report ${new Date()}`
+    this.exportPdfService.createPdfs(name,'chars')
+  }
+
   goBack() {
     this.router.navigate(['/museos']);
   }

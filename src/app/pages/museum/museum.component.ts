@@ -94,51 +94,61 @@ export class MuseumComponent implements OnInit {
   region_visit: DataRegionsVisit[] = [
     {
       region: '1',
+      name:'Africa',
       countries: [],
       visit: 0
     },
     {
       region: '2',
+      name:'Asia',
       countries: [],
       visit: 0
     },
     {
       region: '3',
+      name:'America del sur',
       countries: [],
       visit: 0
     },
     {
       region: '4',
+      name:'America del norte',
       countries: [],
       visit: 0
     },
     {
       region: '5',
+      name:'America central',
       countries: [],
       visit: 0
     },
     {
       region: '6',
+      name:'Europa 1',
       countries: [],
       visit: 0
     },
     {
       region: '7',
+      name:'Europa 2',
       countries: [],
       visit: 0
     },
     {
       region: '8',
+      name:'Asia',
       countries: [],
       visit: 0
     },
     {
       region: '9',
+      name:'America central 2',
       countries: [],
       visit: 0
     },
     {
       region: '10',
+      name:'Ocerania',
       countries: [],
       visit: 0
     },
