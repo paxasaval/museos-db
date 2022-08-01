@@ -69,6 +69,8 @@ export class DialogMuseumComponent implements OnInit {
           res=>{
             res.forEach(user=>{
               this.mail.push(user.id)
+              console.log(user);
+              
             })
           }
         )
