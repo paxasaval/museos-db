@@ -444,7 +444,7 @@ export class InfoPointComponent implements OnInit {
         pointBorderColor: '#fff',
         pointHoverBackgroundColor: '#fff',
         pointHoverBorderColor: 'rgba(148,159,177,0.8)',
-        fill: 'origin',
+        fill: 'false',
     }],
     labels:[]
   }
