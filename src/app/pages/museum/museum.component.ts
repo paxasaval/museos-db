@@ -465,6 +465,9 @@ export class MuseumComponent implements OnInit {
   openDialogNewMuseum(): void {
     const dialogRef = this.dialog.open(DialogMuseumComponent, {
       panelClass: 'app-full-bleed-dialog',
+      data: {
+        'edit': false,
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
